@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "kind": "xiaozhuang-dsh-plugin-export",
-  "createdAt": "2026-08-26T11:46:43.518Z",
-  "sourceCommit": "49b1c5207b1556515752c6bf9e7902c1a5964ad9",
+  "createdAt": "2026-08-26T19:18:43.149Z",
+  "sourceCommit": "12cc1c95bfc5a84a8a9555a7cd8660df5c319d65",
   "plugins": [
     {
       "id": "product-companion",
@@ -24,13 +24,13 @@
   "files": [
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/README.md",
-      "size": 9963,
-      "sha256": "30502d5b938ed957e69a0f910c4ec92addce7b1a42b68e42b97a21e64efc43d6"
+      "size": 10210,
+      "sha256": "67a9652ad4f32ef6f0bd75a87bf6d06355e2d6c93ad817b69777eb701a0e0f82"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/README.zh.md",
-      "size": 9002,
-      "sha256": "c3766367241c6dbf3ae92544ac11b5bf61130012563408986fa24ac9a6dfdf90"
+      "size": 9159,
+      "sha256": "b7c91b213bc2e4de44a39dd5aff5a3cdfe1090aa665cd7e0c3006e6b41488e2c"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-01.png",
@@ -1399,8 +1399,8 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/client.js",
-      "size": 115475,
-      "sha256": "11f60e5885ce12b97bfbe3ea3209ab50d54ef3243cb0865db7cde25050846176"
+      "size": 122345,
+      "sha256": "617b99f01b0de3d4e9aba5afdb53aa77f6b89f16e11a5f4a849f0729863fe8bb"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/index.js",
@@ -1433,6 +1433,11 @@
       "sha256": "68d93e78316d2a44a0688c7743ad8aa561db677029451f98e75c2bb1143c716e"
     },
     {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/composer-anchor.d.ts",
+      "size": 1909,
+      "sha256": "926f7fe4bd7cf7f57f5aa10de5e9e6d54c2793f87405a07b1c8999d75d2696a4"
+    },
+    {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/global-rules.d.ts",
       "size": 801,
       "sha256": "4cdd14366e3ae8e19418d66b0c8a1390c8083f9899f3655bff37db21198feb8a"
@@ -1459,8 +1464,8 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/store.d.ts",
-      "size": 3008,
-      "sha256": "98f1cff5743d70da2fb0078152496afa3e826b14e2600559f0776562324362df"
+      "size": 2850,
+      "sha256": "c150adcb4c9c521d157ec58737ffbce4b03af3748cb211be1f26e7ac1fd38c23"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/voice-input.d.ts",
@@ -1499,13 +1504,13 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanion.module.css",
-      "size": 11877,
-      "sha256": "eae4c6b75920774f1c6bfdbaca1deb2f62c96ca55d2c3325a16baa8ac2e8369f"
+      "size": 12087,
+      "sha256": "8d14266da4829a3e360d87e35494c3662415e172a0b59fcc48fa97fd6b240ae0"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanion.tsx",
-      "size": 42449,
-      "sha256": "0e242cd51d8b51ea5495ede5f9e79fdaaa507ccbda32ed46e4acd01bbecbc297"
+      "size": 46474,
+      "sha256": "0349355f7794c200c2280606fdb67f10672fdb00763626856c6f5aa0040095f5"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanionSettings.module.css",
@@ -1528,14 +1533,14 @@
       "sha256": "d8413116516f7c24c4a316f0a3492cb95b9fe2ae15e2cd8eb7f20dc9c2ad3618"
     },
     {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/composer-anchor.ts",
+      "size": 2469,
+      "sha256": "080cee16e64290ccf205264d9c300003f92bd1f92b91435fecce0c42a36a597e"
+    },
+    {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/global-rules.ts",
       "size": 1854,
       "sha256": "d9021ef199b031c6ec00259fef8ff42e4442fbfbf6c72a5e9817d50e54030502"
-    },
-    {
-      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/habitats.ts",
-      "size": 1456,
-      "sha256": "e8b9121d0aeff257fdde57d475b4d2e775b05e168fdabc1cec617fe088696d42"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/index.ts",
@@ -1549,8 +1554,8 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/store.ts",
-      "size": 6304,
-      "sha256": "a17eaf7ca01c98ac8e8a6d49ebae49b494c9d4f9ec8cc3ddea1137a3444e1b8b"
+      "size": 5909,
+      "sha256": "5b498ceba3b204cb52901d25e2276ab0d1a7ee23f3963a5e3c509d51ef95faee"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/voice-input.ts",

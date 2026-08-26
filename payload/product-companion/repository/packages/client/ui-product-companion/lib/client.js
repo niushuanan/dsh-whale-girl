@@ -5,10 +5,10 @@ window.__ModuleLoader__.load({
 		var exports = module.exports;
 		Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 		let _deepseek_ai_dsh_client_runtime_client = require("@deepseek-ai/dsh-client-runtime/client");
-		let react_jsx_runtime = require("react/jsx-runtime");
 		let react = require("react");
 		let _deepseek_ai_dsh_client_ui_primitives = require("@deepseek-ai/dsh-client-ui-primitives");
-		//#region lib/types/client/activity.js
+		let react_jsx_runtime = require("react/jsx-runtime");
+		//#region src/client/activity.ts
 		/**
 		* Project every live or attention-blocked conversation into one compact switcher row.
 		* Attention comes first, followed by the open conversation and then the freshest work.
@@ -116,7 +116,7 @@ window.__ModuleLoader__.load({
 			success: 12
 		};
 		//#endregion
-		//#region lib/types/client/store.js
+		//#region src/client/store.ts
 		/** Persisted user choices for the global product companion. */
 		/** Default product-facing name. Technical plugin ids remain stable. */
 		const DEFAULT_COMPANION_NAME = "鲸少女";
@@ -166,8 +166,6 @@ window.__ModuleLoader__.load({
 					clickAction: "focusComposer",
 					doubleClickAction: "newSession",
 					contextAction: "menu",
-					position: null,
-					home: "sidebar",
 					showStatus: true,
 					autoTravel: true,
 					voiceEnabled: true,
@@ -196,23 +194,14 @@ window.__ModuleLoader__.load({
 					setContextAction: (draft, action) => {
 						draft.contextAction = action;
 					},
-					setPosition: (draft, position) => {
-						draft.position = position;
-						draft.home = "free";
-					},
-					setHome: (draft, home) => {
-						draft.home = home;
-						draft.position = null;
+					setComposerOffsetRatio: (draft, ratio) => {
+						draft.composerOffsetRatio = Math.max(0, Math.min(1, ratio));
 					},
 					setShowStatus: (draft, enabled) => {
 						draft.showStatus = enabled;
 					},
 					setAutoTravel: (draft, enabled) => {
 						draft.autoTravel = enabled;
-					},
-					resetPosition: (draft) => {
-						draft.home = "sidebar";
-						draft.position = null;
 					},
 					setVoiceEnabled: (draft, enabled) => {
 						draft.voiceEnabled = enabled;
@@ -223,8 +212,50 @@ window.__ModuleLoader__.load({
 				}
 			});
 		}
+		/**
+		* Map a persisted 0–1 offset ratio to the companion's left edge: 0 hugs the
+		* composer's left inset, 1 the right inset (the historical default berth).
+		* A card narrower than the character parks at the left inset.
+		*
+		* @param ratio - Persisted horizontal offset as a 0–1 fraction of usable width.
+		* @param composer - Visible composer card rectangle.
+		* @param petWidth - Rendered companion width in pixels.
+		* @returns The companion's left edge in viewport pixels.
+		*/
+		function composerXForRatio(ratio, composer, petWidth) {
+			const usable = composer.width - 6 - 14 - petWidth;
+			if (usable <= 0) return composer.left + 6;
+			const bounded = Math.max(0, Math.min(1, ratio));
+			return composer.left + 6 + bounded * usable;
+		}
+		/**
+		* Inverse of {@link composerXForRatio}: derive the persisted ratio from a left
+		* edge the user dragged to, clamped into the usable span.
+		*
+		* @param x - Proposed companion left edge in viewport pixels.
+		* @param composer - Visible composer card rectangle.
+		* @param petWidth - Rendered companion width in pixels.
+		* @returns The clamped 0–1 offset ratio to persist.
+		*/
+		function composerRatioForX(x, composer, petWidth) {
+			const usable = composer.width - 6 - 14 - petWidth;
+			if (usable <= 0) return 1;
+			return (Math.max(composer.left + 6, Math.min(x, composer.left + 6 + usable)) - composer.left - 6) / usable;
+		}
+		/**
+		* Keep the authored lounge silhouette touching the composer's top border
+		* without covering its text.
+		*
+		* @param top - Composer card top edge in viewport pixels.
+		* @param petHeight - Rendered companion height in pixels.
+		* @param bottomInset - Authored overlap of the transparent canvas edge.
+		* @returns The companion's top edge in viewport pixels.
+		*/
+		function composerYForTop(top, petHeight, bottomInset) {
+			return top - petHeight + bottomInset;
+		}
 		//#endregion
-		//#region lib/types/client/voice-input.js
+		//#region src/client/voice-input.ts
 		/** Browser-native microphone dictation. No model or AI processing is involved. */
 		function recognitionConstructor() {
 			if (typeof window === "undefined") return void 0;
@@ -472,8 +503,8 @@ window.__ModuleLoader__.load({
 			};
 		}
 		//#endregion
-		//#region \0dsh-css:dsh-source/packages/client/ui-product-companion/src/client/ProductCompanion.module.css.mjs
-		const css$1 = ".tjIJNa_root{--habitat-rotate:0deg;--habitat-scale:1;--habitat-x:0px;--companion-x:0px;--companion-y:0px;--pose-x:0px;--pose-y:10px;--pose-rotate:0deg;--pose-scale:1;--companion-width:132px;--companion-height:118px;--dissolve-phase-ms:.92s;--dissolve-frame-crossfade-ms:36ms;z-index:28;width:var(--companion-width);height:var(--companion-height);pointer-events:auto;user-select:none;transform:translate3d(var(--companion-x), var(--companion-y), 0);will-change:transform;contain:layout style;position:fixed;top:0;left:0}.tjIJNa_root[data-habitat=composer]{--habitat-rotate:0deg;--habitat-scale:1}.tjIJNa_character{width:var(--companion-width);height:var(--companion-height);cursor:pointer;touch-action:manipulation;background:0 0;border:0;outline:none;padding:0;display:block;position:relative}.tjIJNa_contextMenu{width:var(--companion-width);height:var(--companion-height)}.tjIJNa_contextMenu>[role=menu]{min-width:116px}.tjIJNa_poseLayer,.tjIJNa_motionLayer,.tjIJNa_spriteLayer{pointer-events:none;transform-origin:bottom;display:block;position:absolute;inset:0}.tjIJNa_poseLayer{transform:translate3d(var(--pose-x), var(--pose-y), 0) rotate(var(--pose-rotate)) scale(var(--pose-scale));will-change:transform;transition:transform .38s cubic-bezier(.2,.82,.24,1)}.tjIJNa_motionLayer{will-change:translate, rotate, scale}.tjIJNa_spriteLayer{transform:translate(var(--habitat-x), 0) rotate(var(--habitat-rotate)) scale(var(--habitat-scale));transition:transform .16s var(--ds-ease-out);backface-visibility:hidden}.tjIJNa_characterImage{width:var(--companion-width);height:var(--companion-height);object-fit:contain;object-position:center bottom;pointer-events:none;backface-visibility:hidden;image-rendering:auto;will-change:contents;display:block;position:absolute;inset:0;transform:translateZ(0)}.tjIJNa_materialDissolveLayer{pointer-events:none;backface-visibility:hidden;display:block;position:absolute;inset:0;transform:translateZ(0)}.tjIJNa_materialCurrent,.tjIJNa_materialPrevious,.tjIJNa_materialFragments{-webkit-mask-image:var(--companion-material-mask);mask-image:var(--companion-material-mask);-webkit-mask-position:bottom;mask-position:bottom;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}.tjIJNa_materialCurrent{z-index:0}.tjIJNa_materialPrevious{z-index:1;animation:tjIJNa_material-mask-out var(--dissolve-frame-crossfade-ms) linear both}.tjIJNa_materialFragments{z-index:2;opacity:var(--companion-fragment-opacity,.78);filter:saturate(1.12)brightness(1.06);transform:translate3d(var(--companion-fragment-x,1px), var(--companion-fragment-y,-2px), 0)}.tjIJNa_root[data-track=lounge][data-motion=rest]{--pose-x:-2px;--pose-rotate:0deg;--pose-scale:1}.tjIJNa_root[data-track=lounge][data-motion=rest] .tjIJNa_motionLayer{animation:1.833s ease-in-out 80ms infinite tjIJNa_lounge-breathe}.tjIJNa_root[data-pose=sleep][data-motion=rest] .tjIJNa_motionLayer{animation:4.2s ease-in-out .2s infinite tjIJNa_sleep}.tjIJNa_root[data-track=waiting][data-motion=rest] .tjIJNa_motionLayer{animation:2.35s ease-in-out .1s infinite tjIJNa_waiting}.tjIJNa_root[data-track=success][data-motion=rest] .tjIJNa_motionLayer{animation:1.05s cubic-bezier(.18,.82,.2,1) both tjIJNa_respond}@keyframes tjIJNa_material-mask-out{0%{opacity:1}to{opacity:0}}.tjIJNa_bubble,.tjIJNa_taskPanel{left:50%;bottom:calc(var(--companion-height) - 8px);width:min(248px,100vw - 24px);position:absolute;transform:translate(-50%)}.tjIJNa_bubble{border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);box-shadow:var(--dsw-shadow-lv1);animation:tjIJNa_bubble-in .18s var(--ds-ease-out) both;color:inherit;text-align:left;cursor:pointer;border-radius:13px;padding:8px 11px;display:block}div.tjIJNa_bubble{cursor:default;width:auto;max-width:180px}.tjIJNa_voiceBubble{cursor:default;width:auto;min-width:92px;max-width:min(240px,100vw - 24px)}.tjIJNa_voiceBubble .tjIJNa_taskMeta{white-space:normal}.tjIJNa_bubble:focus-visible,.tjIJNa_taskRow:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:2px}.tjIJNa_bubble:hover{background:var(--dsw-alias-bg-layer-2)}.tjIJNa_taskTitle,.tjIJNa_taskMeta{text-overflow:ellipsis;white-space:nowrap;display:block;overflow:hidden}.tjIJNa_taskTitle{color:var(--dsw-alias-label-primary);font-size:12px;font-weight:600;line-height:17px}.tjIJNa_taskMeta{color:var(--dsw-alias-label-secondary);font-size:11px;font-weight:400;line-height:16px}.tjIJNa_taskPanel{overscroll-behavior:contain;scrollbar-width:thin;gap:6px;max-height:216px;padding:4px;display:grid;overflow:hidden auto}.tjIJNa_taskPanel[data-state=closing]{pointer-events:none}.tjIJNa_taskRow{border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);width:100%;min-width:0;box-shadow:var(--dsw-shadow-lv1);text-align:left;cursor:pointer;transform-origin:bottom;transition:background-color .14s var(--ds-ease-out), border-color .14s var(--ds-ease-out);will-change:opacity, transform;border-radius:11px;padding:8px 10px;position:relative}.tjIJNa_taskPanel[data-state=open] .tjIJNa_taskRow{animation:tjIJNa_task-bubble-in .28s cubic-bezier(.2, .9, .24, 1.08) var(--task-enter-delay) both}.tjIJNa_taskPanel[data-state=closing] .tjIJNa_taskRow{animation:tjIJNa_task-bubble-out .17s cubic-bezier(.55, 0, .72, .35) var(--task-exit-delay) both}.tjIJNa_taskRow:hover,.tjIJNa_taskRow[data-current=true]{background:var(--dsw-alias-bg-module-platform)}.tjIJNa_taskRow[data-current=true] .tjIJNa_taskTitle{color:var(--dsw-alias-label-primary)}.tjIJNa_bubble:after{border-right:1px solid var(--dsw-alias-border-l1);border-bottom:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);content:\"\";width:7px;height:7px;position:absolute;bottom:-4px;left:50%;transform:translate(-50%)rotate(45deg)}.tjIJNa_root[data-bubble-align=left] .tjIJNa_bubble,.tjIJNa_root[data-bubble-align=left] .tjIJNa_taskPanel{left:4px;transform:none}.tjIJNa_root[data-bubble-align=left] .tjIJNa_bubble:after{left:30px}.tjIJNa_root[data-bubble-align=right] .tjIJNa_bubble,.tjIJNa_root[data-bubble-align=right] .tjIJNa_taskPanel{left:auto;right:4px;transform:none}.tjIJNa_root[data-bubble-align=right] .tjIJNa_bubble:after{left:auto;right:30px;transform:rotate(45deg)}.tjIJNa_quickControls{z-index:4;transform-origin:top;will-change:opacity, transform;gap:5px;display:flex;position:absolute;bottom:-14px;left:50%;transform:translate(-50%)}.tjIJNa_root[data-teleport=departing] .tjIJNa_quickControls{pointer-events:none;animation:tjIJNa_companion-accessories-depart var(--dissolve-phase-ms) cubic-bezier(.42, 0, .58, 1) both}.tjIJNa_root[data-teleport=arriving] .tjIJNa_quickControls{pointer-events:none;animation:tjIJNa_companion-accessories-arrive var(--dissolve-phase-ms) cubic-bezier(.42, 0, .58, 1) both}.tjIJNa_quickControl{border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);width:30px;height:30px;box-shadow:var(--dsw-shadow-lv1);color:var(--dsw-alias-label-primary);font:inherit;cursor:pointer;border-radius:50%;place-items:center;padding:0;transition:border-color .12s,background-color .12s,box-shadow .12s;display:grid}.tjIJNa_quickControl:not(:disabled):hover{background:var(--dsw-alias-bg-module-platform);box-shadow:0 1px 4px #00000014}.tjIJNa_quickControl[data-control=voice],.tjIJNa_quickControl[data-control=voice]:not(:disabled):hover,.tjIJNa_quickControl[data-control=voice][data-active=true]{border-color:var(--dsw-alias-label-primary);background:var(--dsw-alias-label-primary);box-shadow:var(--dsw-shadow-lv1);color:var(--dsw-alias-bg-base)}.tjIJNa_quickControl:focus-visible{border-color:var(--dsw-alias-brand-primary);box-shadow:0 0 0 3px color-mix(in srgb, var(--dsw-alias-brand-primary) 16%, transparent);outline:0}.tjIJNa_quickControl[data-active=true] .tjIJNa_voiceIcon{animation:.9s ease-in-out infinite tjIJNa_voice-pulse}.tjIJNa_quickControl:disabled{color:var(--dsw-alias-label-tertiary);cursor:default}.tjIJNa_taskCount{text-align:center;min-width:1ch;font-size:12px;font-weight:600;line-height:1}.tjIJNa_voiceIcon{background:currentColor;width:16px;height:16px;display:block;mask:url(data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMiAxMHYzIiAvPgogIDxwYXRoIGQ9Ik02IDZ2MTEiIC8+CiAgPHBhdGggZD0iTTEwIDN2MTgiIC8+CiAgPHBhdGggZD0iTTE0IDh2NyIgLz4KICA8cGF0aCBkPSJNMTggNXYxMyIgLz4KICA8cGF0aCBkPSJNMjIgMTB2MyIgLz4KPC9zdmc+Cg==) 50%/contain no-repeat}.tjIJNa_srOnly{clip:rect(0, 0, 0, 0);white-space:nowrap;clip-path:inset(50%);width:1px;height:1px;position:absolute;overflow:hidden}@keyframes tjIJNa_bubble-in{0%{opacity:0;translate:0 3px}to{opacity:1;translate:0}}@keyframes tjIJNa_task-bubble-in{0%{opacity:0;transform:translateY(12px)scale(.94)}72%{opacity:1;transform:translateY(-1px)scale(1.008)}to{opacity:1;transform:translateY(0)scale(1)}}@keyframes tjIJNa_task-bubble-out{0%{opacity:1;transform:translateY(0)scale(1)}to{opacity:0;transform:translateY(10px)scale(.95)}}@keyframes tjIJNa_companion-accessories-depart{0%,8%{opacity:1;transform:translate(-50%)translateY(0)scale(1)}40%,to{opacity:0;transform:translate(-50%)translateY(-5px)scale(.88)}}@keyframes tjIJNa_companion-accessories-arrive{0%,38%{opacity:0;transform:translate(-50%)translateY(-5px)scale(.88)}88%,to{opacity:1;transform:translate(-50%)translateY(0)scale(1)}}@keyframes tjIJNa_sleep{0%,to{translate:0;rotate:0deg}50%{translate:-1px 1.5px;rotate:-.45deg}}@keyframes tjIJNa_waiting{0%,to{translate:0;rotate:0deg}38%{translate:0 -1px;rotate:-.25deg}66%{translate:1px -2px;rotate:.35deg}84%{translate:0 -1px;rotate:.1deg}}@keyframes tjIJNa_lounge-breathe{0%,to{translate:0;rotate:0deg}32%{translate:-1px -1px;rotate:-.25deg}58%{translate:1px -2px;rotate:.2deg}78%{translate:0 -1px;rotate:0deg}}@keyframes tjIJNa_respond{0%,to{translate:0;rotate:0deg}34%{translate:1px -2px;rotate:-.45deg}68%{translate:2px -3px;rotate:.7deg}88%{translate:1px -1px;rotate:.2deg}}@keyframes tjIJNa_voice-pulse{0%,to{opacity:.72;transform:scaleY(.82)}50%{opacity:1;transform:scaleY(1.08)}}@media (prefers-reduced-motion:reduce){.tjIJNa_characterImage,.tjIJNa_poseLayer,.tjIJNa_motionLayer,.tjIJNa_materialPrevious,.tjIJNa_bubble,.tjIJNa_taskRow,.tjIJNa_quickControl[data-active=true] .tjIJNa_voiceIcon{animation:none}.tjIJNa_taskPanel[data-state=closing]{visibility:hidden}.tjIJNa_poseLayer,.tjIJNa_spriteLayer{transition-duration:1ms}}";
+		//#region \0dsh-css:/Users/zhuanghongkai/Desktop/迭代DSH/xiaozhuang-dsh/packages/client/ui-product-companion/src/client/ProductCompanion.module.css.mjs
+		const css$1 = ".AGqFvq_root{--habitat-rotate:0deg;--habitat-scale:1;--habitat-x:0px;--companion-x:0px;--companion-y:0px;--pose-x:0px;--pose-y:10px;--pose-rotate:0deg;--pose-scale:1;--companion-width:132px;--companion-height:118px;--dissolve-phase-ms:.92s;--dissolve-frame-crossfade-ms:36ms;z-index:28;width:var(--companion-width);height:var(--companion-height);pointer-events:auto;user-select:none;transform:translate3d(var(--companion-x), var(--companion-y), 0);will-change:transform;contain:layout style;position:fixed;top:0;left:0}.AGqFvq_root[data-habitat=composer]{--habitat-rotate:0deg;--habitat-scale:1}.AGqFvq_character{width:var(--companion-width);height:var(--companion-height);touch-action:none;cursor:grab;background:0 0;border:0;outline:none;padding:0;display:block;position:relative}.AGqFvq_root[data-dragging=true] .AGqFvq_character{cursor:grabbing}.AGqFvq_contextMenu{width:var(--companion-width);height:var(--companion-height)}.AGqFvq_contextMenu>[role=menu]{min-width:116px}.AGqFvq_poseLayer,.AGqFvq_motionLayer,.AGqFvq_spriteLayer{pointer-events:none;transform-origin:bottom;display:block;position:absolute;inset:0}.AGqFvq_poseLayer{transform:translate3d(var(--pose-x), var(--pose-y), 0) rotate(var(--pose-rotate)) scale(var(--pose-scale));will-change:transform;transition:transform .38s cubic-bezier(.2,.82,.24,1)}.AGqFvq_motionLayer{will-change:translate, rotate, scale}.AGqFvq_spriteLayer{transform:translate(var(--habitat-x), 0) rotate(var(--habitat-rotate)) scale(var(--habitat-scale));transition:transform .16s var(--ds-ease-out);backface-visibility:hidden}.AGqFvq_characterImage{width:var(--companion-width);height:var(--companion-height);object-fit:contain;object-position:center bottom;pointer-events:none;backface-visibility:hidden;image-rendering:auto;will-change:contents;display:block;position:absolute;inset:0;transform:translateZ(0)}.AGqFvq_materialDissolveLayer{pointer-events:none;backface-visibility:hidden;display:block;position:absolute;inset:0;transform:translateZ(0)}.AGqFvq_materialCurrent,.AGqFvq_materialPrevious,.AGqFvq_materialFragments{-webkit-mask-image:var(--companion-material-mask);mask-image:var(--companion-material-mask);-webkit-mask-position:bottom;mask-position:bottom;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}.AGqFvq_materialCurrent{z-index:0}.AGqFvq_materialPrevious{z-index:1;animation:AGqFvq_material-mask-out var(--dissolve-frame-crossfade-ms) linear both}.AGqFvq_materialFragments{z-index:2;opacity:var(--companion-fragment-opacity,.78);filter:saturate(1.12)brightness(1.06);transform:translate3d(var(--companion-fragment-x,1px), var(--companion-fragment-y,-2px), 0)}.AGqFvq_root[data-track=lounge][data-motion=rest]{--pose-x:-2px;--pose-rotate:0deg;--pose-scale:1}.AGqFvq_root[data-track=lounge][data-motion=rest] .AGqFvq_motionLayer{animation:1.833s ease-in-out 80ms infinite AGqFvq_lounge-breathe}.AGqFvq_root[data-pose=sleep][data-motion=rest] .AGqFvq_motionLayer{animation:4.2s ease-in-out .2s infinite AGqFvq_sleep}.AGqFvq_root[data-track=waiting][data-motion=rest] .AGqFvq_motionLayer{animation:2.35s ease-in-out .1s infinite AGqFvq_waiting}.AGqFvq_root[data-track=success][data-motion=rest] .AGqFvq_motionLayer{animation:1.05s cubic-bezier(.18,.82,.2,1) both AGqFvq_respond}@keyframes AGqFvq_material-mask-out{0%{opacity:1}to{opacity:0}}.AGqFvq_bubble,.AGqFvq_taskPanel{left:50%;bottom:calc(var(--companion-height) - 8px);width:min(248px,100vw - 24px);position:absolute;transform:translate(-50%)}.AGqFvq_bubble{border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);box-shadow:var(--dsw-shadow-lv1);animation:AGqFvq_bubble-in .18s var(--ds-ease-out) both;color:inherit;text-align:left;cursor:pointer;border-radius:13px;padding:8px 11px;display:block}div.AGqFvq_bubble{cursor:default;width:auto;max-width:180px}.AGqFvq_voiceBubble{cursor:default;width:auto;min-width:92px;max-width:min(240px,100vw - 24px)}.AGqFvq_voiceBubble .AGqFvq_taskMeta{white-space:normal}.AGqFvq_bubble:focus-visible,.AGqFvq_taskRow:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:2px}.AGqFvq_bubble:hover{background:var(--dsw-alias-bg-layer-2)}.AGqFvq_taskTitle,.AGqFvq_taskMeta{text-overflow:ellipsis;white-space:nowrap;display:block;overflow:hidden}.AGqFvq_taskTitle{color:var(--dsw-alias-label-primary);font-size:12px;font-weight:600;line-height:17px}.AGqFvq_taskMeta{color:var(--dsw-alias-label-secondary);font-size:11px;font-weight:400;line-height:16px}.AGqFvq_taskPanel{overscroll-behavior:contain;scrollbar-width:thin;gap:6px;max-height:216px;padding:4px;display:grid;overflow:hidden auto}.AGqFvq_taskPanel[data-state=closing]{pointer-events:none}.AGqFvq_taskRow{border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);width:100%;min-width:0;box-shadow:var(--dsw-shadow-lv1);text-align:left;cursor:pointer;transform-origin:bottom;transition:background-color .14s var(--ds-ease-out), border-color .14s var(--ds-ease-out);will-change:opacity, transform;border-radius:11px;padding:8px 10px;position:relative}.AGqFvq_taskPanel[data-state=open] .AGqFvq_taskRow{animation:AGqFvq_task-bubble-in .28s cubic-bezier(.2, .9, .24, 1.08) var(--task-enter-delay) both}.AGqFvq_taskPanel[data-state=closing] .AGqFvq_taskRow{animation:AGqFvq_task-bubble-out .17s cubic-bezier(.55, 0, .72, .35) var(--task-exit-delay) both}.AGqFvq_taskRow:hover,.AGqFvq_taskRow[data-current=true]{background:var(--dsw-alias-bg-module-platform)}.AGqFvq_taskRow[data-current=true] .AGqFvq_taskTitle{color:var(--dsw-alias-label-primary)}.AGqFvq_bubble:after{border-right:1px solid var(--dsw-alias-border-l1);border-bottom:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);content:\"\";width:7px;height:7px;position:absolute;bottom:-4px;left:50%;transform:translate(-50%)rotate(45deg)}.AGqFvq_root[data-bubble-align=left] .AGqFvq_bubble,.AGqFvq_root[data-bubble-align=left] .AGqFvq_taskPanel{left:4px;transform:none}.AGqFvq_root[data-bubble-align=left] .AGqFvq_bubble:after{left:30px}.AGqFvq_root[data-bubble-align=right] .AGqFvq_bubble,.AGqFvq_root[data-bubble-align=right] .AGqFvq_taskPanel{left:auto;right:4px;transform:none}.AGqFvq_root[data-bubble-align=right] .AGqFvq_bubble:after{left:auto;right:30px;transform:rotate(45deg)}.AGqFvq_quickControls{z-index:4;transform-origin:top;will-change:opacity, transform;gap:5px;display:flex;position:absolute;bottom:-14px;left:50%;transform:translate(-50%)}.AGqFvq_root[data-teleport=departing] .AGqFvq_quickControls{pointer-events:none;animation:AGqFvq_companion-accessories-depart var(--dissolve-phase-ms) cubic-bezier(.42, 0, .58, 1) both}.AGqFvq_root[data-teleport=arriving] .AGqFvq_quickControls{pointer-events:none;animation:AGqFvq_companion-accessories-arrive var(--dissolve-phase-ms) cubic-bezier(.42, 0, .58, 1) both}.AGqFvq_quickControl{border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);width:30px;height:30px;box-shadow:var(--dsw-shadow-lv1);color:var(--dsw-alias-label-primary);font:inherit;cursor:pointer;border-radius:50%;place-items:center;padding:0;transition:border-color .12s,background-color .12s,box-shadow .12s;display:grid}.AGqFvq_quickControl:not(:disabled):hover{background:var(--dsw-alias-bg-module-platform);box-shadow:0 1px 4px #00000014}.AGqFvq_quickControl[data-control=voice],.AGqFvq_quickControl[data-control=voice]:not(:disabled):hover,.AGqFvq_quickControl[data-control=voice][data-active=true]{border-color:var(--dsw-alias-label-primary);background:var(--dsw-alias-label-primary);box-shadow:var(--dsw-shadow-lv1);color:var(--dsw-alias-bg-base)}.AGqFvq_quickControl:focus-visible{border-color:var(--dsw-alias-brand-primary);box-shadow:0 0 0 3px color-mix(in srgb, var(--dsw-alias-brand-primary) 16%, transparent);outline:0}.AGqFvq_quickControl[data-active=true] .AGqFvq_voiceIcon{animation:.9s ease-in-out infinite AGqFvq_voice-pulse}.AGqFvq_quickControl:disabled{color:var(--dsw-alias-label-tertiary);cursor:default}.AGqFvq_taskCount{text-align:center;min-width:1ch;font-size:12px;font-weight:600;line-height:1}.AGqFvq_voiceIcon{background:currentColor;width:16px;height:16px;display:block;mask:url(data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB3aWR0aD0iMjQiCiAgaGVpZ2h0PSIyNCIKICB2aWV3Qm94PSIwIDAgMjQgMjQiCiAgZmlsbD0ibm9uZSIKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBzdHJva2Utd2lkdGg9IjIiCiAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogIHN0cm9rZS1saW5lam9pbj0icm91bmQiCj4KICA8cGF0aCBkPSJNMiAxMHYzIiAvPgogIDxwYXRoIGQ9Ik02IDZ2MTEiIC8+CiAgPHBhdGggZD0iTTEwIDN2MTgiIC8+CiAgPHBhdGggZD0iTTE0IDh2NyIgLz4KICA8cGF0aCBkPSJNMTggNXYxMyIgLz4KICA8cGF0aCBkPSJNMjIgMTB2MyIgLz4KPC9zdmc+Cg==) 50%/contain no-repeat}.AGqFvq_srOnly{clip:rect(0, 0, 0, 0);white-space:nowrap;clip-path:inset(50%);width:1px;height:1px;position:absolute;overflow:hidden}@keyframes AGqFvq_bubble-in{0%{opacity:0;translate:0 3px}to{opacity:1;translate:0}}@keyframes AGqFvq_task-bubble-in{0%{opacity:0;transform:translateY(12px)scale(.94)}72%{opacity:1;transform:translateY(-1px)scale(1.008)}to{opacity:1;transform:translateY(0)scale(1)}}@keyframes AGqFvq_task-bubble-out{0%{opacity:1;transform:translateY(0)scale(1)}to{opacity:0;transform:translateY(10px)scale(.95)}}@keyframes AGqFvq_companion-accessories-depart{0%,8%{opacity:1;transform:translate(-50%)translateY(0)scale(1)}40%,to{opacity:0;transform:translate(-50%)translateY(-5px)scale(.88)}}@keyframes AGqFvq_companion-accessories-arrive{0%,38%{opacity:0;transform:translate(-50%)translateY(-5px)scale(.88)}88%,to{opacity:1;transform:translate(-50%)translateY(0)scale(1)}}@keyframes AGqFvq_sleep{0%,to{translate:0;rotate:0deg}50%{translate:-1px 1.5px;rotate:-.45deg}}@keyframes AGqFvq_waiting{0%,to{translate:0;rotate:0deg}38%{translate:0 -1px;rotate:-.25deg}66%{translate:1px -2px;rotate:.35deg}84%{translate:0 -1px;rotate:.1deg}}@keyframes AGqFvq_lounge-breathe{0%,to{translate:0;rotate:0deg}32%{translate:-1px -1px;rotate:-.25deg}58%{translate:1px -2px;rotate:.2deg}78%{translate:0 -1px;rotate:0deg}}@keyframes AGqFvq_respond{0%,to{translate:0;rotate:0deg}34%{translate:1px -2px;rotate:-.45deg}68%{translate:2px -3px;rotate:.7deg}88%{translate:1px -1px;rotate:.2deg}}@keyframes AGqFvq_voice-pulse{0%,to{opacity:.72;transform:scaleY(.82)}50%{opacity:1;transform:scaleY(1.08)}}@media (prefers-reduced-motion:reduce){.AGqFvq_characterImage,.AGqFvq_poseLayer,.AGqFvq_motionLayer,.AGqFvq_materialPrevious,.AGqFvq_bubble,.AGqFvq_taskRow,.AGqFvq_quickControl[data-active=true] .AGqFvq_voiceIcon{animation:none}.AGqFvq_taskPanel[data-state=closing]{visibility:hidden}.AGqFvq_poseLayer,.AGqFvq_spriteLayer{transition-duration:1ms}}";
 		const tagId$1 = "@deepseek-ai/dsh-client-ui-product-companion/ProductCompanion.module.css";
 		if (typeof document !== "undefined" && document.querySelector("style[data-plugin-css=" + JSON.stringify(tagId$1) + "]") === null) {
 			const tag = document.createElement("style");
@@ -483,42 +514,42 @@ window.__ModuleLoader__.load({
 			document.head.appendChild(tag);
 		}
 		var ProductCompanion_module_css_default = {
-			"bubble": "tjIJNa_bubble",
-			"bubble-in": "tjIJNa_bubble-in",
-			"character": "tjIJNa_character",
-			"characterImage": "tjIJNa_characterImage",
-			"companion-accessories-arrive": "tjIJNa_companion-accessories-arrive",
-			"companion-accessories-depart": "tjIJNa_companion-accessories-depart",
-			"contextMenu": "tjIJNa_contextMenu",
-			"lounge-breathe": "tjIJNa_lounge-breathe",
-			"material-mask-out": "tjIJNa_material-mask-out",
-			"materialCurrent": "tjIJNa_materialCurrent",
-			"materialDissolveLayer": "tjIJNa_materialDissolveLayer",
-			"materialFragments": "tjIJNa_materialFragments",
-			"materialPrevious": "tjIJNa_materialPrevious",
-			"motionLayer": "tjIJNa_motionLayer",
-			"poseLayer": "tjIJNa_poseLayer",
-			"quickControl": "tjIJNa_quickControl",
-			"quickControls": "tjIJNa_quickControls",
-			"respond": "tjIJNa_respond",
-			"root": "tjIJNa_root",
-			"sleep": "tjIJNa_sleep",
-			"spriteLayer": "tjIJNa_spriteLayer",
-			"srOnly": "tjIJNa_srOnly",
-			"task-bubble-in": "tjIJNa_task-bubble-in",
-			"task-bubble-out": "tjIJNa_task-bubble-out",
-			"taskCount": "tjIJNa_taskCount",
-			"taskMeta": "tjIJNa_taskMeta",
-			"taskPanel": "tjIJNa_taskPanel",
-			"taskRow": "tjIJNa_taskRow",
-			"taskTitle": "tjIJNa_taskTitle",
-			"voice-pulse": "tjIJNa_voice-pulse",
-			"voiceBubble": "tjIJNa_voiceBubble",
-			"voiceIcon": "tjIJNa_voiceIcon",
-			"waiting": "tjIJNa_waiting"
+			"bubble": "AGqFvq_bubble",
+			"bubble-in": "AGqFvq_bubble-in",
+			"character": "AGqFvq_character",
+			"characterImage": "AGqFvq_characterImage",
+			"companion-accessories-arrive": "AGqFvq_companion-accessories-arrive",
+			"companion-accessories-depart": "AGqFvq_companion-accessories-depart",
+			"contextMenu": "AGqFvq_contextMenu",
+			"lounge-breathe": "AGqFvq_lounge-breathe",
+			"material-mask-out": "AGqFvq_material-mask-out",
+			"materialCurrent": "AGqFvq_materialCurrent",
+			"materialDissolveLayer": "AGqFvq_materialDissolveLayer",
+			"materialFragments": "AGqFvq_materialFragments",
+			"materialPrevious": "AGqFvq_materialPrevious",
+			"motionLayer": "AGqFvq_motionLayer",
+			"poseLayer": "AGqFvq_poseLayer",
+			"quickControl": "AGqFvq_quickControl",
+			"quickControls": "AGqFvq_quickControls",
+			"respond": "AGqFvq_respond",
+			"root": "AGqFvq_root",
+			"sleep": "AGqFvq_sleep",
+			"spriteLayer": "AGqFvq_spriteLayer",
+			"srOnly": "AGqFvq_srOnly",
+			"task-bubble-in": "AGqFvq_task-bubble-in",
+			"task-bubble-out": "AGqFvq_task-bubble-out",
+			"taskCount": "AGqFvq_taskCount",
+			"taskMeta": "AGqFvq_taskMeta",
+			"taskPanel": "AGqFvq_taskPanel",
+			"taskRow": "AGqFvq_taskRow",
+			"taskTitle": "AGqFvq_taskTitle",
+			"voice-pulse": "AGqFvq_voice-pulse",
+			"voiceBubble": "AGqFvq_voiceBubble",
+			"voiceIcon": "AGqFvq_voiceIcon",
+			"waiting": "AGqFvq_waiting"
 		};
 		//#endregion
-		//#region lib/types/client/ProductCompanion.js
+		//#region src/client/ProductCompanion.tsx
 		const PET_WIDTH = 132;
 		const PET_HEIGHT = 118;
 		const EDGE = 8;
@@ -529,6 +560,8 @@ window.__ModuleLoader__.load({
 		const ANCHOR_SETTLE_MS = 120;
 		const SESSION_ANCHOR_SETTLE_MS = 360;
 		const MIN_TELEPORT_DISTANCE = 6;
+		/** Horizontal pointer travel (px) that turns a press into a drag. */
+		const DRAG_START_PX = 5;
 		const WORK_PULSE_COOLDOWN_MS = 5200;
 		const ASSET_ROOT = "/plugins/ui-product-companion/assets";
 		const UNDERLYING_INTERACTIVE_SELECTOR = [
@@ -601,15 +634,18 @@ window.__ModuleLoader__.load({
 				root.style.pointerEvents = previousPointerEvents;
 			}
 		}
-		/** Measure the stable right edge of the real composer without covering its controls. */
-		function measureComposerAnchor(viewport, preference) {
+		/**
+		* Measure the composer card and place the companion at the user's persisted
+		* horizontal offset ratio (1 = the historical right berth, 0 = the left inset),
+		* so any later composer move or resize keeps the same relative berth.
+		*/
+		function measureComposerAnchor(viewport, preference, offsetRatio) {
 			const composer = visibleRect(document.querySelector("[data-composer-card]"));
 			if (hasBlockingModal() || composer === null) return null;
 			const size = companionSize(viewport, preference);
-			const y = composer.top - size.height + size.bottomInset;
 			return clampPosition({
-				x: composer.right - size.width - 14,
-				y
+				x: composerXForRatio(offsetRatio, composer, size.width),
+				y: composerYForTop(composer.top, size.height, size.bottomInset)
 			}, viewport, preference);
 		}
 		/** Public and testable frame URL contract. */
@@ -672,6 +708,7 @@ window.__ModuleLoader__.load({
 				enabled: voiceEnabled,
 				shortcut: voiceShortcut
 			}), [voiceEnabled, voiceShortcut]);
+			const composerOffsetRatio = useStore((state) => state.composerOffsetRatio ?? 1);
 			const [viewport, setViewport] = (0, react.useState)(readViewport);
 			const [viewportResizing, setViewportResizing] = (0, react.useState)(false);
 			const [layoutRevision, setLayoutRevision] = (0, react.useState)(0);
@@ -722,6 +759,8 @@ window.__ModuleLoader__.load({
 			const previousWorkPulseSignature = (0, react.useRef)(null);
 			const lastWorkPulseAt = (0, react.useRef)(null);
 			const preloadedAssetUrls = (0, react.useRef)(/* @__PURE__ */ new Set());
+			const dragState = (0, react.useRef)(null);
+			const [dragging, setDragging] = (0, react.useState)(false);
 			const voice = useVoiceInput({
 				preferences: voicePreferences,
 				t
@@ -748,10 +787,11 @@ window.__ModuleLoader__.load({
 				openTasks,
 				tasksOpen
 			]);
-			const composerAnchor = (0, react.useMemo)(() => measureComposerAnchor(viewport, sizePreference), [
+			const composerAnchor = (0, react.useMemo)(() => measureComposerAnchor(viewport, sizePreference, composerOffsetRatio), [
 				viewport,
 				layoutRevision,
-				sizePreference
+				sizePreference,
+				composerOffsetRatio
 			]);
 			const renderedSize = companionSize(viewport, sizePreference);
 			const position = renderedPosition ?? composerAnchor ?? {
@@ -902,6 +942,7 @@ window.__ModuleLoader__.load({
 				wake
 			]);
 			(0, react.useEffect)(() => {
+				if (dragState.current?.moved === true) return;
 				if (anchorSettleTimer.current !== null) {
 					clearTimeout(anchorSettleTimer.current);
 					anchorSettleTimer.current = null;
@@ -1189,8 +1230,76 @@ window.__ModuleLoader__.load({
 					executeAction(clickAction);
 				}, 240);
 			};
+			/**
+			* Track a horizontal drag along the composer card: window-level listeners
+			* keep the gesture alive outside the sprite, the 5px threshold separates a
+			* drag from a click, and the final ratio commits through the store so every
+			* later composer geometry reuses the same relative berth.
+			*/
+			const beginDragTracking = (0, react.useCallback)((down) => {
+				const state = {
+					pointerId: down.pointerId,
+					pressX: down.clientX,
+					grabOffsetX: down.clientX - position.x,
+					moved: false,
+					ratio: composerOffsetRatio
+				};
+				dragState.current = state;
+				const detach = () => {
+					window.removeEventListener("pointermove", onMove);
+					window.removeEventListener("pointerup", onUp);
+					window.removeEventListener("pointercancel", onCancel);
+				};
+				const onMove = (event) => {
+					if (event.pointerId !== state.pointerId || dragState.current !== state) return;
+					if (!state.moved) {
+						if (Math.abs(event.clientX - state.pressX) < DRAG_START_PX) return;
+						state.moved = true;
+						setDragging(true);
+						cancelTeleport();
+					}
+					const composer = visibleRect(document.querySelector("[data-composer-card]"));
+					if (composer === null) return;
+					const x = composerXForRatio(composerRatioForX(event.clientX - state.grabOffsetX, composer, renderedSize.width), composer, renderedSize.width);
+					state.ratio = composerRatioForX(x, composer, renderedSize.width);
+					setRenderedPosition({
+						x,
+						y: composerYForTop(composer.top, renderedSize.height, renderedSize.bottomInset)
+					});
+					event.preventDefault();
+				};
+				const finish = (committed) => {
+					detach();
+					if (dragState.current !== state) return;
+					dragState.current = null;
+					if (!state.moved) return;
+					setDragging(false);
+					suppressCharacterClick.current = true;
+					clickThroughPress.current = null;
+					if (committed) actions.setComposerOffsetRatio(state.ratio);
+					setLayoutRevision((value) => value + 1);
+				};
+				const onUp = (event) => {
+					if (event.pointerId !== state.pointerId) return;
+					finish(true);
+				};
+				const onCancel = (event) => {
+					if (event.pointerId !== state.pointerId) return;
+					finish(false);
+				};
+				window.addEventListener("pointermove", onMove);
+				window.addEventListener("pointerup", onUp);
+				window.addEventListener("pointercancel", onCancel);
+			}, [
+				actions,
+				cancelTeleport,
+				composerOffsetRatio,
+				position.x,
+				renderedSize
+			]);
 			const onCharacterPointerDown = (event) => {
 				if (event.button !== 0 || rootRef.current === null) return;
+				beginDragTracking(event);
 				const target = underlyingInteractiveTarget(rootRef.current, event.clientX, event.clientY);
 				if (target === null) return;
 				if (clickTimer.current !== null) {
@@ -1206,6 +1315,11 @@ window.__ModuleLoader__.load({
 				event.stopPropagation();
 			};
 			const onCharacterPointerUp = (event) => {
+				if (dragState.current?.moved === true && dragState.current.pointerId === event.pointerId) {
+					event.preventDefault();
+					event.stopPropagation();
+					return;
+				}
 				const press = clickThroughPress.current;
 				clickThroughPress.current = null;
 				if (press === null || press.pointerId !== event.pointerId || rootRef.current === null) return;
@@ -1257,9 +1371,10 @@ window.__ModuleLoader__.load({
 			const completionBubble = showStatus && celebrating ? [t("bubble.success"), completedDuration].filter((value) => value !== null).join(" · ") : null;
 			const voiceBubble = voice.stage === "listening" ? voice.liveText || t("voice.listening") : voice.feedback;
 			const accessoriesMoving = teleportPhase !== "idle";
+			const liveRatio = dragState.current?.moved === true ? dragState.current.ratio : composerOffsetRatio;
 			const bubbleAlign = position.x < 58 ? "left" : position.x > viewport.width - renderedSize.width - 58 ? "right" : "center";
 			if (!visible || composerAnchor === null) return null;
-			return (0, react_jsx_runtime.jsxs)("div", {
+			return /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 				ref: rootRef,
 				className: ProductCompanion_module_css_default.root,
 				style,
@@ -1273,25 +1388,26 @@ window.__ModuleLoader__.load({
 				"data-skin": skin,
 				"data-size": sizePreference,
 				"data-habitat": "composer",
-				"data-side": "right",
+				"data-side": liveRatio > .5 ? "right" : "left",
+				"data-dragging": dragging ? "true" : "false",
 				"data-moving": teleportPhase === "idle" ? "false" : "true",
 				"data-motion": teleportPhase === "idle" ? "rest" : "dissolve",
 				"data-teleport": teleportPhase,
 				"data-bubble-align": bubbleAlign,
 				children: [
-					voiceBubble !== null ? (0, react_jsx_runtime.jsx)("div", {
+					voiceBubble !== null ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 						className: `${ProductCompanion_module_css_default.bubble} ${ProductCompanion_module_css_default.voiceBubble}`,
 						"aria-live": "polite",
-						children: (0, react_jsx_runtime.jsx)("span", {
+						children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 							className: ProductCompanion_module_css_default.taskMeta,
 							children: voiceBubble
 						})
-					}) : tasksMounted ? (0, react_jsx_runtime.jsx)("div", {
+					}) : tasksMounted ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 						className: ProductCompanion_module_css_default.taskPanel,
 						"data-state": tasksOpen ? "open" : "closing",
 						"aria-label": t("task.listLabel"),
 						"aria-hidden": !tasksOpen,
-						children: activeTasks.map((task, index) => (0, react_jsx_runtime.jsxs)("button", {
+						children: activeTasks.map((task, index) => /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("button", {
 							type: "button",
 							className: ProductCompanion_module_css_default.taskRow,
 							"data-current": task.current ? "true" : "false",
@@ -1306,15 +1422,15 @@ window.__ModuleLoader__.load({
 							onClick: () => {
 								openTask(task.id);
 							},
-							children: [(0, react_jsx_runtime.jsx)("span", {
+							children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 								className: ProductCompanion_module_css_default.taskTitle,
 								children: task.title
-							}), (0, react_jsx_runtime.jsxs)("span", {
+							}), /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 								className: ProductCompanion_module_css_default.taskMeta,
 								children: [t(taskStatusKey(task.status)), task.current ? ` · ${t("task.current")}` : ""]
 							})]
 						}, task.id))
-					}) : focusTaskBubble !== null ? (0, react_jsx_runtime.jsxs)("button", {
+					}) : focusTaskBubble !== null ? /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("button", {
 						type: "button",
 						className: ProductCompanion_module_css_default.bubble,
 						onPointerDown: (event) => {
@@ -1324,22 +1440,22 @@ window.__ModuleLoader__.load({
 							openTask(focusTaskBubble.task.id);
 						},
 						"aria-label": t("task.open", { title: focusTaskBubble.task.title }),
-						children: [(0, react_jsx_runtime.jsx)("span", {
+						children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 							className: ProductCompanion_module_css_default.taskTitle,
 							children: focusTaskBubble.task.title
-						}), (0, react_jsx_runtime.jsx)("span", {
+						}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 							className: ProductCompanion_module_css_default.taskMeta,
 							children: focusTaskBubble.meta
 						})]
-					}) : completionBubble !== null ? (0, react_jsx_runtime.jsx)("div", {
+					}) : completionBubble !== null ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 						className: ProductCompanion_module_css_default.bubble,
 						"aria-hidden": "true",
-						children: (0, react_jsx_runtime.jsx)("span", {
+						children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 							className: ProductCompanion_module_css_default.taskMeta,
 							children: completionBubble
 						})
 					}) : null,
-					(0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.Menu, {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.Menu, {
 						open: menuOpen,
 						onClose: () => {
 							setMenuOpen(false);
@@ -1352,7 +1468,7 @@ window.__ModuleLoader__.load({
 						side: "bottom",
 						compact: true,
 						className: ProductCompanion_module_css_default.contextMenu ?? "",
-						anchor: (0, react_jsx_runtime.jsx)("div", {
+						anchor: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 							className: ProductCompanion_module_css_default.character,
 							"data-companion-surface": "",
 							role: "img",
@@ -1364,37 +1480,37 @@ window.__ModuleLoader__.load({
 							onClick: onCharacterClick,
 							onContextMenu: openContextMenu,
 							onKeyDown: onCharacterKeyDown,
-							children: (0, react_jsx_runtime.jsx)("span", {
+							children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 								className: ProductCompanion_module_css_default.poseLayer,
 								"aria-hidden": "true",
-								children: (0, react_jsx_runtime.jsx)("span", {
+								children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 									className: ProductCompanion_module_css_default.motionLayer,
-									children: (0, react_jsx_runtime.jsx)("span", {
+									children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 										className: ProductCompanion_module_css_default.spriteLayer,
-										children: teleportPhase === "idle" ? (0, react_jsx_runtime.jsx)("img", {
+										children: teleportPhase === "idle" ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("img", {
 											className: ProductCompanion_module_css_default.characterImage,
 											src: characterSrc,
 											alt: "",
 											draggable: false
-										}) : (0, react_jsx_runtime.jsxs)("span", {
+										}) : /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 											className: ProductCompanion_module_css_default.materialDissolveLayer,
 											"aria-hidden": "true",
 											children: [
-												(0, react_jsx_runtime.jsx)("img", {
+												/* @__PURE__ */ (0, react_jsx_runtime.jsx)("img", {
 													className: `${ProductCompanion_module_css_default.characterImage} ${ProductCompanion_module_css_default.materialCurrent}`,
 													src: characterSrc,
 													style: maskStyle("body", dissolveFrame.current),
 													alt: "",
 													draggable: false
 												}),
-												dissolveFrame.previous === null ? null : (0, react_jsx_runtime.jsx)("img", {
+												dissolveFrame.previous === null ? null : /* @__PURE__ */ (0, react_jsx_runtime.jsx)("img", {
 													className: `${ProductCompanion_module_css_default.characterImage} ${ProductCompanion_module_css_default.materialPrevious}`,
 													src: characterSrc,
 													style: maskStyle("body", dissolveFrame.previous),
 													alt: "",
 													draggable: false
 												}, `body-${dissolveFrame.revision}`),
-												(0, react_jsx_runtime.jsx)("img", {
+												/* @__PURE__ */ (0, react_jsx_runtime.jsx)("img", {
 													className: `${ProductCompanion_module_css_default.characterImage} ${ProductCompanion_module_css_default.materialFragments}`,
 													src: characterSrc,
 													style: maskStyle("fragment", dissolveFrame.current),
@@ -1408,7 +1524,7 @@ window.__ModuleLoader__.load({
 							})
 						})
 					}),
-					(0, react_jsx_runtime.jsxs)("div", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 						className: ProductCompanion_module_css_default.quickControls,
 						"data-companion-accessories": "",
 						"data-phase": teleportPhase,
@@ -1416,7 +1532,7 @@ window.__ModuleLoader__.load({
 						onPointerDown: (event) => {
 							event.stopPropagation();
 						},
-						children: [voiceEnabled ? (0, react_jsx_runtime.jsx)("button", {
+						children: [voiceEnabled ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 							type: "button",
 							className: ProductCompanion_module_css_default.quickControl,
 							"data-control": "voice",
@@ -1425,11 +1541,11 @@ window.__ModuleLoader__.load({
 							"aria-pressed": voice.stage === "listening",
 							"aria-label": voice.stage === "listening" ? t("voice.stop") : voice.supported ? t("voice.start") : t("voice.unsupported"),
 							onClick: voice.toggle,
-							children: (0, react_jsx_runtime.jsx)("span", {
+							children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 								className: ProductCompanion_module_css_default.voiceIcon,
 								"aria-hidden": "true"
 							})
-						}) : null, (0, react_jsx_runtime.jsx)("button", {
+						}) : null, /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 							type: "button",
 							className: ProductCompanion_module_css_default.quickControl,
 							disabled: accessoriesMoving || !showStatus || activeTasks.length === 0,
@@ -1437,13 +1553,13 @@ window.__ModuleLoader__.load({
 							"aria-label": tasksOpen ? t("task.collapse", { count: activeTasks.length }) : t("task.expand", { count: activeTasks.length }),
 							title: activeTasks.length === 0 ? t("task.none") : t("task.count", { count: activeTasks.length }),
 							onClick: toggleTasks,
-							children: (0, react_jsx_runtime.jsx)("span", {
+							children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 								className: ProductCompanion_module_css_default.taskCount,
 								children: activeTasks.length
 							})
 						})]
 					}),
-					(0, react_jsx_runtime.jsx)("span", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 						className: ProductCompanion_module_css_default.srOnly,
 						"aria-live": "polite",
 						children: t(stateKey(displayState))
@@ -1452,7 +1568,7 @@ window.__ModuleLoader__.load({
 			});
 		}
 		//#endregion
-		//#region lib/types/client/global-rules.js
+		//#region src/client/global-rules.ts
 		/** Browser transport for the companion-owned user-global AGENTS.md editor. */
 		const GLOBAL_RULES_API_ROUTE = "/plugins/ui-product-companion/api/global-rules";
 		var GlobalRulesRequestError = class extends Error {
@@ -1481,8 +1597,8 @@ window.__ModuleLoader__.load({
 			}));
 		}
 		//#endregion
-		//#region \0dsh-css:dsh-source/packages/client/ui-product-companion/src/client/ProductCompanionSettings.module.css.mjs
-		const css = ".MbMUpq_section{box-sizing:border-box;width:100%;max-width:720px;color:var(--dsw-alias-label-primary);flex-direction:column;padding-top:4px;display:flex}.MbMUpq_heading{box-sizing:border-box;flex-direction:column;gap:4px;min-height:77px;padding:0 0 20px;display:flex}.MbMUpq_heading h2{margin:0;font-size:20px;font-weight:560;line-height:28px}.MbMUpq_heading p{max-width:620px;color:var(--dsw-alias-label-tertiary);margin:0;font-size:13px;line-height:21px}.MbMUpq_nameTitle,.MbMUpq_nameEditor{align-items:center;gap:6px;min-width:0;display:flex}.MbMUpq_nameEditor{width:100%;max-width:348px}.MbMUpq_nameTitle h2{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.MbMUpq_nameTitle button,.MbMUpq_nameEditor button{width:28px;height:28px;color:var(--dsw-alias-label-tertiary);cursor:pointer;background:0 0;border:0;border-radius:8px;flex:none;place-items:center;padding:0;display:grid}.MbMUpq_nameTitle button:hover,.MbMUpq_nameEditor button:hover{background:var(--dsw-alias-interactive-bg-hover);color:var(--dsw-alias-label-primary)}.MbMUpq_nameTitle button:focus-visible,.MbMUpq_nameEditor button:focus-visible,.MbMUpq_nameEditor input:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}.MbMUpq_nameEditor input{box-sizing:border-box;border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-base);width:auto;min-width:0;height:32px;color:var(--dsw-alias-label-primary);font:inherit;border-radius:9px;flex:1;padding:0 10px;font-size:15px;font-weight:560}.MbMUpq_group{padding:0 0 24px}.MbMUpq_group+.MbMUpq_group{padding-top:4px}.MbMUpq_group h3{color:var(--dsw-alias-label-tertiary);margin:0;padding:0 0 8px;font-size:12px;font-weight:500;line-height:18px}.MbMUpq_skinGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 10px;display:grid}.MbMUpq_rows{margin-top:10px}.MbMUpq_skinOption{border:1px solid var(--dsw-alias-border-l2);min-width:0;min-height:88px;color:inherit;font:inherit;text-align:left;cursor:pointer;background:0 0;border-radius:14px;align-items:center;gap:10px;padding:9px 30px 9px 9px;display:flex;position:relative}.MbMUpq_skinOption:hover{background:var(--dsw-alias-bg-module-platform)}.MbMUpq_skinOption[data-selected=true]{border-color:var(--dsw-alias-label-primary);background:var(--dsw-alias-bg-layer-2)}.MbMUpq_skinOption:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}.MbMUpq_skinPreview{background:var(--dsw-alias-bg-module-platform);border-radius:12px;flex:none;place-items:center;width:66px;height:66px;display:grid;overflow:hidden}.MbMUpq_skinPreview img{object-fit:contain;pointer-events:none;width:66px;height:66px}.MbMUpq_skinCopy,.MbMUpq_rowCopy{flex-direction:column;flex:1;gap:2px;min-width:0;display:flex}.MbMUpq_skinCopy strong,.MbMUpq_rowCopy strong{font-size:13px;font-weight:500;line-height:20px}.MbMUpq_skinCopy span,.MbMUpq_rowCopy span{color:var(--dsw-alias-label-caption);font-size:11px;line-height:18px}.MbMUpq_selectionMark{box-sizing:border-box;border:1px solid var(--dsw-alias-border-l1);border-radius:50%;width:12px;height:12px;position:absolute;top:14px;right:14px}.MbMUpq_skinOption[data-selected=true] .MbMUpq_selectionMark{border:4px solid var(--dsw-alias-label-primary)}.MbMUpq_row{box-sizing:border-box;border:0;border-bottom:1px solid var(--dsw-alias-border-l2);align-items:center;gap:14px;min-height:62px;margin:0 10px;padding:10px 0;display:flex}.MbMUpq_row:last-child{border-bottom:0}.MbMUpq_selector{background:var(--dsw-alias-bg-module-platform);min-width:112px;height:32px;color:var(--dsw-alias-label-primary);font:inherit;cursor:pointer;border:0;border-radius:999px;flex:none;justify-content:space-between;align-items:center;gap:10px;padding:0 11px 0 13px;font-size:12px;line-height:18px;display:inline-flex}.MbMUpq_selector:hover{background:var(--dsw-alias-interactive-bg-hover)}.MbMUpq_selector:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}.MbMUpq_chevron{color:var(--dsw-alias-label-tertiary);flex:none}.MbMUpq_switch{box-sizing:border-box;appearance:none;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-module-platform);cursor:pointer;border-radius:999px;flex:none;width:36px;height:21px;padding:2px}.MbMUpq_switch:before{background:var(--dsw-alias-bg-base);content:\"\";border-radius:50%;width:15px;height:15px;transition:transform .14s;display:block;box-shadow:0 1px 2px #0000002e}.MbMUpq_switch:checked{border-color:var(--dsw-alias-label-primary);background:var(--dsw-alias-label-primary)}.MbMUpq_switch:checked:before{transform:translate(15px)}.MbMUpq_textButton{color:var(--dsw-alias-label-secondary);font:inherit;cursor:pointer;background:0 0;border:0;flex:none;padding:0;font-size:11px;line-height:18px}.MbMUpq_textButton:hover{color:var(--dsw-alias-label-primary)}.MbMUpq_textButton:disabled{cursor:default;opacity:.45}.MbMUpq_rulesSurface{background:var(--dsw-alias-bg-layer-2);border-radius:14px;margin:0 10px;overflow:hidden}.MbMUpq_rulesHeader{align-items:center;gap:14px;min-height:58px;padding:10px 14px;display:flex}.MbMUpq_rulesHeader .MbMUpq_rowCopy strong{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px}.MbMUpq_rulesNotice,.MbMUpq_rulesError{border-top:1px solid var(--dsw-alias-border-l2);color:var(--dsw-alias-label-caption);margin:0;padding:16px 14px;font-size:11px;line-height:18px}.MbMUpq_rulesError{color:var(--dsw-alias-label-primary)}.MbMUpq_rulesError .MbMUpq_textButton{font-size:inherit;margin-left:8px}.MbMUpq_rulesEditor{box-sizing:border-box;resize:vertical;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-base);width:calc(100% - 28px);min-height:210px;color:var(--dsw-alias-label-primary);tab-size:2;border-radius:10px;margin:0 14px;padding:11px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;line-height:19px;display:block}.MbMUpq_rulesEditor:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:1px}.MbMUpq_rulesFooter{min-height:52px;color:var(--dsw-alias-label-caption);justify-content:space-between;align-items:center;gap:12px;padding:0 14px;font-size:10px;line-height:16px;display:flex}.MbMUpq_primaryButton{background:var(--dsw-alias-label-primary);height:30px;color:var(--dsw-alias-bg-base);font:inherit;cursor:pointer;border:0;border-radius:9px;flex:none;padding:0 13px;font-size:12px;font-weight:550}.MbMUpq_primaryButton:disabled{cursor:default;opacity:.35}.MbMUpq_voiceSurface{background:var(--dsw-alias-bg-layer-2);border-radius:14px;margin:0 10px}.MbMUpq_voiceSurface .MbMUpq_row{margin:0 14px}.MbMUpq_voiceSurface[data-enabled=false]{background:0 0}.MbMUpq_voiceSurface[data-enabled=false] .MbMUpq_row{margin:0}.MbMUpq_voiceDetails{animation:MbMUpq_voice-details-in .18s var(--ds-ease-out) both}.MbMUpq_shortcutRecorder:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}.MbMUpq_shortcutRecorder{background:var(--dsw-alias-bg-base);min-width:74px;height:30px;color:var(--dsw-alias-label-primary);font:inherit;cursor:pointer;border:0;border-radius:8px;flex:none;padding:0 10px;font-size:12px;font-weight:550}.MbMUpq_shortcutRecorder[data-voice-shortcut-recording=true]{background:var(--dsw-alias-label-primary);color:var(--dsw-alias-bg-base)}.MbMUpq_voicePrivacy{color:var(--dsw-alias-label-caption);margin:0;padding:0 14px 14px;font-size:10px;line-height:16px}.MbMUpq_privacy{color:var(--dsw-alias-label-caption);margin:0 10px;font-size:11px;line-height:18px}@media (width<=680px){.MbMUpq_skinGrid{grid-template-columns:1fr;margin-left:0;margin-right:0}.MbMUpq_row,.MbMUpq_privacy{margin-left:0;margin-right:0}.MbMUpq_selector{min-width:104px}.MbMUpq_voiceSurface,.MbMUpq_rulesSurface{margin-left:0;margin-right:0}}@keyframes MbMUpq_voice-details-in{0%{opacity:0;translate:0 -4px}to{opacity:1;translate:0}}@media (prefers-reduced-motion:reduce){.MbMUpq_switch:before{transition:none}.MbMUpq_voiceDetails{animation:none}}";
+		//#region \0dsh-css:/Users/zhuanghongkai/Desktop/迭代DSH/xiaozhuang-dsh/packages/client/ui-product-companion/src/client/ProductCompanionSettings.module.css.mjs
+		const css = ".WG50ZG_section{box-sizing:border-box;width:100%;max-width:720px;color:var(--dsw-alias-label-primary);flex-direction:column;padding-top:4px;display:flex}.WG50ZG_heading{box-sizing:border-box;flex-direction:column;gap:4px;min-height:77px;padding:0 0 20px;display:flex}.WG50ZG_heading h2{margin:0;font-size:20px;font-weight:560;line-height:28px}.WG50ZG_heading p{max-width:620px;color:var(--dsw-alias-label-tertiary);margin:0;font-size:13px;line-height:21px}.WG50ZG_nameTitle,.WG50ZG_nameEditor{align-items:center;gap:6px;min-width:0;display:flex}.WG50ZG_nameEditor{width:100%;max-width:348px}.WG50ZG_nameTitle h2{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.WG50ZG_nameTitle button,.WG50ZG_nameEditor button{width:28px;height:28px;color:var(--dsw-alias-label-tertiary);cursor:pointer;background:0 0;border:0;border-radius:8px;flex:none;place-items:center;padding:0;display:grid}.WG50ZG_nameTitle button:hover,.WG50ZG_nameEditor button:hover{background:var(--dsw-alias-interactive-bg-hover);color:var(--dsw-alias-label-primary)}.WG50ZG_nameTitle button:focus-visible,.WG50ZG_nameEditor button:focus-visible,.WG50ZG_nameEditor input:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}.WG50ZG_nameEditor input{box-sizing:border-box;border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-base);width:auto;min-width:0;height:32px;color:var(--dsw-alias-label-primary);font:inherit;border-radius:9px;flex:1;padding:0 10px;font-size:15px;font-weight:560}.WG50ZG_group{padding:0 0 24px}.WG50ZG_group+.WG50ZG_group{padding-top:4px}.WG50ZG_group h3{color:var(--dsw-alias-label-tertiary);margin:0;padding:0 0 8px;font-size:12px;font-weight:500;line-height:18px}.WG50ZG_skinGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 10px;display:grid}.WG50ZG_rows{margin-top:10px}.WG50ZG_skinOption{border:1px solid var(--dsw-alias-border-l2);min-width:0;min-height:88px;color:inherit;font:inherit;text-align:left;cursor:pointer;background:0 0;border-radius:14px;align-items:center;gap:10px;padding:9px 30px 9px 9px;display:flex;position:relative}.WG50ZG_skinOption:hover{background:var(--dsw-alias-bg-module-platform)}.WG50ZG_skinOption[data-selected=true]{border-color:var(--dsw-alias-label-primary);background:var(--dsw-alias-bg-layer-2)}.WG50ZG_skinOption:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}.WG50ZG_skinPreview{background:var(--dsw-alias-bg-module-platform);border-radius:12px;flex:none;place-items:center;width:66px;height:66px;display:grid;overflow:hidden}.WG50ZG_skinPreview img{object-fit:contain;pointer-events:none;width:66px;height:66px}.WG50ZG_skinCopy,.WG50ZG_rowCopy{flex-direction:column;flex:1;gap:2px;min-width:0;display:flex}.WG50ZG_skinCopy strong,.WG50ZG_rowCopy strong{font-size:13px;font-weight:500;line-height:20px}.WG50ZG_skinCopy span,.WG50ZG_rowCopy span{color:var(--dsw-alias-label-caption);font-size:11px;line-height:18px}.WG50ZG_selectionMark{box-sizing:border-box;border:1px solid var(--dsw-alias-border-l1);border-radius:50%;width:12px;height:12px;position:absolute;top:14px;right:14px}.WG50ZG_skinOption[data-selected=true] .WG50ZG_selectionMark{border:4px solid var(--dsw-alias-label-primary)}.WG50ZG_row{box-sizing:border-box;border:0;border-bottom:1px solid var(--dsw-alias-border-l2);align-items:center;gap:14px;min-height:62px;margin:0 10px;padding:10px 0;display:flex}.WG50ZG_row:last-child{border-bottom:0}.WG50ZG_selector{background:var(--dsw-alias-bg-module-platform);min-width:112px;height:32px;color:var(--dsw-alias-label-primary);font:inherit;cursor:pointer;border:0;border-radius:999px;flex:none;justify-content:space-between;align-items:center;gap:10px;padding:0 11px 0 13px;font-size:12px;line-height:18px;display:inline-flex}.WG50ZG_selector:hover{background:var(--dsw-alias-interactive-bg-hover)}.WG50ZG_selector:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}.WG50ZG_chevron{color:var(--dsw-alias-label-tertiary);flex:none}.WG50ZG_switch{box-sizing:border-box;appearance:none;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-module-platform);cursor:pointer;border-radius:999px;flex:none;width:36px;height:21px;padding:2px}.WG50ZG_switch:before{background:var(--dsw-alias-bg-base);content:\"\";border-radius:50%;width:15px;height:15px;transition:transform .14s;display:block;box-shadow:0 1px 2px #0000002e}.WG50ZG_switch:checked{border-color:var(--dsw-alias-label-primary);background:var(--dsw-alias-label-primary)}.WG50ZG_switch:checked:before{transform:translate(15px)}.WG50ZG_textButton{color:var(--dsw-alias-label-secondary);font:inherit;cursor:pointer;background:0 0;border:0;flex:none;padding:0;font-size:11px;line-height:18px}.WG50ZG_textButton:hover{color:var(--dsw-alias-label-primary)}.WG50ZG_textButton:disabled{cursor:default;opacity:.45}.WG50ZG_rulesSurface{background:var(--dsw-alias-bg-layer-2);border-radius:14px;margin:0 10px;overflow:hidden}.WG50ZG_rulesHeader{align-items:center;gap:14px;min-height:58px;padding:10px 14px;display:flex}.WG50ZG_rulesHeader .WG50ZG_rowCopy strong{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px}.WG50ZG_rulesNotice,.WG50ZG_rulesError{border-top:1px solid var(--dsw-alias-border-l2);color:var(--dsw-alias-label-caption);margin:0;padding:16px 14px;font-size:11px;line-height:18px}.WG50ZG_rulesError{color:var(--dsw-alias-label-primary)}.WG50ZG_rulesError .WG50ZG_textButton{font-size:inherit;margin-left:8px}.WG50ZG_rulesEditor{box-sizing:border-box;resize:vertical;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-base);width:calc(100% - 28px);min-height:210px;color:var(--dsw-alias-label-primary);tab-size:2;border-radius:10px;margin:0 14px;padding:11px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;line-height:19px;display:block}.WG50ZG_rulesEditor:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:1px}.WG50ZG_rulesFooter{min-height:52px;color:var(--dsw-alias-label-caption);justify-content:space-between;align-items:center;gap:12px;padding:0 14px;font-size:10px;line-height:16px;display:flex}.WG50ZG_primaryButton{background:var(--dsw-alias-label-primary);height:30px;color:var(--dsw-alias-bg-base);font:inherit;cursor:pointer;border:0;border-radius:9px;flex:none;padding:0 13px;font-size:12px;font-weight:550}.WG50ZG_primaryButton:disabled{cursor:default;opacity:.35}.WG50ZG_voiceSurface{background:var(--dsw-alias-bg-layer-2);border-radius:14px;margin:0 10px}.WG50ZG_voiceSurface .WG50ZG_row{margin:0 14px}.WG50ZG_voiceSurface[data-enabled=false]{background:0 0}.WG50ZG_voiceSurface[data-enabled=false] .WG50ZG_row{margin:0}.WG50ZG_voiceDetails{animation:WG50ZG_voice-details-in .18s var(--ds-ease-out) both}.WG50ZG_shortcutRecorder:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}.WG50ZG_shortcutRecorder{background:var(--dsw-alias-bg-base);min-width:74px;height:30px;color:var(--dsw-alias-label-primary);font:inherit;cursor:pointer;border:0;border-radius:8px;flex:none;padding:0 10px;font-size:12px;font-weight:550}.WG50ZG_shortcutRecorder[data-voice-shortcut-recording=true]{background:var(--dsw-alias-label-primary);color:var(--dsw-alias-bg-base)}.WG50ZG_voicePrivacy{color:var(--dsw-alias-label-caption);margin:0;padding:0 14px 14px;font-size:10px;line-height:16px}.WG50ZG_privacy{color:var(--dsw-alias-label-caption);margin:0 10px;font-size:11px;line-height:18px}@media (width<=680px){.WG50ZG_skinGrid{grid-template-columns:1fr;margin-left:0;margin-right:0}.WG50ZG_row,.WG50ZG_privacy{margin-left:0;margin-right:0}.WG50ZG_selector{min-width:104px}.WG50ZG_voiceSurface,.WG50ZG_rulesSurface{margin-left:0;margin-right:0}}@keyframes WG50ZG_voice-details-in{0%{opacity:0;translate:0 -4px}to{opacity:1;translate:0}}@media (prefers-reduced-motion:reduce){.WG50ZG_switch:before{transition:none}.WG50ZG_voiceDetails{animation:none}}";
 		const tagId = "@deepseek-ai/dsh-client-ui-product-companion/ProductCompanionSettings.module.css";
 		if (typeof document !== "undefined" && document.querySelector("style[data-plugin-css=" + JSON.stringify(tagId) + "]") === null) {
 			const tag = document.createElement("style");
@@ -1492,39 +1608,39 @@ window.__ModuleLoader__.load({
 			document.head.appendChild(tag);
 		}
 		var ProductCompanionSettings_module_css_default = {
-			"chevron": "MbMUpq_chevron",
-			"group": "MbMUpq_group",
-			"heading": "MbMUpq_heading",
-			"nameEditor": "MbMUpq_nameEditor",
-			"nameTitle": "MbMUpq_nameTitle",
-			"primaryButton": "MbMUpq_primaryButton",
-			"privacy": "MbMUpq_privacy",
-			"row": "MbMUpq_row",
-			"rowCopy": "MbMUpq_rowCopy",
-			"rows": "MbMUpq_rows",
-			"rulesEditor": "MbMUpq_rulesEditor",
-			"rulesError": "MbMUpq_rulesError",
-			"rulesFooter": "MbMUpq_rulesFooter",
-			"rulesHeader": "MbMUpq_rulesHeader",
-			"rulesNotice": "MbMUpq_rulesNotice",
-			"rulesSurface": "MbMUpq_rulesSurface",
-			"section": "MbMUpq_section",
-			"selectionMark": "MbMUpq_selectionMark",
-			"selector": "MbMUpq_selector",
-			"shortcutRecorder": "MbMUpq_shortcutRecorder",
-			"skinCopy": "MbMUpq_skinCopy",
-			"skinGrid": "MbMUpq_skinGrid",
-			"skinOption": "MbMUpq_skinOption",
-			"skinPreview": "MbMUpq_skinPreview",
-			"switch": "MbMUpq_switch",
-			"textButton": "MbMUpq_textButton",
-			"voice-details-in": "MbMUpq_voice-details-in",
-			"voiceDetails": "MbMUpq_voiceDetails",
-			"voicePrivacy": "MbMUpq_voicePrivacy",
-			"voiceSurface": "MbMUpq_voiceSurface"
+			"chevron": "WG50ZG_chevron",
+			"group": "WG50ZG_group",
+			"heading": "WG50ZG_heading",
+			"nameEditor": "WG50ZG_nameEditor",
+			"nameTitle": "WG50ZG_nameTitle",
+			"primaryButton": "WG50ZG_primaryButton",
+			"privacy": "WG50ZG_privacy",
+			"row": "WG50ZG_row",
+			"rowCopy": "WG50ZG_rowCopy",
+			"rows": "WG50ZG_rows",
+			"rulesEditor": "WG50ZG_rulesEditor",
+			"rulesError": "WG50ZG_rulesError",
+			"rulesFooter": "WG50ZG_rulesFooter",
+			"rulesHeader": "WG50ZG_rulesHeader",
+			"rulesNotice": "WG50ZG_rulesNotice",
+			"rulesSurface": "WG50ZG_rulesSurface",
+			"section": "WG50ZG_section",
+			"selectionMark": "WG50ZG_selectionMark",
+			"selector": "WG50ZG_selector",
+			"shortcutRecorder": "WG50ZG_shortcutRecorder",
+			"skinCopy": "WG50ZG_skinCopy",
+			"skinGrid": "WG50ZG_skinGrid",
+			"skinOption": "WG50ZG_skinOption",
+			"skinPreview": "WG50ZG_skinPreview",
+			"switch": "WG50ZG_switch",
+			"textButton": "WG50ZG_textButton",
+			"voice-details-in": "WG50ZG_voice-details-in",
+			"voiceDetails": "WG50ZG_voiceDetails",
+			"voicePrivacy": "WG50ZG_voicePrivacy",
+			"voiceSurface": "WG50ZG_voiceSurface"
 		};
 		//#endregion
-		//#region lib/types/client/ProductCompanionSettings.js
+		//#region src/client/ProductCompanionSettings.tsx
 		const SKINS = ["blue", "black"];
 		const SIZE_OPTIONS = [{
 			id: "standard",
@@ -1611,12 +1727,12 @@ window.__ModuleLoader__.load({
 		function SelectorRow({ label, hint, value, options, onChange, t, params }) {
 			const [open, setOpen] = (0, react.useState)(false);
 			const selected = options.find((option) => option.id === value) ?? options[0];
-			return (0, react_jsx_runtime.jsxs)("div", {
+			return /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 				className: ProductCompanionSettings_module_css_default.row,
-				children: [(0, react_jsx_runtime.jsxs)("span", {
+				children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 					className: ProductCompanionSettings_module_css_default.rowCopy,
-					children: [(0, react_jsx_runtime.jsx)("strong", { children: t(label, params) }), (0, react_jsx_runtime.jsx)("span", { children: t(hint, params) })]
-				}), (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.Menu, {
+					children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: t(label, params) }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: t(hint, params) })]
+				}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.Menu, {
 					open,
 					onClose: () => {
 						setOpen(false);
@@ -1633,7 +1749,7 @@ window.__ModuleLoader__.load({
 					align: "end",
 					portal: true,
 					compact: true,
-					anchor: (0, react_jsx_runtime.jsxs)("button", {
+					anchor: /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("button", {
 						type: "button",
 						className: ProductCompanionSettings_module_css_default.selector,
 						"aria-haspopup": "menu",
@@ -1641,7 +1757,7 @@ window.__ModuleLoader__.load({
 						onClick: () => {
 							setOpen((current) => !current);
 						},
-						children: [selected === void 0 ? "" : t(selected.label, params), (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconChevronDownOutline14, { className: ProductCompanionSettings_module_css_default.chevron })]
+						children: [selected === void 0 ? "" : t(selected.label, params), /* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconChevronDownOutline14, { className: ProductCompanionSettings_module_css_default.chevron })]
 					})
 				})]
 			});
@@ -1741,19 +1857,19 @@ window.__ModuleLoader__.load({
 				setRulesStatus("loading");
 				setRulesReload((value) => value + 1);
 			};
-			return (0, react_jsx_runtime.jsxs)("div", {
+			return /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 				className: ProductCompanionSettings_module_css_default.section,
 				children: [
-					(0, react_jsx_runtime.jsxs)("div", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 						className: ProductCompanionSettings_module_css_default.heading,
-						children: [editingName ? (0, react_jsx_runtime.jsxs)("form", {
+						children: [editingName ? /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("form", {
 							className: ProductCompanionSettings_module_css_default.nameEditor,
 							onSubmit: (event) => {
 								event.preventDefault();
 								saveName();
 							},
 							children: [
-								(0, react_jsx_runtime.jsx)("input", {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)("input", {
 									autoFocus: true,
 									value: nameDraft,
 									"aria-label": t("nameInput"),
@@ -1767,13 +1883,13 @@ window.__ModuleLoader__.load({
 										}
 									}
 								}),
-								(0, react_jsx_runtime.jsx)("button", {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 									type: "submit",
 									"aria-label": t("saveName"),
 									title: t("saveName"),
-									children: (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconCheckOutline16, { size: 15 })
+									children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconCheckOutline16, { size: 15 })
 								}),
-								(0, react_jsx_runtime.jsx)("button", {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 									type: "button",
 									"aria-label": t("cancelName"),
 									title: t("cancelName"),
@@ -1781,35 +1897,35 @@ window.__ModuleLoader__.load({
 										setNameDraft(displayName);
 										setEditingName(false);
 									},
-									children: (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconCloseOutline16, { size: 15 })
+									children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconCloseOutline16, { size: 15 })
 								})
 							]
-						}) : (0, react_jsx_runtime.jsxs)("div", {
+						}) : /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 							className: ProductCompanionSettings_module_css_default.nameTitle,
-							children: [(0, react_jsx_runtime.jsx)("h2", { children: displayName }), (0, react_jsx_runtime.jsx)("button", {
+							children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("h2", { children: displayName }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 								type: "button",
 								"aria-label": t("editName"),
 								title: t("editName"),
 								onClick: () => {
 									setEditingName(true);
 								},
-								children: (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconEditOutline16, { size: 15 })
+								children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconEditOutline16, { size: 15 })
 							})]
-						}), (0, react_jsx_runtime.jsx)("p", { children: t("intro", { name: displayName }) })]
+						}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("p", { children: t("intro", { name: displayName }) })]
 					}),
-					(0, react_jsx_runtime.jsxs)("section", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("section", {
 						className: ProductCompanionSettings_module_css_default.group,
 						"aria-labelledby": "product-companion-appearance",
 						children: [
-							(0, react_jsx_runtime.jsx)("h3", {
+							/* @__PURE__ */ (0, react_jsx_runtime.jsx)("h3", {
 								id: "product-companion-appearance",
 								children: t("appearance")
 							}),
-							(0, react_jsx_runtime.jsx)("div", {
+							/* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 								className: ProductCompanionSettings_module_css_default.skinGrid,
 								role: "radiogroup",
 								"aria-label": t("appearance"),
-								children: SKINS.map((candidate) => (0, react_jsx_runtime.jsxs)("button", {
+								children: SKINS.map((candidate) => /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("button", {
 									type: "button",
 									className: ProductCompanionSettings_module_css_default.skinOption,
 									role: "radio",
@@ -1819,28 +1935,28 @@ window.__ModuleLoader__.load({
 										actions.setSkin(candidate);
 									},
 									children: [
-										(0, react_jsx_runtime.jsx)("span", {
+										/* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 											className: ProductCompanionSettings_module_css_default.skinPreview,
-											children: (0, react_jsx_runtime.jsx)("img", {
+											children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("img", {
 												src: companionFrameUrl(candidate, "lounge"),
 												alt: "",
 												draggable: false
 											})
 										}),
-										(0, react_jsx_runtime.jsxs)("span", {
+										/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 											className: ProductCompanionSettings_module_css_default.skinCopy,
-											children: [(0, react_jsx_runtime.jsx)("strong", { children: t(`skin.${candidate}`) }), (0, react_jsx_runtime.jsx)("span", { children: t(`skin.${candidate}Hint`) })]
+											children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: t(`skin.${candidate}`) }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: t(`skin.${candidate}Hint`) })]
 										}),
-										(0, react_jsx_runtime.jsx)("span", {
+										/* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 											className: ProductCompanionSettings_module_css_default.selectionMark,
 											"aria-hidden": "true"
 										})
 									]
 								}, candidate))
 							}),
-							(0, react_jsx_runtime.jsx)("div", {
+							/* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 								className: ProductCompanionSettings_module_css_default.rows,
-								children: (0, react_jsx_runtime.jsx)(SelectorRow, {
+								children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)(SelectorRow, {
 									label: "sizeLabel",
 									hint: "sizeHint",
 									value: size,
@@ -1853,16 +1969,16 @@ window.__ModuleLoader__.load({
 							})
 						]
 					}),
-					(0, react_jsx_runtime.jsxs)("section", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("section", {
 						className: ProductCompanionSettings_module_css_default.group,
 						"aria-labelledby": "product-companion-shortcuts",
-						children: [(0, react_jsx_runtime.jsx)("h3", {
+						children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("h3", {
 							id: "product-companion-shortcuts",
 							children: t("shortcuts")
-						}), (0, react_jsx_runtime.jsxs)("div", {
+						}), /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 							className: ProductCompanionSettings_module_css_default.rows,
 							children: [
-								(0, react_jsx_runtime.jsx)(SelectorRow, {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)(SelectorRow, {
 									label: "clickLabel",
 									hint: "clickHint",
 									value: clickAction,
@@ -1872,7 +1988,7 @@ window.__ModuleLoader__.load({
 									},
 									t
 								}),
-								(0, react_jsx_runtime.jsx)(SelectorRow, {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)(SelectorRow, {
 									label: "doubleClickLabel",
 									hint: "doubleClickHint",
 									value: doubleClickAction,
@@ -1882,7 +1998,7 @@ window.__ModuleLoader__.load({
 									},
 									t
 								}),
-								(0, react_jsx_runtime.jsx)(SelectorRow, {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)(SelectorRow, {
 									label: "contextLabel",
 									hint: "contextHint",
 									value: contextAction,
@@ -1896,47 +2012,47 @@ window.__ModuleLoader__.load({
 							]
 						})]
 					}),
-					(0, react_jsx_runtime.jsxs)("section", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("section", {
 						className: ProductCompanionSettings_module_css_default.group,
 						"aria-labelledby": "product-companion-global-rules",
-						children: [(0, react_jsx_runtime.jsx)("h3", {
+						children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("h3", {
 							id: "product-companion-global-rules",
 							children: t("rules.title")
-						}), (0, react_jsx_runtime.jsxs)("div", {
+						}), /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 							className: ProductCompanionSettings_module_css_default.rulesSurface,
 							children: [
-								(0, react_jsx_runtime.jsx)("div", {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 									className: ProductCompanionSettings_module_css_default.rulesHeader,
-									children: (0, react_jsx_runtime.jsxs)("span", {
+									children: /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 										className: ProductCompanionSettings_module_css_default.rowCopy,
-										children: [(0, react_jsx_runtime.jsx)("strong", { children: "AGENTS.md" }), (0, react_jsx_runtime.jsx)("span", { children: t("rules.hint", { path: rulesDocument?.displayPath ?? "~/.dsh/AGENTS.md" }) })]
+										children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: "AGENTS.md" }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: t("rules.hint", { path: rulesDocument?.displayPath ?? "~/.dsh/AGENTS.md" }) })]
 									})
 								}),
-								rulesStatus === "loading" ? (0, react_jsx_runtime.jsx)("p", {
+								rulesStatus === "loading" ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("p", {
 									className: ProductCompanionSettings_module_css_default.rulesNotice,
 									children: t("rules.loading")
 								}) : null,
-								rulesStatus === "error" ? (0, react_jsx_runtime.jsxs)("p", {
+								rulesStatus === "error" ? /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("p", {
 									className: ProductCompanionSettings_module_css_default.rulesError,
 									role: "alert",
-									children: [t("rules.error"), (0, react_jsx_runtime.jsx)("button", {
+									children: [t("rules.error"), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 										type: "button",
 										className: ProductCompanionSettings_module_css_default.textButton,
 										onClick: loadLatestGlobalRules,
 										children: t("rules.retry")
 									})]
 								}) : null,
-								rulesStatus === "conflict" ? (0, react_jsx_runtime.jsxs)("p", {
+								rulesStatus === "conflict" ? /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("p", {
 									className: ProductCompanionSettings_module_css_default.rulesError,
 									role: "alert",
-									children: [t("rules.conflict"), (0, react_jsx_runtime.jsx)("button", {
+									children: [t("rules.conflict"), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 										type: "button",
 										className: ProductCompanionSettings_module_css_default.textButton,
 										onClick: loadLatestGlobalRules,
 										children: t("rules.loadLatest")
 									})]
 								}) : null,
-								rulesDocument !== null ? (0, react_jsx_runtime.jsxs)(react_jsx_runtime.Fragment, { children: [(0, react_jsx_runtime.jsx)("textarea", {
+								rulesDocument !== null ? /* @__PURE__ */ (0, react_jsx_runtime.jsxs)(react_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("textarea", {
 									className: ProductCompanionSettings_module_css_default.rulesEditor,
 									"aria-label": t("rules.editorLabel"),
 									value: rulesDraft,
@@ -1952,12 +2068,12 @@ window.__ModuleLoader__.load({
 											persistGlobalRules();
 										}
 									}
-								}), (0, react_jsx_runtime.jsxs)("div", {
+								}), /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 									className: ProductCompanionSettings_module_css_default.rulesFooter,
-									children: [(0, react_jsx_runtime.jsx)("span", {
+									children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 										"aria-live": "polite",
 										children: rulesStatus === "saving" ? t("rules.saving") : rulesDirty ? t("rules.unsaved") : t("rules.saved")
-									}), (0, react_jsx_runtime.jsx)("button", {
+									}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 										type: "button",
 										className: ProductCompanionSettings_module_css_default.primaryButton,
 										disabled: !rulesDirty || rulesStatus === "saving" || rulesStatus === "conflict",
@@ -1970,21 +2086,21 @@ window.__ModuleLoader__.load({
 							]
 						})]
 					}),
-					(0, react_jsx_runtime.jsxs)("section", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("section", {
 						className: ProductCompanionSettings_module_css_default.group,
 						"aria-labelledby": "product-companion-voice",
-						children: [(0, react_jsx_runtime.jsx)("h3", {
+						children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("h3", {
 							id: "product-companion-voice",
 							children: t("voice.title")
-						}), (0, react_jsx_runtime.jsxs)("div", {
+						}), /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 							className: ProductCompanionSettings_module_css_default.voiceSurface,
 							"data-enabled": voiceEnabled ? "true" : "false",
-							children: [(0, react_jsx_runtime.jsxs)("label", {
+							children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("label", {
 								className: ProductCompanionSettings_module_css_default.row,
-								children: [(0, react_jsx_runtime.jsxs)("span", {
+								children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 									className: ProductCompanionSettings_module_css_default.rowCopy,
-									children: [(0, react_jsx_runtime.jsx)("strong", { children: t("voice.enabledLabel") }), (0, react_jsx_runtime.jsx)("span", { children: t("voice.enabledHint", { name: displayName }) })]
-								}), (0, react_jsx_runtime.jsx)("input", {
+									children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: t("voice.enabledLabel") }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: t("voice.enabledHint", { name: displayName }) })]
+								}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("input", {
 									className: ProductCompanionSettings_module_css_default.switch,
 									type: "checkbox",
 									"aria-label": t("voice.enabledLabel"),
@@ -1993,14 +2109,14 @@ window.__ModuleLoader__.load({
 										actions.setVoiceEnabled(event.currentTarget.checked);
 									}
 								})]
-							}), voiceEnabled ? (0, react_jsx_runtime.jsxs)("div", {
+							}), voiceEnabled ? /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 								className: ProductCompanionSettings_module_css_default.voiceDetails,
-								children: [(0, react_jsx_runtime.jsxs)("div", {
+								children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 									className: ProductCompanionSettings_module_css_default.row,
-									children: [(0, react_jsx_runtime.jsxs)("span", {
+									children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 										className: ProductCompanionSettings_module_css_default.rowCopy,
-										children: [(0, react_jsx_runtime.jsx)("strong", { children: t("voice.shortcutLabel") }), (0, react_jsx_runtime.jsx)("span", { children: recordingShortcut ? t("voice.shortcutRecording") : t("voice.shortcutHintSetting") })]
-									}), (0, react_jsx_runtime.jsx)("button", {
+										children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: t("voice.shortcutLabel") }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: recordingShortcut ? t("voice.shortcutRecording") : t("voice.shortcutHintSetting") })]
+									}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 										ref: shortcutRef,
 										type: "button",
 										className: ProductCompanionSettings_module_css_default.shortcutRecorder,
@@ -2022,27 +2138,27 @@ window.__ModuleLoader__.load({
 										},
 										children: recordingShortcut ? t("voice.shortcutWaiting") : displayShortcut(voiceShortcut)
 									})]
-								}), (0, react_jsx_runtime.jsx)("p", {
+								}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("p", {
 									className: ProductCompanionSettings_module_css_default.voicePrivacy,
 									children: t("voice.privacy")
 								})]
 							}) : null]
 						})]
 					}),
-					(0, react_jsx_runtime.jsxs)("section", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("section", {
 						className: ProductCompanionSettings_module_css_default.group,
 						"aria-labelledby": "product-companion-behavior",
 						children: [
-							(0, react_jsx_runtime.jsx)("h3", {
+							/* @__PURE__ */ (0, react_jsx_runtime.jsx)("h3", {
 								id: "product-companion-behavior",
 								children: t("behavior")
 							}),
-							(0, react_jsx_runtime.jsxs)("label", {
+							/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("label", {
 								className: ProductCompanionSettings_module_css_default.row,
-								children: [(0, react_jsx_runtime.jsxs)("span", {
+								children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 									className: ProductCompanionSettings_module_css_default.rowCopy,
-									children: [(0, react_jsx_runtime.jsx)("strong", { children: t("visibleLabel", { name: displayName }) }), (0, react_jsx_runtime.jsx)("span", { children: t("visibleHint") })]
-								}), (0, react_jsx_runtime.jsx)("input", {
+									children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: t("visibleLabel", { name: displayName }) }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: t("visibleHint") })]
+								}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("input", {
 									className: ProductCompanionSettings_module_css_default.switch,
 									type: "checkbox",
 									"aria-label": t("visibleLabel", { name: displayName }),
@@ -2052,12 +2168,12 @@ window.__ModuleLoader__.load({
 									}
 								})]
 							}),
-							(0, react_jsx_runtime.jsxs)("label", {
+							/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("label", {
 								className: ProductCompanionSettings_module_css_default.row,
-								children: [(0, react_jsx_runtime.jsxs)("span", {
+								children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 									className: ProductCompanionSettings_module_css_default.rowCopy,
-									children: [(0, react_jsx_runtime.jsx)("strong", { children: t("statusLabel") }), (0, react_jsx_runtime.jsx)("span", { children: t("statusHint") })]
-								}), (0, react_jsx_runtime.jsx)("input", {
+									children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: t("statusLabel") }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: t("statusHint") })]
+								}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("input", {
 									className: ProductCompanionSettings_module_css_default.switch,
 									type: "checkbox",
 									"aria-label": t("statusLabel"),
@@ -2069,7 +2185,7 @@ window.__ModuleLoader__.load({
 							})
 						]
 					}),
-					(0, react_jsx_runtime.jsx)("p", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsx)("p", {
 						className: ProductCompanionSettings_module_css_default.privacy,
 						children: t("privacy")
 					})
@@ -2077,7 +2193,7 @@ window.__ModuleLoader__.load({
 			});
 		}
 		//#endregion
-		//#region lib/types/client/locales.js
+		//#region src/client/locales.ts
 		/** Simplified-Chinese companion dictionary and key source of truth. */
 		const zh = {
 			name: "鲸少女",
@@ -2275,8 +2391,7 @@ window.__ModuleLoader__.load({
 			privacy: "The companion never stores message contents. Microphone dictation uses browser speech recognition and never calls a model."
 		};
 		//#endregion
-		//#region lib/types/client/index.js
-		/** Browser half of the native cross-page product companion plugin. */
+		//#region src/client/index.ts
 		const NS = "productCompanion";
 		/** Runtime, locale and layout slot services required by the companion. */
 		const inject = [

@@ -3,7 +3,6 @@ import { type EngineStoreHandle } from '@deepseek-ai/dsh-client-runtime/client';
 export type CompanionSkin = 'blue' | 'black';
 export type CompanionSize = 'standard' | 'large';
 export type CompanionAction = 'none' | 'focusComposer' | 'voiceInput' | 'switchSide' | 'newSession' | 'menu' | 'close';
-export type CompanionHabitat = 'sidebar' | 'header' | 'composer' | 'free';
 /** Default product-facing name. Technical plugin ids remain stable. */
 export declare const DEFAULT_COMPANION_NAME = "\u9CB8\u5C11\u5973";
 /** Read the saved product name before the slot-owned store first renders. */
@@ -24,8 +23,8 @@ export interface CompanionPreferences {
     clickAction?: CompanionAction;
     doubleClickAction?: CompanionAction;
     contextAction?: CompanionAction;
-    position: CompanionPosition | null;
-    home: CompanionHabitat;
+    /** Horizontal berth on the composer card as a 0–1 ratio; absent keeps the default right berth. */
+    composerOffsetRatio?: number;
     showStatus: boolean;
     autoTravel: boolean;
     /** Voice is a companion capability and disappears with this native plugin. */
@@ -40,11 +39,9 @@ type CompanionActions = {
     setClickAction: (draft: CompanionPreferences, action: CompanionAction) => void;
     setDoubleClickAction: (draft: CompanionPreferences, action: CompanionAction) => void;
     setContextAction: (draft: CompanionPreferences, action: CompanionAction) => void;
-    setPosition: (draft: CompanionPreferences, position: CompanionPosition) => void;
-    setHome: (draft: CompanionPreferences, home: Exclude<CompanionHabitat, 'free'>) => void;
+    setComposerOffsetRatio: (draft: CompanionPreferences, ratio: number) => void;
     setShowStatus: (draft: CompanionPreferences, enabled: boolean) => void;
     setAutoTravel: (draft: CompanionPreferences, enabled: boolean) => void;
-    resetPosition: (draft: CompanionPreferences) => void;
     setVoiceEnabled: (draft: CompanionPreferences, enabled: boolean) => void;
     setVoiceShortcut: (draft: CompanionPreferences, shortcut: string) => void;
 };
