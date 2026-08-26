@@ -1,0 +1,1614 @@
+{
+  "schemaVersion": 1,
+  "kind": "xiaozhuang-dsh-plugin-export",
+  "createdAt": "2026-08-26T11:46:43.518Z",
+  "sourceCommit": "49b1c5207b1556515752c6bf9e7902c1a5964ad9",
+  "plugins": [
+    {
+      "id": "product-companion",
+      "name": "鲸少女",
+      "rows": [
+        {
+          "id": "ui-product-companion",
+          "name": "@deepseek-ai/dsh-client-ui-product-companion"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "repository",
+          "path": "packages/client/ui-product-companion"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/README.md",
+      "size": 9963,
+      "sha256": "30502d5b938ed957e69a0f910c4ec92addce7b1a42b68e42b97a21e64efc43d6"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/README.zh.md",
+      "size": 9002,
+      "sha256": "c3766367241c6dbf3ae92544ac11b5bf61130012563408986fa24ac9a6dfdf90"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-01.png",
+      "size": 4804,
+      "sha256": "801ec500246715d3b3eaad1eb9b6d88c36da7024cdde9778215859ad8ab7384a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-02.png",
+      "size": 4804,
+      "sha256": "801ec500246715d3b3eaad1eb9b6d88c36da7024cdde9778215859ad8ab7384a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-03.png",
+      "size": 4804,
+      "sha256": "801ec500246715d3b3eaad1eb9b6d88c36da7024cdde9778215859ad8ab7384a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-04.png",
+      "size": 4804,
+      "sha256": "801ec500246715d3b3eaad1eb9b6d88c36da7024cdde9778215859ad8ab7384a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-05.png",
+      "size": 4824,
+      "sha256": "b1f989e2aca7c09586e88c8c98ae4b5d8936575cec79442e22cd160d0342ab2e"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-06.png",
+      "size": 4962,
+      "sha256": "56f0e8be039a257773619413f2c9b9d8d430cd8d3126b5714acc3dddfd0b2847"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-07.png",
+      "size": 5158,
+      "sha256": "67df4d6c047b2a086c5e48ccd98e0cf935fb8ee1b69c63dfc84db618a8e5ba91"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-08.png",
+      "size": 5510,
+      "sha256": "3b8238bdd47795b1e0fbd58b1174aa478480a86451fa5d415a0143f9c9a82797"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-09.png",
+      "size": 6114,
+      "sha256": "ea7484f3faa48a594fa020250ff338bb680a573289f3506cc2c18e153e8568db"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-10.png",
+      "size": 6854,
+      "sha256": "98ca8cba7e1e257466cb2c21a155289f8843e391be0c935cbd58cc8084b037f9"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-11.png",
+      "size": 7669,
+      "sha256": "444d7907be67043c92614b034b009279bc56ff5238dd6ed4b517f54a26ff729a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-12.png",
+      "size": 8643,
+      "sha256": "ddab6c30421fe06eadc70b767dcc50d0f973e13c45ab27369a95522ef573499b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-13.png",
+      "size": 9592,
+      "sha256": "b2a33492117e2303540d5d7c95a420b0aa2947bec03418f8ed392640f76df37e"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-14.png",
+      "size": 10287,
+      "sha256": "9e5d7f65720035d010182093cb8e938b0896afa7e7a2d9200e15970c6eb32b96"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-15.png",
+      "size": 10519,
+      "sha256": "bec2c1179f1889006f382b1958862f1a92fabb1ef7885c42ae7f8e7d5c238ea8"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-16.png",
+      "size": 10436,
+      "sha256": "2eb779f5e640bdc4693053b9a96bc22a289ee7ab447b5b425adc9b8af4be5b62"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-17.png",
+      "size": 9963,
+      "sha256": "e2a3a56f1a845730606be9de4dcfcb4c18e64ae326b6d79b3cf742bafd4b1173"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-18.png",
+      "size": 9483,
+      "sha256": "609d1a259aa789ac7cadfb69942884a23a7adc650a69689f5fa77d0be1e0a453"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-19.png",
+      "size": 9553,
+      "sha256": "f50ba9f7439468e82ca29946c7466c4ca3ee385a1b5a14b65244d9381762dbdb"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-20.png",
+      "size": 9740,
+      "sha256": "f599f4068eeb68eb8f3b01bb3365ad190eaef3e6af474812c1d930741fae618c"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-21.png",
+      "size": 10067,
+      "sha256": "8e0a57aae0c155b308c2ad0876a536db10cea99bfc3c98553edd0649562df1a8"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-22.png",
+      "size": 10219,
+      "sha256": "c890a2f24fce7b5b8babcf3626fdddd55abdc694c4f4c248db26f4c39745c2ae"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-23.png",
+      "size": 10709,
+      "sha256": "e8293e4886135ccbf644d42ecc82c795a512041a54077d45b2523b7fa3452571"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-24.png",
+      "size": 11276,
+      "sha256": "d9433ebeb136eed0e9a1fb5a29b86c934a1081566afa47b783c0a906c362e65d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-25.png",
+      "size": 11712,
+      "sha256": "71ea7449faa1515f4cdb18383b8863d5e1f82670724396d73a4bca4007bae401"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-26.png",
+      "size": 12402,
+      "sha256": "61e9e7ea1d8545dca3bc4a0352c2aabca762c6cfe5d5fbaa0fd27c6bef098a3d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-27.png",
+      "size": 12589,
+      "sha256": "4eaf4f673107ff4cbf6b961f17c6ddf174a307857e0c8586aca395f9a0bb8d59"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-28.png",
+      "size": 12948,
+      "sha256": "576f92738fdaa33b89fd8760ec0be61dbf659eeafe266f450ff726cf4cf70dc8"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-29.png",
+      "size": 13318,
+      "sha256": "c0a5ee479821512baaad791a71d27880c540725773048044e11c2e6f2e87cc36"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-30.png",
+      "size": 13576,
+      "sha256": "7186f0102476bbc7f64d49bede89fdd917adc6be92d686e5679c3ba8c746890b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-31.png",
+      "size": 14151,
+      "sha256": "40589c2093f1b4086a55f82bb2d5f44bc453bb1f0283399fa7f0668499022ee7"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-32.png",
+      "size": 14148,
+      "sha256": "05b2a09ea5afd040367c84521aa03c2412e14812cf08b8602cd0f5ae2dec5b6e"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-33.png",
+      "size": 13208,
+      "sha256": "89390d3ec4220c9a999c0c12b2b81cb922ca5014d6a19bd14c0d3e472d60057b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-34.png",
+      "size": 11561,
+      "sha256": "8eac1a98c36156f680b3176e2079382299276e11e95b4051ccd78f16f2153174"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-35.png",
+      "size": 10034,
+      "sha256": "2da068e6b1f09d6c081f8c3441f8044387c81b4cbadda332876a7f37819f8173"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-36.png",
+      "size": 8735,
+      "sha256": "6d61b8db88fee5ca01d2d5c074653626324c2488b7cd66f2eac3247ce2152afd"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-37.png",
+      "size": 8061,
+      "sha256": "93eee3dc6561fab1a83145220d3b3ee1e97e174cb7fa1dc13293edbc748f6e1e"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-38.png",
+      "size": 7504,
+      "sha256": "ee3acb83bfccfde665e711c4692b3c89d3d13aa9e9a5ac0a786e4966d10deaf5"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-39.png",
+      "size": 6955,
+      "sha256": "dedb8e37080a54f83c071de0756af9740f5dc05d97ac18cb997d57f745e4797a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-40.png",
+      "size": 6468,
+      "sha256": "bccbb0a277769a665a90ad8e972e47cca34fcb9510239ababb04d943cdf03b53"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-41.png",
+      "size": 5960,
+      "sha256": "ffedb5ada544d548abfe811214fef8ea544a5b0bc699fdda7b088979e5420360"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-42.png",
+      "size": 5499,
+      "sha256": "ddbd3f340c904b56d392ee648bc34064ef60801b2f29eadee69bfb4611f1ec60"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-43.png",
+      "size": 5275,
+      "sha256": "eb86595573f7738e828449d0884410cf3a9338cf17bfce5b7a9700e8d46f5622"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-44.png",
+      "size": 5258,
+      "sha256": "ff8a11c7c56408adc1e06fc6cc1881a448aab80cad37b70836b2ebc2d38570fc"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-45.png",
+      "size": 5258,
+      "sha256": "ff8a11c7c56408adc1e06fc6cc1881a448aab80cad37b70836b2ebc2d38570fc"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-46.png",
+      "size": 5258,
+      "sha256": "ff8a11c7c56408adc1e06fc6cc1881a448aab80cad37b70836b2ebc2d38570fc"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-47.png",
+      "size": 5258,
+      "sha256": "ff8a11c7c56408adc1e06fc6cc1881a448aab80cad37b70836b2ebc2d38570fc"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-48.png",
+      "size": 3573,
+      "sha256": "2430cabe8d19acb512df9cc790a9b48741b9ca7e93512c79b7cd8388fafb7499"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-01.png",
+      "size": 3573,
+      "sha256": "2430cabe8d19acb512df9cc790a9b48741b9ca7e93512c79b7cd8388fafb7499"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-02.png",
+      "size": 3573,
+      "sha256": "2430cabe8d19acb512df9cc790a9b48741b9ca7e93512c79b7cd8388fafb7499"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-03.png",
+      "size": 3573,
+      "sha256": "2430cabe8d19acb512df9cc790a9b48741b9ca7e93512c79b7cd8388fafb7499"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-04.png",
+      "size": 3573,
+      "sha256": "2430cabe8d19acb512df9cc790a9b48741b9ca7e93512c79b7cd8388fafb7499"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-05.png",
+      "size": 3602,
+      "sha256": "8070777aecbf6504e43348fa49d1396f6f5a026f0cb9f77a51d247e71033a673"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-06.png",
+      "size": 3758,
+      "sha256": "436708694f9259ec98573952a68a2547c5bfe9d3a1c14d02289aff644f92ee0c"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-07.png",
+      "size": 3971,
+      "sha256": "49b68070a826c7eafbe95b4ec82a0108cdee7930862b9eaaee0221318e6e477d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-08.png",
+      "size": 4322,
+      "sha256": "74a65d66804c1e3088a941ecb1f2a9e5ce7bf56a66276146fe0c4dec57f0add6"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-09.png",
+      "size": 5024,
+      "sha256": "eac8021911635c860a83182951c00af060dba8b53341c09f73314c79fb09d6a5"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-10.png",
+      "size": 5936,
+      "sha256": "560fb5364f130801b79ef775420d4836822aad59d3f158c23af69eb7f4d87c4a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-11.png",
+      "size": 6883,
+      "sha256": "a5b21767080f2cf5a40f86b0d363af3bc56579be57db18e17a629d0440d0de1d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-12.png",
+      "size": 8137,
+      "sha256": "c3bec32c0bd01e8e121b90e84d3b40aaf481281325af35eb317cc03e3420958e"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-13.png",
+      "size": 9378,
+      "sha256": "93f1f547007ea3424fcb15c96e2cd6272b2caff20789cb44a35e9fb7954a089b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-14.png",
+      "size": 10426,
+      "sha256": "9b9078bdb1d448bba88a7326efc1de8948e38a666e34735c0f5321591ceab767"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-15.png",
+      "size": 11263,
+      "sha256": "980a6da51dd53e52728e766223164f3abb51ef6be95f9edf2123346cb4cd8431"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-16.png",
+      "size": 11835,
+      "sha256": "146b02b7987741283e4139501c141ca2d97cfe23b4396d31760159ff2ebac1f4"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-17.png",
+      "size": 12064,
+      "sha256": "602868429985078cd9e7df75079e446903cfcf8a6997a6c38fa964e16d9ca84e"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-18.png",
+      "size": 12610,
+      "sha256": "9e9a872d78cbfb6b3259d60fab5deb271a25ed56fb7fc9b3ec1ecaf6d043e3e9"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-19.png",
+      "size": 13659,
+      "sha256": "348186ae894ea8b5f3fcda462fc5d88f107183975c6308d8a2e2197311fa6112"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-20.png",
+      "size": 14524,
+      "sha256": "c3b474d4c1499c13deba97ebaaf2df347dc7fd5f2b10438a899f5e6c95e40db3"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-21.png",
+      "size": 15106,
+      "sha256": "58d073af739849678383bab7dc43ae83be5090c9a24537de75a5cf764576be5b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-22.png",
+      "size": 15074,
+      "sha256": "ab74a5af8d2dce7cad97422467e92e4d6663f3bbb31a4602eb5e0f3c570cf61a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-23.png",
+      "size": 15094,
+      "sha256": "068abaed5a956bb11b5c1c541f53f0e74d709055803922f99adfb4cfa71e7c86"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-24.png",
+      "size": 15269,
+      "sha256": "b75cf7b44181e3c19d094641532b9f8ac67ca439b3b5c9f49f5ba6d09601cae1"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-25.png",
+      "size": 15796,
+      "sha256": "3f5c91ec37035bde06b10ed918c4ee7ce8ace671d8d259eacd6357e2419d7a72"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-26.png",
+      "size": 16502,
+      "sha256": "a5b924f2886b4afd3af2d2b0768c3be22bbfc1043ad4840f1300faeb523d85b9"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-27.png",
+      "size": 16912,
+      "sha256": "fd398c57b652cbc1c5dab8d9419ded15ffe0aa8c48bf3f8283ce311367558685"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-28.png",
+      "size": 17287,
+      "sha256": "29c08cc1043ace6c37f9b2b6e24682034e76189bf550735f8fb01f8b2faa4117"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-29.png",
+      "size": 17968,
+      "sha256": "372b2a4b7ee80b5dcf628201bd744492b28d6b05f63505e5b73bfd37360e2745"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-30.png",
+      "size": 18746,
+      "sha256": "864d56f6f90cbd5b19829b31716517a0bef090c62b2638393356a39a3f0cdd0c"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-31.png",
+      "size": 19683,
+      "sha256": "25bca910e69133e61b3d0c98fc85a6f6bb7aebc44a3a6a53b45aeb369a47f25b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-32.png",
+      "size": 20216,
+      "sha256": "023f76b7d4e08c2614a32bc760e788f77fdfc5e818dd5accbbd5a37fd880d0c0"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-33.png",
+      "size": 19413,
+      "sha256": "7fcedfbc04d60b8bc25a11e28247c346f2427a59ad70b643bf1667d51af62fcb"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-34.png",
+      "size": 18106,
+      "sha256": "1cc51470610f0a5a05c88ba543b17939dfbf1eac9a66f7211b3af593a0449668"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-35.png",
+      "size": 17133,
+      "sha256": "9e75169b9336b4b520e1e1f163038002ebd789edf921eddd0eeba9351dbec0fd"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-36.png",
+      "size": 16190,
+      "sha256": "64fb66a97f23df9bd6e307a3d3974ee1e07f9575fd98cad6935062f381ced764"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-37.png",
+      "size": 16016,
+      "sha256": "a7b6c2dbb685b4af72faf9f97ce11eba6085b4a39d78e7ead08c9ef483aca215"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-38.png",
+      "size": 15471,
+      "sha256": "446e7021d8ff530b3d6b2a11825617770871d6106e82fde580a536026b2ec4a4"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-39.png",
+      "size": 13902,
+      "sha256": "160d1509cf79b3073e146ef4c3a8388c997a2d4c1b6ef6ea224e8bc862b379f5"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-40.png",
+      "size": 11594,
+      "sha256": "63138af5d9f85c1f9d3f4188633bc6bacfd1edc1ee86ac6023a7fb2ce264982a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-41.png",
+      "size": 9636,
+      "sha256": "7cba18918a0903979e0a83a0f51a510a954a58d0a598c5bbe5c0df71d9980048"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-42.png",
+      "size": 7833,
+      "sha256": "b9ecf4a27c76662eef77c49f54900ca91f1f9b34e87661795147c0d9c28ad487"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-43.png",
+      "size": 6815,
+      "sha256": "a95e136c529836be2c92755c2d97d3b72ad44fa811cf31244ccb943550a6eeb2"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-44.png",
+      "size": 6143,
+      "sha256": "f4632ef5042c0bb0dcb2e36ba60a2e52176ce4de87440a9c3d618bc2ef08e3ef"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-45.png",
+      "size": 5514,
+      "sha256": "cd31be2d4eb0357b2a96b83fabcbd2cf4071672d05e1fd97284398cfdda5c74d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-46.png",
+      "size": 4939,
+      "sha256": "7f3f4cbe9371d8895d5fff3e4ce188ba8956cfaf785a8b5399be88c830054fdc"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-47.png",
+      "size": 4380,
+      "sha256": "d9d61adf578f75fdcf2c2417c5cad5b20cc6bedb03747c9edea4c95d68e27ea2"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-48.png",
+      "size": 3573,
+      "sha256": "2430cabe8d19acb512df9cc790a9b48741b9ca7e93512c79b7cd8388fafb7499"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-01.png",
+      "size": 72694,
+      "sha256": "4012c25d7b0b9cc0f1043ee319fd4b37dd2a93e488d12562518851a3959b8899"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-02.png",
+      "size": 73233,
+      "sha256": "7760a946b53b71a8ce3e00773caa0e173fdb01b8c6be6012e8d4e1c79f48ae3a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-03.png",
+      "size": 73284,
+      "sha256": "bf35f32965a7d4348ea9871bc291c0e9fea4505a4e2475db99bb674e6f213bc5"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-04.png",
+      "size": 73373,
+      "sha256": "b25769065ccca0dcd2ba83c4fbdf6f12851c0ee106605b45879e9e85205f1b80"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-05.png",
+      "size": 73368,
+      "sha256": "632dab24e564aededfc081fe646a1936dfa2bbc30741d9cd6d1a0a3870e80dcb"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-06.png",
+      "size": 75002,
+      "sha256": "dfc8f961300b1a387d43533f5af59616b1bc8d634ae55d83efc543c637fad3b7"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-07.png",
+      "size": 74709,
+      "sha256": "b4429d4688c4a1a2fafaa2bd756f6958e012b5eb8b75f5c184e1435f777f5e68"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-08.png",
+      "size": 75013,
+      "sha256": "e096e729f7576c6b9ed65843519f266556786115e52fa0cdf2ed28e56fbe27c4"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-09.png",
+      "size": 73578,
+      "sha256": "05fc31a074f86488bf72cee57bcdb392ec526cb3ad82cf818b641c02566863fd"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-10.png",
+      "size": 73417,
+      "sha256": "c3c5a2e31832d5b18eef045f87800a5335f46a323cff97b051d4490a68de00f7"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-11.png",
+      "size": 72595,
+      "sha256": "3142a92ad2a7a334f3480b58e89468281cb4089700db1285d9b166363ae477e2"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-12.png",
+      "size": 73081,
+      "sha256": "107b277e103dec290b1abdb004a7da05c99a0dea0c5bf4421873df2fe29745b3"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-01.png",
+      "size": 61816,
+      "sha256": "647b2d6c79af03328820b13d1865d107c1e73b44f8b408f8694ad50772fe679a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-02.png",
+      "size": 61681,
+      "sha256": "04a3185b3e88f83091d5c8888f4c9b6d215e58ca26ee05f6c47a0f3c77805eeb"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-03.png",
+      "size": 61171,
+      "sha256": "6d550c788e4a2768c512816740acfe31eca71f780a7e417bf6b885b31413b247"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-04.png",
+      "size": 61148,
+      "sha256": "98891a7aea1ba77ba4dabfe25769a82a06931160b752db137cd4299d2100a483"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-05.png",
+      "size": 61782,
+      "sha256": "a87ed5c9bc2a26d8fdc0ba39d386a560badd137dcd3625e9c6f46aa5785edeef"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-06.png",
+      "size": 62624,
+      "sha256": "31ac1d8eb795fa1af44624c3d83a758bae8ed6364192bfe76961a597ad30e9a2"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-07.png",
+      "size": 61791,
+      "sha256": "665331f3c2f2195fa90da0720e366eeec59f94aa709be9948a49423f97ae479d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-08.png",
+      "size": 62073,
+      "sha256": "2e9eaf901d901d838f7c1108fa4734baa04250f793549b0d5d7dd8928049cb76"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-09.png",
+      "size": 62251,
+      "sha256": "1f553bc4d13ed38d67a2c805fbd65534528e800f485baab187a731b50bc7c4d0"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-10.png",
+      "size": 62475,
+      "sha256": "3170e91f64ae7cc3d8997392d01dc4e686b580411b37d6d112db20516ae05b00"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-11.png",
+      "size": 61718,
+      "sha256": "6459601651c3dda1b8db4341cb9c43485f8a963cf4ca735e7e85d1bbe41188f2"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-12.png",
+      "size": 61004,
+      "sha256": "7f5e18d0152510405b091b3acda31c2d047de644978d30c4c66cf84610ab2933"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-13.png",
+      "size": 61696,
+      "sha256": "ec7cec122e7af416cf3e92e18cf4ef68d15c7c69fbf950da00cf4a5007f14d93"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-14.png",
+      "size": 61812,
+      "sha256": "a3fc28c6eb5f4ce0a18a817d80855c8b8a9d1380130a4bc6720dd24adbe127a2"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-15.png",
+      "size": 62078,
+      "sha256": "2df2380d02914aa49b97bed78df476b9fe2e73a33541f2683c205fe891d6e508"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-16.png",
+      "size": 61716,
+      "sha256": "6ade6c62f876baea1550236aa95e43582f3c57f9a7117fb8f246306c480d9259"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-17.png",
+      "size": 62065,
+      "sha256": "6c3103347a5d32eb7908e45f4ec856ac49d1e47de0a6a7746cf17ad3888e9284"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-18.png",
+      "size": 61608,
+      "sha256": "cae679c3eb0ea99272ff93b95e1f1199e74ebea28f16e13841d02acf28afb3f1"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-19.png",
+      "size": 61820,
+      "sha256": "de4cfa316feaca0222d26aada29200ce556aa2e1849ccacad4b3b1fdb166c4db"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-lounge-20.png",
+      "size": 61964,
+      "sha256": "972ce971d3ac7c9dba708734170e99897f73aa3a5ccf4a3baa1470ed1c7e552e"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-portal-01.png",
+      "size": 86821,
+      "sha256": "bb4c3af0973b98f87d4d15873ed479f4a664b9c82aa8f949da5eb4710db7cfc7"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-portal-02.png",
+      "size": 99179,
+      "sha256": "8965bb6d7d2039ce05a9d2c88f36566fa1a81bc893c68c2d102975ae8a631dc2"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-portal-03.png",
+      "size": 97763,
+      "sha256": "63fa308e76ef65423e4b1215bb9c8f37394b954ddaeaf00dc62142e3b4a988dd"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-portal-04.png",
+      "size": 88114,
+      "sha256": "b4bfb71bea293b0aa5e4856a1eb5e41ce2d1eed8bd5d7a9d7318bac7da69d8c9"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-portal-05.png",
+      "size": 85355,
+      "sha256": "c61297e5c1255e65c7e645360e831d6df6f83e66437b0a2f04767b85775b6bc2"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-portal-06.png",
+      "size": 82089,
+      "sha256": "ac335b4ceb9023c5cd1615755f316264fa94dedb50d78f8ff22a7d2858c296e5"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-portal-07.png",
+      "size": 50788,
+      "sha256": "8075327262f52997859efdadb6ee9105d96255f6af03ecee45933c195f5e8a7d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-portal-08.png",
+      "size": 40591,
+      "sha256": "fb3d9507febfd50ed163d64099c64a3545c653c12c7a43610dab45c6f96626e2"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-portal-09.png",
+      "size": 46589,
+      "sha256": "bb2b11489337f442ea3ef247845dbc0843c369a922fe582ce81619de1058dbe3"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-portal-10.png",
+      "size": 44939,
+      "sha256": "38a46e5f24cbd27a8a4313deee95991e405f5a26916b768c3e0714ae56aaba3c"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-portal-11.png",
+      "size": 37313,
+      "sha256": "4f82d843cf3f1c7b163e25f288c22bdf2c17661a5603bd4ab2fccc260af7ed08"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-portal-12.png",
+      "size": 21997,
+      "sha256": "c0491995d18858d188ad5aa750fd66228ae7f99f7b9e3df85f59fd0166aa857d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-success-01.png",
+      "size": 61037,
+      "sha256": "eab2369e919db46469179f2332427820e9f0427b44d8143452c082095a428a17"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-success-02.png",
+      "size": 60850,
+      "sha256": "48d0758467acdb802934cbc40144f613cfd1333b1dd56a65553cf22961e5960d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-success-03.png",
+      "size": 60438,
+      "sha256": "411cf83349c5dbfba0e41fbe63a93c9fc07dac7a70ec4313e37fc520529e439d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-success-04.png",
+      "size": 62295,
+      "sha256": "ae8800fcbf47fb2376b1536279e3eb95fa4ea30a58c7377409c3705a0d66bbdf"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-success-05.png",
+      "size": 63044,
+      "sha256": "d2ee324a9da2eb2d50dbd5697f653ab5fed699aa4dad6649a9c20bcd01ecf701"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-success-06.png",
+      "size": 62921,
+      "sha256": "0647e2e6c37aac092c13e19be73208b740ed769bb64bec8c6a2e81febf690e7c"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-success-07.png",
+      "size": 62518,
+      "sha256": "72d38792f3016c18156716efff9f886a6437b3592fcdce804cfb453213bdb3af"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-success-08.png",
+      "size": 62081,
+      "sha256": "efd6a5caea7d46b900ddb87ea8692fa0bdfeb976f42da639eb881fc8f91660d9"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-success-09.png",
+      "size": 65027,
+      "sha256": "373b1334f651d1cbebb21c223ac005938aae0089611d43acc6ba3ec97f5b97d5"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-success-10.png",
+      "size": 60648,
+      "sha256": "42cd85ec591399709600c9e0f2ae2dde19734b73a17c8428de219ad6ea9d719b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-success-11.png",
+      "size": 60701,
+      "sha256": "c149eea97446435664e551be11a571fddde1b36bb28962040758e1b206a796c6"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-success-12.png",
+      "size": 59985,
+      "sha256": "e9acf3eb42ff29f76d5a6aa7691d35b33149c4bd9b24b1ecf0f7ee63451cece6"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-waiting-01.png",
+      "size": 73046,
+      "sha256": "3aceae669ecb5c8d6dffd317bb83b7085443ab734b82e63dc87eccd83ed4afe1"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-waiting-02.png",
+      "size": 73522,
+      "sha256": "869adb13a5889f1cee64fa50363bef965717ed72a0d235cc4871fd1991138164"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-waiting-03.png",
+      "size": 72961,
+      "sha256": "ed0dac15e4d4a84c899f1f42d8030dcf986eae67a617dd4b7ab26856e22c1a99"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-waiting-04.png",
+      "size": 73480,
+      "sha256": "247871b12012898231170a9c164441bfa7a4f0b64c75bfeed0c43eead6321e51"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-waiting-05.png",
+      "size": 74530,
+      "sha256": "e19574a71977610f9f4d81cf7a5e8ebbe48b2db407c6f41a8f391184809d6dc5"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-waiting-06.png",
+      "size": 73570,
+      "sha256": "bdcabcf456d80e8846fb1495b03456c652a0c443c83347cdc48beff9c63fa3d8"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-waiting-07.png",
+      "size": 73513,
+      "sha256": "18a03e619eb1725782049075ff9f242597c9fdfdb700810eac2ee85630c10adf"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-waiting-08.png",
+      "size": 73476,
+      "sha256": "ccead267dfa89a03eba6e7b2c2e8df18f4e44083777f7498204129f3aaaa5134"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-waiting-09.png",
+      "size": 74629,
+      "sha256": "9f347e56d19e758279b9e85c113041d50db631998d30792870574e9aae8e7c83"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-waiting-10.png",
+      "size": 73720,
+      "sha256": "f7fab206918841c9c988c7a1f9c1b66304bd4f06fc7859ede01cb439c50a0dc3"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-waiting-11.png",
+      "size": 73556,
+      "sha256": "b8e4f15fabc985f0e7a3791d8788b4a3836daaef6e9a6c3a850f09dc120c8809"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-waiting-12.png",
+      "size": 73531,
+      "sha256": "47590f87d2d74f36e051d07c59c9f131ed2e95c60a330c7f2e20118fafacc53b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-focus-01.png",
+      "size": 114718,
+      "sha256": "1208cb4500d3c6e8a8be9722c6d45640823ce96427c590e44dd7b4e9cd7909e8"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-focus-02.png",
+      "size": 115070,
+      "sha256": "01523582e4049fcba99dd745ab0540803b3bf5fdde4208d30a39ee2f99da2693"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-focus-03.png",
+      "size": 114761,
+      "sha256": "5cd79d5cbd2dbb8ec97fca78bb37408a53c7db4df9df0095b3f44c9112aec1f7"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-focus-04.png",
+      "size": 114322,
+      "sha256": "1842a13702bfd3340d6dca54e5d333a4ade51b392dbfa61a6d9140787f1d0a1d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-focus-05.png",
+      "size": 114712,
+      "sha256": "5e6ed26a3357cea26a887d32a6deadeff2a1d5533ecb5ce1ba7cb4e7b42c7949"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-focus-06.png",
+      "size": 115280,
+      "sha256": "a28ee3886260657b7322d841ac20d6d371f62002f5ffbded03f5e3b94535a3e0"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-focus-07.png",
+      "size": 115491,
+      "sha256": "77eca35869e61f37962f6c8effcefadad0e49fca281fd5064810376474a83f34"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-focus-08.png",
+      "size": 115288,
+      "sha256": "c98d7a750d610eeafacb2fdb484af0e3ae998f51122562c6f22df05334766ffd"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-focus-09.png",
+      "size": 116602,
+      "sha256": "7b4c2335d4731df76a26bfb7c310a07a24351175d1eff8f0c9622dbf6fe451d6"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-focus-10.png",
+      "size": 117390,
+      "sha256": "a311c1c685fb782762efb40a123a9d6f7c26f48419fe8302167c1c39203909cf"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-focus-11.png",
+      "size": 115089,
+      "sha256": "01208975da4a88e308c5bd5b751d3e76262fd9a806ffe96845062d6d5e752d31"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-focus-12.png",
+      "size": 115989,
+      "sha256": "4854315620f73677c222390cf97a8711baa1ddd139c1e14662d90e362a90ea8b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-01.png",
+      "size": 99450,
+      "sha256": "3e1c818921849a6cab70fde4dfea0e3320bf802881c286ec58d3b8f7ac92ad49"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-02.png",
+      "size": 99110,
+      "sha256": "3f5d450b15cbee1606e45858db9ea5e487aae59fb6397eb623c1acd460c0b5f7"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-03.png",
+      "size": 99084,
+      "sha256": "05907ac7d4a5a6ee89909712ee9eb358749243074eafc771583e71e12c1f1542"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-04.png",
+      "size": 98688,
+      "sha256": "7fc138c6474872c3de5eb97fffa206aaf02116820e8f336875937879504f5b72"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-05.png",
+      "size": 99036,
+      "sha256": "f8ba524e402b705e7eb737c1adae0fe078f9d2216af292304a824792572b8937"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-06.png",
+      "size": 101001,
+      "sha256": "a4c206f1e881f47ac1ddacda0a9748cf845dc246644156460c234f30ff8f1112"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-07.png",
+      "size": 100294,
+      "sha256": "ebf2ea977e09019714cad8b2bce5d52c2da943f82c057e816892b29a10489b71"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-08.png",
+      "size": 100689,
+      "sha256": "8631691bfe5ac9e3d903620ca596b6253a390fc4774b497c490833e6d7f9a50b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-09.png",
+      "size": 100401,
+      "sha256": "308777c1210683c61e77fb0fae8e4fd6976ce14426da27e5578c27507e8c7800"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-10.png",
+      "size": 100122,
+      "sha256": "0d6b2db74631f00dc5882db5abaff0af1e23deace39704ec1b4e9121b12df7af"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-11.png",
+      "size": 100229,
+      "sha256": "b9862d94082d5d0e20affe63895bea3bea1a886fca986792569695603299954d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-12.png",
+      "size": 99374,
+      "sha256": "9bb5b550d46dfda5a4bb05416887412376ff54b32529262000d4982d0998e500"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-13.png",
+      "size": 99704,
+      "sha256": "fb88dc7684e5b31ad21b18b9ade4c5ab3d7271e503c5a8ef29d3f95e69638f8d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-14.png",
+      "size": 99636,
+      "sha256": "f262042dbad90e1d76257c9cd2932cb79ecb250f920f439b063d8ad6f8e79c51"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-15.png",
+      "size": 99469,
+      "sha256": "b520b89e8dba2b637f5341819ca9483f555cc6038d40e413c7e9f5d2d4153fd3"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-16.png",
+      "size": 100602,
+      "sha256": "52ca1c56b42a2abf8cc74dcb62b963af06b8e5af8350e8b38c7c9b56d3e745fa"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-17.png",
+      "size": 99929,
+      "sha256": "c08ed28a428d62794db76a4b444df9c86eec76b8561959c370e476f9ce81ad49"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-18.png",
+      "size": 100100,
+      "sha256": "677e23accc0407ad5debe999f5955c07125407f39e219632e18524cde02c5ecc"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-19.png",
+      "size": 100095,
+      "sha256": "0b7ad9cef05f19453b90dc88b2119520ad4d550b1c0b3171c20f96739421b41b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-lounge-20.png",
+      "size": 99573,
+      "sha256": "1458b11450a586544f9397c21e4b5dbc4c5147fe3ec26e998fb7863f988f1bbb"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-portal-01.png",
+      "size": 135865,
+      "sha256": "92bdc21dd590f394fa687ab53247e1097e173ea6df352cd3a15e0ce1914b57d4"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-portal-02.png",
+      "size": 156650,
+      "sha256": "cb651ef0bc2d45c89b863ddc67c4e3668e2e1566dac04ff63db21dae6b9d9dd6"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-portal-03.png",
+      "size": 163843,
+      "sha256": "07d42d579828b22d850a9b5605e9533e3770b8df2164a139f614b9542dd80e83"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-portal-04.png",
+      "size": 156461,
+      "sha256": "0fd3df5db9c9861f58cbe38cff90151fda24caf70999c89cd9913211fe690a05"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-portal-05.png",
+      "size": 144897,
+      "sha256": "3a822e852f8a6f0b37d5b9697c376ae2259b25a79dc778c74e87031a6653a328"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-portal-06.png",
+      "size": 141518,
+      "sha256": "45b7da6308a58afc1a48adbaf838b2ed9655e0d8a8fc6f6b95f42a4f24a0cc39"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-portal-07.png",
+      "size": 110780,
+      "sha256": "623753d5f337b9f5f82b6f1f19bda3c593271343ffee2f252b77949fe9f54451"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-portal-08.png",
+      "size": 94402,
+      "sha256": "6726a925d0559cb9c0ddb080b946f5032263f83cd7d6b5c8f50b510c7000445f"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-portal-09.png",
+      "size": 100798,
+      "sha256": "5c4f453e16e2ca94c0d64ea1932ecd8316a8ad161ae2577e5957b573d7b11542"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-portal-10.png",
+      "size": 99400,
+      "sha256": "b0966a0091c7a191e7aac6baa6add7d295f90eab669f4f8812753561d7825c3a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-portal-11.png",
+      "size": 81488,
+      "sha256": "0feccf7345b4e828c8e722e30d290be2d0c8b21f0e84c2f594346bbc1c40e3ca"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-portal-12.png",
+      "size": 43729,
+      "sha256": "bb3ea93ce74badcc8cf8003f5d1e493cf94af923ab057da84e277dca76a659d3"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-success-01.png",
+      "size": 91211,
+      "sha256": "906a240af3b506564179f8f39f73695318bbc059285e2593cdf20e5befcf9dae"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-success-02.png",
+      "size": 91552,
+      "sha256": "16b3a3710f50c63973cf4bb771ea0efcfedf383160d77dadf6d38deaae6329cd"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-success-03.png",
+      "size": 90887,
+      "sha256": "07332f2ade26ad7008a8f726645fe625e235e712bda12fc73b21bad2aa478ef6"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-success-04.png",
+      "size": 94425,
+      "sha256": "ac254b39f0163fc66b9347f950d9e5b62a9957950ab4edcc172030f5dab3e258"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-success-05.png",
+      "size": 94481,
+      "sha256": "2df14f4c2ee698e1d236fe30f8b1af12f6f830e5b98dfa5cab504e10de5841c7"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-success-06.png",
+      "size": 94733,
+      "sha256": "9a02e6f1042e5923fa99af36e1b81ffe44feb9590e1c53ffc8243eab9ba3ffba"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-success-07.png",
+      "size": 94077,
+      "sha256": "3af477cc3b8b35612b3f2580c78ca10915297f128bc5632302d1a147df007272"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-success-08.png",
+      "size": 93941,
+      "sha256": "ce4eac7b45deb7ffee46d8f00b5d6a909b179715e019959a2f5949638b82f353"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-success-09.png",
+      "size": 97888,
+      "sha256": "74cbec1007c574ac2441010210d43590ffe33be03893d8ac08ce4260edcd6d0a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-success-10.png",
+      "size": 91123,
+      "sha256": "da18170cc1f414e4a9e4318ce9559196c0ea09369f3df5bf2b1b3ec190b81ce2"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-success-11.png",
+      "size": 91101,
+      "sha256": "5be5606b068cb7b6ea3a20e9d532d1553d46e87c7ce219d53412fc324eebba56"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-success-12.png",
+      "size": 90570,
+      "sha256": "f5b9827900ad9ba06d523f23b764a65a78131353fe3e034809b6376251d0fb1a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-waiting-01.png",
+      "size": 114684,
+      "sha256": "826087a1467f854c3083e8524d61d9466b91d2280faacb651a000dd3fc6457f9"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-waiting-02.png",
+      "size": 114466,
+      "sha256": "8de012d467d73858789384a4f91ebccaa183005bd2c3996c915a0ea514f92acc"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-waiting-03.png",
+      "size": 114187,
+      "sha256": "dc8c5e719b41a4864903285844c29924c2c35203765df5355de44ea23949eb72"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-waiting-04.png",
+      "size": 114378,
+      "sha256": "da458037013e7870f3f3356cd5c8400724292fca402f21b86a1d950e4ec2f916"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-waiting-05.png",
+      "size": 116761,
+      "sha256": "1fee551e60ad997ffd5ee386df7c07290a71326c22e54e7ad88c591a122d6fcb"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-waiting-06.png",
+      "size": 115571,
+      "sha256": "ed005b5a5f2646f6278c6e5ee20090df872fbdf4603b0a22fc0fb45df6a9b071"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-waiting-07.png",
+      "size": 115293,
+      "sha256": "48c5b72d9959b2d625fe30652645eee09ec97ab0caa7fad16ae694212a764330"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-waiting-08.png",
+      "size": 115400,
+      "sha256": "e8421aef4269628db38b9a90de63bcde87f04c63b172efb87f6295721d99aa41"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-waiting-09.png",
+      "size": 115537,
+      "sha256": "58029f0066a66b126a969c7a28310e2ea8158e36c8f0a8cd1a1cc54177222d8c"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-waiting-10.png",
+      "size": 115158,
+      "sha256": "18b211f831241a97f0bc1a410979d5765429b072b6b25149eed59dde1284ec86"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-waiting-11.png",
+      "size": 114736,
+      "sha256": "502e2ef51858a7d82d444344b11460b9ce7282da4441f1c78057cdf47af49d61"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/blue-waiting-12.png",
+      "size": 114966,
+      "sha256": "899edced9739c88b82b02a0bd1899b173016d7c1d78720239dd0f03d65a3a57b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-01.png",
+      "size": 30723,
+      "sha256": "968d68ab1192ade49852b29196bb3ef3f5febc18acaed78374f002a99f9c2b4c"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-02.png",
+      "size": 30727,
+      "sha256": "3138ea2aae0d6dd9a9a6ea3dcc69dd9cad1997b69e56d9df8205e3da8fa89450"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-03.png",
+      "size": 31127,
+      "sha256": "81979c5015e00b60d93523856779055ca861006692e69f87d4a6dbcd0cf50681"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-04.png",
+      "size": 31958,
+      "sha256": "c2a6dc637d19c8a5706873bb6c1084a42f1159448176de9a269df52eaa651b14"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-05.png",
+      "size": 31700,
+      "sha256": "2131ef2e834ea27da645fd3f2ff8db0a46707931e73aee400c16bcbcb696c8fc"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-06.png",
+      "size": 31251,
+      "sha256": "436d3809b4e74438ba71d8bf2dd2dfe2185135e83dcfab5233c954544fd4b139"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-07.png",
+      "size": 31868,
+      "sha256": "6a51532b4f31bb3ab5aa7a9791d022b147303ae990afa5a68deadce57f096d63"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-08.png",
+      "size": 31639,
+      "sha256": "9b3ca38649daff63155ac6dd0ce29af6bed3afdac1451b1d90a234c7314e94cd"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-09.png",
+      "size": 31297,
+      "sha256": "9107247862d2fb38453d140a732ea9f630494e202a2e5052ae2df5a9ba63234f"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-10.png",
+      "size": 31848,
+      "sha256": "e06d080ffe02ede5ccd8f911daaf74ae262df371929c8dd10781cb20e03918d0"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-11.png",
+      "size": 31314,
+      "sha256": "a6af664da1075bb72d8dd611c553c0a0b01da63203b5a497cf510267ff2460dd"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-12.png",
+      "size": 31505,
+      "sha256": "be4ff3a6999c12524a8251e4c331a849d68aea4eb2110f52e270fe071c1d2b04"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-13.png",
+      "size": 31373,
+      "sha256": "d79ced7d444371680b56bafb6cb8c3a7aa9d103a1811515896d02845180debcc"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-14.png",
+      "size": 31205,
+      "sha256": "f109e90d17d35619ab481d2d244d7567d154b3738994241cd91179cdd64400c1"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-15.png",
+      "size": 31131,
+      "sha256": "627846f3e91363c2b2361b43a205bd457875a58fb79af4a79ebcc28d7d462c33"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-16.png",
+      "size": 36530,
+      "sha256": "a1c5b85b664d90fd32855e6808302db1f63fe19adfef492cebe944f040670fe3"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-17.png",
+      "size": 36233,
+      "sha256": "df95a8160982f26052800c4a9f01569bcbdae3e05c76a72d2338e5f34d325e56"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-18.png",
+      "size": 37333,
+      "sha256": "3e97b714b7ed00237470b73b185c3328218c1207b879fe92afe490a0c68ab5b5"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-19.png",
+      "size": 37330,
+      "sha256": "384c4d08d96b02ea71b4fffdf8db582bd7c56ec21fe953ad7035877a1da17618"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/black-portal-effect-20.png",
+      "size": 35995,
+      "sha256": "ccad89d14aee5045b45b9777f2856d0dd1c3db83bf51542911e028c7c6f52552"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-01.png",
+      "size": 77506,
+      "sha256": "4b40c63599bfcdd964395efdd34dce07a58d353bfede1b43641f84c630b39832"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-02.png",
+      "size": 78088,
+      "sha256": "a050f46e587bb87bfeb93e642de6752ab5e63218b5a34a45bb3e853846c934c0"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-03.png",
+      "size": 77209,
+      "sha256": "e7e3af704e810d6aeeba1e508285789f2032f4f87c2dfca23c74e0273c33d2c3"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-04.png",
+      "size": 78053,
+      "sha256": "adad1ec969b331db41e5354f7df6ebbb0f46d760810fbde42269b60224cb669b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-05.png",
+      "size": 77671,
+      "sha256": "2422c1e053239822237636b43b889377c72ae2c8e98476f7e82e38fe60234be6"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-06.png",
+      "size": 77664,
+      "sha256": "6d0ecd89bcc743e5aef6e6bfe642bf6ee4fded1529d319951f0feb2e75df3695"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-07.png",
+      "size": 77772,
+      "sha256": "58b13627fd51e4df749e8ac38508f5c67082ed15f465332eb84389dc3652f506"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-08.png",
+      "size": 77370,
+      "sha256": "3205c63b09b6ea2febdd86a222d50b3bd361f6b9fffc755928f00cf30c4622f3"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-09.png",
+      "size": 77388,
+      "sha256": "579ac02ce4fc522387fe863103ca7305d2b3580a7c4f2d35d41d165888dc3aed"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-10.png",
+      "size": 77636,
+      "sha256": "db47c631d8a8732783606c15d40ee31f7bee9b1959244206c626629a69ea250d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-11.png",
+      "size": 77309,
+      "sha256": "ae86e02e3a3796615a188878135861364c8758fac7ecf9594415275f23919d8d"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-12.png",
+      "size": 77396,
+      "sha256": "d85037e4954314794c7012c7837c623efccab9b2343616543e4a66a046e850bc"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-13.png",
+      "size": 77112,
+      "sha256": "218d92473765f9abfcfbb4f12a5e8129e85a4ff65d0f0c07e147b8fe8f7879db"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-14.png",
+      "size": 78035,
+      "sha256": "583fa9fc5302d12cace691d7977eb99ff0ed95e10306e25bc589b051ff839fea"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-15.png",
+      "size": 77428,
+      "sha256": "14cb595e7f4148405cbc16682fb58d4d74dcc213ca43904465a17147c130fc62"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-16.png",
+      "size": 78128,
+      "sha256": "9f2c5dc803b4d1a7ac9374d3f6b62c5b0cc483da39c2676bc904fbc9886c18a5"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-17.png",
+      "size": 77054,
+      "sha256": "3de4b9cd28a15f04c2c805a6d96c76e89ea891b13db30488df959b30a945e677"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-18.png",
+      "size": 77578,
+      "sha256": "7a5a395194958936e46b27768528c88906d0640ce65e7136066d22e87438de2f"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-19.png",
+      "size": 77441,
+      "sha256": "983b57a2b70d5b9066d181f4dd33d01c61f150a570d27fdcd915bccba1cf32ae"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v9/blue-portal-effect-20.png",
+      "size": 77389,
+      "sha256": "3cc428ae56d9de46f21350f5d4c88b1ac6ed347dab9adef54c45d701739f4493"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/voice-wave.svg",
+      "size": 349,
+      "sha256": "3942b8a5d6bccc927a55f857f0d44b90e2663470cd2d569000c9b60c37578dfa"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/client.js",
+      "size": 115475,
+      "sha256": "11f60e5885ce12b97bfbe3ea3209ab50d54ef3243cb0865db7cde25050846176"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/index.js",
+      "size": 7698,
+      "sha256": "467c143cd245b2ffa2bd89b53f0d4f30d61f7c5123184be08dba527483a7774f"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/invariant.js",
+      "size": 720,
+      "sha256": "078f6bed75400fd6ad2a5994f5f8af199d03f7988c9bbd79b5de37d162c676f3"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/ProductCompanion.d.ts",
+      "size": 1463,
+      "sha256": "a1367b9f91e7ea1182283d437abfa3843261d64bbc961ffc763cfa8ba4d9f478"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/ProductCompanionSettings.d.ts",
+      "size": 577,
+      "sha256": "6ba31733db3154a414a444e539feee1b973c3edc006760522b6ea096b1aea262"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/activity.d.ts",
+      "size": 1018,
+      "sha256": "8bdd1beab4b522e5cc6acbdb9cd1e8485cf45158bd5dea3cc8ba56a7312578e8"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/animation.d.ts",
+      "size": 2473,
+      "sha256": "68d93e78316d2a44a0688c7743ad8aa561db677029451f98e75c2bb1143c716e"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/global-rules.d.ts",
+      "size": 801,
+      "sha256": "4cdd14366e3ae8e19418d66b0c8a1390c8083f9899f3655bff37db21198feb8a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/habitats.d.ts",
+      "size": 649,
+      "sha256": "4465bb0047319133ff4e1b4a2f47a9f846387aba5f280eb39478d91cce8d4547"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/index.d.ts",
+      "size": 1475,
+      "sha256": "cd9b86a8de571a10679305ebf3f916e3bcfec0d8f367005665dfd3afacc1b6e6"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/locales.d.ts",
+      "size": 5614,
+      "sha256": "7fc08d4f2c0c896d6166647d0736b09ec9e0fdc63bc124b305c4068707ad07dc"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/project-rules.d.ts",
+      "size": 824,
+      "sha256": "deb9cbdb2c4f3a896c7be0997eac7240f482c80e1a54e0913ecd63736f2236f3"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/store.d.ts",
+      "size": 3008,
+      "sha256": "98f1cff5743d70da2fb0078152496afa3e826b14e2600559f0776562324362df"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/voice-input.d.ts",
+      "size": 2291,
+      "sha256": "e6c302db8d84eb66030ad5a1371dbfd2809924e1e09c93d504426277438aff45"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/global-rules-host.d.ts",
+      "size": 704,
+      "sha256": "375dd584b638a78495ec74a6dd4724b74dd0960a1b6397c3ec93c75803b39ead"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/index.d.ts",
+      "size": 623,
+      "sha256": "ffd3e14cc186327eb0afb04ae2500bc2a1ef9dcf446b9a917ef41a64e7da27c6"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/invariant.d.ts",
+      "size": 490,
+      "sha256": "0796800a94b6bea5c138d7a6386f3fe9c1acff2b9fbef347a13f4a818edd8e90"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/project-rules-host.d.ts",
+      "size": 707,
+      "sha256": "08855372eee8480b705eee78d35beb8c4f2b78f43f2dafca9ecb6ff79fd7df40"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/voice-host.d.ts",
+      "size": 761,
+      "sha256": "04588a7c8fadbaa7491a51b2d20459e3f91b47fba38dae3ccbbf7437f2d45ece"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/package.json",
+      "size": 2768,
+      "sha256": "6cfbdfa47008d5538c244f0086887429d3042bf066ec28a703d89c9ff4d23677"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanion.module.css",
+      "size": 11877,
+      "sha256": "eae4c6b75920774f1c6bfdbaca1deb2f62c96ca55d2c3325a16baa8ac2e8369f"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanion.tsx",
+      "size": 42449,
+      "sha256": "0e242cd51d8b51ea5495ede5f9e79fdaaa507ccbda32ed46e4acd01bbecbc297"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanionSettings.module.css",
+      "size": 9097,
+      "sha256": "78c20e49aed3ba6db7367598df9ab2c5dc6066aec7475f55ba7cac44052cefe2"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanionSettings.tsx",
+      "size": 19025,
+      "sha256": "e3609fac3b6fc39bc6fd193fbfa3a5d231f67f54d91a585efbe5e21792769ebb"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/activity.ts",
+      "size": 2588,
+      "sha256": "76b9b5a0829876100485605bc4e378721c0ba22967e8a30aba20d18ca889fa3b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/animation.ts",
+      "size": 4306,
+      "sha256": "d8413116516f7c24c4a316f0a3492cb95b9fe2ae15e2cd8eb7f20dc9c2ad3618"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/global-rules.ts",
+      "size": 1854,
+      "sha256": "d9021ef199b031c6ec00259fef8ff42e4442fbfbf6c72a5e9817d50e54030502"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/habitats.ts",
+      "size": 1456,
+      "sha256": "e8b9121d0aeff257fdde57d475b4d2e775b05e168fdabc1cec617fe088696d42"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/index.ts",
+      "size": 2959,
+      "sha256": "082366ef4bb9ae0336be35b8927bee6ec55aea237b7a881ae66d2fba672da39a"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/locales.ts",
+      "size": 9949,
+      "sha256": "d9174e7237150b3830bd6bcc0f691395830c5ba2b5cdea3a0d4dfa3d3360871f"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/store.ts",
+      "size": 6304,
+      "sha256": "a17eaf7ca01c98ac8e8a6d49ebae49b494c9d4f9ec8cc3ddea1137a3444e1b8b"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/voice-input.ts",
+      "size": 11273,
+      "sha256": "01bb93406c915dca7b6583f07dc9f0d96b3d2ef8d15831e485ea555b0a486575"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/css-modules.d.ts",
+      "size": 123,
+      "sha256": "e28410d74a0d763364c04fa690c2ca2202ad3019c74f8f5205e8dc6cba69c02f"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/global-rules-host.ts",
+      "size": 6171,
+      "sha256": "8d0fce9f85cd3654ca1d2300f2d9299c5ad6d9e846254997c8eeecc60bda0480"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/index.ts",
+      "size": 3018,
+      "sha256": "671fa59bdfecfd890568cc461849ff90562e3daa5d2adb26973635ab90cbe2be"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/invariant.ts",
+      "size": 839,
+      "sha256": "c2efab4cdd37e1baa270e3e8c91799df498a4812d44eabc014ef9efc9f441f63"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/tsconfig.client.json",
+      "size": 599,
+      "sha256": "99a7cbc08985ae30b9b91cf4001875c9375f6eb8b427d5590ce48b0ebbd7c725"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/tsconfig.host.json",
+      "size": 513,
+      "sha256": "b9368e5bbcde91aafa47bbf3503368cccd62ea0311019d888f2e914dbb34ffe8"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/tsconfig.json",
+      "size": 142,
+      "sha256": "ad1b25d36ea100440140e543e2a2af188178934da74eadce1b27ef14e91b335e"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/tsdown.config.ts",
+      "size": 178,
+      "sha256": "d3855886741b0055bdcb74705ddb2838b1111d565439f26976f3cab8f06abe37"
+    }
+  ],
+  "excludes": [
+    "node_modules",
+    "Git metadata",
+    "tests",
+    "caches",
+    "credentials",
+    "sessions",
+    "conversation history",
+    "user settings"
+  ],
+  "repository": "https://github.com/niushuanan/dsh-whale-girl",
+  "releaseTag": "xiaozhuang-v0.4.2",
+  "sourceRepository": "https://github.com/niushuanan/xiaozhuang-dsh"
+}
