@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "kind": "xiaozhuang-dsh-plugin-export",
-  "createdAt": "2026-08-26T19:18:43.149Z",
-  "sourceCommit": "12cc1c95bfc5a84a8a9555a7cd8660df5c319d65",
+  "createdAt": "2026-08-26T20:31:08.960Z",
+  "sourceCommit": "76794e2a58a46d80c265d36c49ad90cfe16b1f89",
   "plugins": [
     {
       "id": "product-companion",
@@ -1399,8 +1399,8 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/client.js",
-      "size": 122345,
-      "sha256": "617b99f01b0de3d4e9aba5afdb53aa77f6b89f16e11a5f4a849f0729863fe8bb"
+      "size": 122346,
+      "sha256": "8fcd7db27fdaf87400323c550aaf0ba59fe95deff17f0b6d3b266f884bce656f"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/index.js",
@@ -1509,8 +1509,8 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanion.tsx",
-      "size": 46474,
-      "sha256": "0349355f7794c200c2280606fdb67f10672fdb00763626856c6f5aa0040095f5"
+      "size": 46776,
+      "sha256": "c14700843d39b78145def70d65ad1f0ea1313b5041d440af0e1ccc2529ecd89f"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanionSettings.module.css",

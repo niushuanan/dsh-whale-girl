@@ -1252,6 +1252,10 @@ window.__ModuleLoader__.load({
 				};
 				const onMove = (event) => {
 					if (event.pointerId !== state.pointerId || dragState.current !== state) return;
+					if (event.buttons === 0) {
+						finish(true);
+						return;
+					}
 					if (!state.moved) {
 						if (Math.abs(event.clientX - state.pressX) < DRAG_START_PX) return;
 						state.moved = true;
@@ -1315,11 +1319,7 @@ window.__ModuleLoader__.load({
 				event.stopPropagation();
 			};
 			const onCharacterPointerUp = (event) => {
-				if (dragState.current?.moved === true && dragState.current.pointerId === event.pointerId) {
-					event.preventDefault();
-					event.stopPropagation();
-					return;
-				}
+				if (dragState.current?.moved === true && dragState.current.pointerId === event.pointerId) return;
 				const press = clickThroughPress.current;
 				clickThroughPress.current = null;
 				if (press === null || press.pointerId !== event.pointerId || rootRef.current === null) return;
