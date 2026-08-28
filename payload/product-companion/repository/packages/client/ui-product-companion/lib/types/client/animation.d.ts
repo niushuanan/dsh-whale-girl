@@ -25,7 +25,6 @@ export declare const COMPANION_LOUNGE_SEQUENCE: readonly CompanionFrameStep[];
  */
 export declare const COMPANION_DISSOLVE_PHASE_MS = 1040;
 export declare const COMPANION_DISSOLVE_FRAME_COUNT = 48;
-export declare const COMPANION_DISSOLVE_FRAME_CROSSFADE_MS = 28;
 export declare function companionDissolveFrame(elapsedMs: number, reverse?: boolean): number;
 /** Prone Agent-work loop with a small DeepSeek whale data pulse. */
 export declare const COMPANION_FOCUS_SEQUENCE: readonly CompanionFrameStep[];

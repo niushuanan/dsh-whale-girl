@@ -1,5 +1,5 @@
 /** Persisted user choices for the global product companion. */
-import { type EngineStoreHandle } from '@deepseek-ai/dsh-client-runtime/client';
+import { type EngineStoreHandle } from '@deepseek-ai/dsh-client-store';
 export type CompanionSkin = 'blue' | 'black';
 export type CompanionSize = 'standard' | 'large';
 export type CompanionAction = 'none' | 'focusComposer' | 'voiceInput' | 'switchSide' | 'newSession' | 'menu' | 'close';

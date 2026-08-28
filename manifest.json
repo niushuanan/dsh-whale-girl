@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "kind": "xiaozhuang-dsh-plugin-export",
-  "createdAt": "2026-08-26T20:31:08.960Z",
-  "sourceCommit": "76794e2a58a46d80c265d36c49ad90cfe16b1f89",
+  "createdAt": "2026-08-28T19:13:40.863Z",
+  "sourceCommit": "d14acdd649a1d70762b38be8b55afa9891d6e580",
   "plugins": [
     {
       "id": "product-companion",
@@ -24,13 +24,13 @@
   "files": [
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/README.md",
-      "size": 10210,
-      "sha256": "67a9652ad4f32ef6f0bd75a87bf6d06355e2d6c93ad817b69777eb701a0e0f82"
+      "size": 10543,
+      "sha256": "b54e38a0773dfaef1345dcf0611c2974175a951a6e2bff79253ac8c7e0c98c0d"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/README.zh.md",
-      "size": 9159,
-      "sha256": "b7c91b213bc2e4de44a39dd5aff5a3cdfe1090aa665cd7e0c3006e6b41488e2c"
+      "size": 9355,
+      "sha256": "e2b46aef57dea5bffdf55cc89884ea4ff88e4f8b77bda2cd5ced4502d114ec69"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-01.png",
@@ -273,6 +273,11 @@
       "sha256": "2430cabe8d19acb512df9cc790a9b48741b9ca7e93512c79b7cd8388fafb7499"
     },
     {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-strip.png",
+      "size": 356659,
+      "sha256": "ca2aee6cd11dacf2117a23d0e0628afc4e77ad740543bf5e3eba66eaad7b6438"
+    },
+    {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-01.png",
       "size": 3573,
       "sha256": "2430cabe8d19acb512df9cc790a9b48741b9ca7e93512c79b7cd8388fafb7499"
@@ -511,6 +516,11 @@
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-48.png",
       "size": 3573,
       "sha256": "2430cabe8d19acb512df9cc790a9b48741b9ca7e93512c79b7cd8388fafb7499"
+    },
+    {
+      "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/fragment-mask-strip.png",
+      "size": 340688,
+      "sha256": "c72eeae5b965c233ffdd5ca68ecd508e6e6917c4d44702b9625307d7930b8c57"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v14/black-focus-01.png",
@@ -1399,13 +1409,13 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/client.js",
-      "size": 122346,
-      "sha256": "8fcd7db27fdaf87400323c550aaf0ba59fe95deff17f0b6d3b266f884bce656f"
+      "size": 122446,
+      "sha256": "94a0aedfd5e4ebdfbb3e6e642a47925128e38748a138e588e880b7f5586d2a35"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/index.js",
-      "size": 7698,
-      "sha256": "467c143cd245b2ffa2bd89b53f0d4f30d61f7c5123184be08dba527483a7774f"
+      "size": 7790,
+      "sha256": "78f1b60566ca329f27215f571c220ed3cf71b5b805413132c3755685b7bb33d6"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/invariant.js",
@@ -1414,23 +1424,23 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/ProductCompanion.d.ts",
-      "size": 1463,
-      "sha256": "a1367b9f91e7ea1182283d437abfa3843261d64bbc961ffc763cfa8ba4d9f478"
+      "size": 1689,
+      "sha256": "eb844a63f45a72890f8ec6a722a7bf8d3f0e784ecae3c8df987d53cd001ab06e"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/ProductCompanionSettings.d.ts",
-      "size": 577,
-      "sha256": "6ba31733db3154a414a444e539feee1b973c3edc006760522b6ea096b1aea262"
+      "size": 821,
+      "sha256": "94d10f978ff5dce1e5823b52dc5ebe2bc9033a193bec1ec640b9adce16c7222b"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/activity.d.ts",
-      "size": 1018,
-      "sha256": "8bdd1beab4b522e5cc6acbdb9cd1e8485cf45158bd5dea3cc8ba56a7312578e8"
+      "size": 1151,
+      "sha256": "1bb1e374e14423978bf3d4f3d4816077b99c9a8aa9cd3a1c8aa5a63c5f326e99"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/animation.d.ts",
-      "size": 2473,
-      "sha256": "68d93e78316d2a44a0688c7743ad8aa561db677029451f98e75c2bb1143c716e"
+      "size": 2408,
+      "sha256": "dca24226b81734cdaeff1277773b18e56c3651ea52be34b69c50a701ecce5f48"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/composer-anchor.d.ts",
@@ -1449,8 +1459,8 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/index.d.ts",
-      "size": 1475,
-      "sha256": "cd9b86a8de571a10679305ebf3f916e3bcfec0d8f367005665dfd3afacc1b6e6"
+      "size": 1483,
+      "sha256": "fea757784a88afa0f6da182b48edc41b555a000b17e5ba02bc38a8ed9db57033"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/locales.d.ts",
@@ -1464,8 +1474,8 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/store.d.ts",
-      "size": 2850,
-      "sha256": "c150adcb4c9c521d157ec58737ffbce4b03af3748cb211be1f26e7ac1fd38c23"
+      "size": 2841,
+      "sha256": "1345f2e227077b06270f904ed5d23dc5b7e3564cdea2ab4352528ab2caf08723"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/types/client/voice-input.d.ts",
@@ -1499,18 +1509,18 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/package.json",
-      "size": 2768,
-      "sha256": "6cfbdfa47008d5538c244f0086887429d3042bf066ec28a703d89c9ff4d23677"
+      "size": 3427,
+      "sha256": "890b8d4d8d5d783bdc43284a183dc39a5f0b843c4840846b0a39e7ecaf37857c"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanion.module.css",
-      "size": 12087,
-      "sha256": "8d14266da4829a3e360d87e35494c3662415e172a0b59fcc48fa97fd6b240ae0"
+      "size": 13277,
+      "sha256": "240b33781b52f5e2b0fdbfe69021a98a89cf4645567d645e4673c1c6075c8717"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanion.tsx",
-      "size": 46776,
-      "sha256": "c14700843d39b78145def70d65ad1f0ea1313b5041d440af0e1ccc2529ecd89f"
+      "size": 45845,
+      "sha256": "517796df78ea29e16a72d093f4fb0e494d35159d4d426b3ec68ef3244b4f9842"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanionSettings.module.css",
@@ -1519,18 +1529,18 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanionSettings.tsx",
-      "size": 19025,
-      "sha256": "e3609fac3b6fc39bc6fd193fbfa3a5d231f67f54d91a585efbe5e21792769ebb"
+      "size": 19261,
+      "sha256": "9f7d63751e2b5dbbbc1aaa908399a0c44fe8e1091a5b603a94eb2cdd855db791"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/activity.ts",
-      "size": 2588,
-      "sha256": "76b9b5a0829876100485605bc4e378721c0ba22967e8a30aba20d18ca889fa3b"
+      "size": 3298,
+      "sha256": "d4f39ae6290462661d1a9fcd68b12d59b8e10f28dc8445666beb29b60c1a6daa"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/animation.ts",
-      "size": 4306,
-      "sha256": "d8413116516f7c24c4a316f0a3492cb95b9fe2ae15e2cd8eb7f20dc9c2ad3618"
+      "size": 4250,
+      "sha256": "c56e32d4bc599fabc67eb13868bfeae895d071a8d53ac2f8269e108db37f8979"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/composer-anchor.ts",
@@ -1544,18 +1554,18 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/index.ts",
-      "size": 2959,
-      "sha256": "082366ef4bb9ae0336be35b8927bee6ec55aea237b7a881ae66d2fba672da39a"
+      "size": 3343,
+      "sha256": "11ba77a2b90d84884c14001b2114ecb9333377972104206dd62762d9e87a75d0"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/locales.ts",
-      "size": 9949,
-      "sha256": "d9174e7237150b3830bd6bcc0f691395830c5ba2b5cdea3a0d4dfa3d3360871f"
+      "size": 9971,
+      "sha256": "aa808cf6fe57a6ea69b0b856e5e4f8a9351cff7d2bd026b0af08cc6f3739e80d"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/store.ts",
-      "size": 5909,
-      "sha256": "5b498ceba3b204cb52901d25e2276ab0d1a7ee23f3963a5e3c509d51ef95faee"
+      "size": 5900,
+      "sha256": "0565456c6517d77ab93fe2a592f3cb5b7bf07c656daaca405120070431960915"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/voice-input.ts",
@@ -1574,8 +1584,8 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/index.ts",
-      "size": 3018,
-      "sha256": "671fa59bdfecfd890568cc461849ff90562e3daa5d2adb26973635ab90cbe2be"
+      "size": 3108,
+      "sha256": "9aba999c62e47f4dc6707eeb1b04d562a8520e9ea366c49995f748b9dfdb4d7f"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/invariant.ts",
@@ -1584,8 +1594,8 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/tsconfig.client.json",
-      "size": 599,
-      "sha256": "99a7cbc08985ae30b9b91cf4001875c9375f6eb8b427d5590ce48b0ebbd7c725"
+      "size": 808,
+      "sha256": "52b68b3c19995e39837a8a4f4b7b9b137f64affb0acbb5352ac117d9391ac36e"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/tsconfig.host.json",
@@ -1612,8 +1622,5 @@
     "sessions",
     "conversation history",
     "user settings"
-  ],
-  "repository": "https://github.com/niushuanan/dsh-whale-girl",
-  "releaseTag": "xiaozhuang-v0.4.2",
-  "sourceRepository": "https://github.com/niushuanan/xiaozhuang-dsh"
+  ]
 }

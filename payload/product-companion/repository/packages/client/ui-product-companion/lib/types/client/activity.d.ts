@@ -1,4 +1,7 @@
-import type { PendingInteractionStatus, SessionId, SessionListState } from '@deepseek-ai/dsh-client-runtime/client';
+import type { SessionListState } from '@deepseek-ai/dsh-api-session-controller/client';
+import type { SessionId } from '@deepseek-ai/dsh-session/types';
+import type { SessionPendingInteractionSnapshot } from '@deepseek-ai/dsh-client-ui-session/client';
+export type PendingInteractionStatus = 'approval' | 'plan-review' | 'question';
 export type CompanionBaseState = 'idle' | 'working' | 'waiting';
 export interface CompanionActivity {
     state: CompanionBaseState;
@@ -14,11 +17,7 @@ export interface CompanionTask {
     status: 'working' | PendingInteractionStatus;
     updatedAt: number;
 }
-/**
- * Project every live or attention-blocked conversation into one compact switcher row.
- * Attention comes first, followed by the open conversation and then the freshest work.
- */
-export declare function deriveCompanionTasks(sessions: SessionListState): CompanionTask[];
+export declare function deriveCompanionTasks(sessions: SessionListState, interactions?: SessionPendingInteractionSnapshot): CompanionTask[];
 /** Derive one calm companion state from the same session facts visible in the sidebar. */
-export declare function deriveCompanionActivity(sessions: SessionListState): CompanionActivity;
+export declare function deriveCompanionActivity(sessions: SessionListState, interactions?: SessionPendingInteractionSnapshot): CompanionActivity;
 //# sourceMappingURL=activity.d.ts.map

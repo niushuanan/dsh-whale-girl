@@ -1,5 +1,5 @@
 /** Browser half of the native cross-page product companion plugin. */
-import type { ClientContext } from '@deepseek-ai/dsh-client-runtime/client';
+import type { ClientContext } from '@deepseek-ai/dsh-api-session-controller/client';
 import { type CompanionLocaleKey } from './locales.ts';
 export { ProductCompanion, companionDissolveMaskUrl, companionFrameUrl, type CompanionVisualState, type ProductCompanionInjected, } from './ProductCompanion.tsx';
 export type { CompanionAssetClip, CompanionTrackName } from './animation.ts';

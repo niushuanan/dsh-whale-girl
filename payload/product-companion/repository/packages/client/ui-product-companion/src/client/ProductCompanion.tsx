@@ -4,18 +4,20 @@ import {
   type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent,
 } from 'react'
 import type { PropsLocale, PropsRuntime, PropsStore } from '@deepseek-ai/dsh-client-ui-slots'
-import type { SessionId } from '@deepseek-ai/dsh-client-runtime/client'
+import type { SessionId } from '@deepseek-ai/dsh-session/types'
+import type {
+  SessionPendingInteractionSnapshot, UseSessionPendingInteraction,
+} from '@deepseek-ai/dsh-client-ui-session/client'
 import { Menu, type MenuEntry } from '@deepseek-ai/dsh-client-ui-primitives'
 import { deriveCompanionActivity, deriveCompanionTasks, type CompanionTask } from './activity.ts'
 import type { CompanionLocaleKey } from './locales.ts'
 import {
   COMPANION_ASSET_FRAME_COUNTS,
-  COMPANION_DISSOLVE_FRAME_COUNT, COMPANION_DISSOLVE_FRAME_CROSSFADE_MS,
-  COMPANION_DISSOLVE_PHASE_MS,
+  COMPANION_DISSOLVE_FRAME_COUNT, COMPANION_DISSOLVE_PHASE_MS,
   COMPANION_FOCUS_SEQUENCE,
   COMPANION_LOUNGE_SEQUENCE, COMPANION_SUCCESS_SEQUENCE,
   COMPANION_TRACKS, COMPANION_WAITING_SEQUENCE,
-  companionDissolveFrame, companionSequenceFrame,
+  companionSequenceFrame,
   type CompanionAssetClip, type CompanionTrackName,
 } from './animation.ts'
 import {
@@ -30,7 +32,8 @@ import css from './ProductCompanion.module.css'
 export type CompanionVisualState = 'idle' | 'working' | 'waiting' | 'success' | 'sleep'
 
 type ProductCompanionProps =
-  PropsRuntime<'shell.overlay'>
+  Omit<PropsRuntime<'shell.overlay'>, 'useSessionPendingInteraction'>
+  & { useSessionPendingInteraction?: UseSessionPendingInteraction }
   & PropsStore<ReturnType<typeof createCompanionStore>>
   & PropsLocale<'productCompanion'>
   & ProductCompanionInjected
@@ -54,7 +57,6 @@ const SLEEP_AFTER_MS = 90_000
 const SUCCESS_MS = 4_000
 const PROGRESS_REVEAL_MS = 420
 const TASK_PANEL_EXIT_MS = 260
-const ANCHOR_SETTLE_MS = 120
 const SESSION_ANCHOR_SETTLE_MS = 360
 const MIN_TELEPORT_DISTANCE = 6
 /** Horizontal pointer travel (px) that turns a press into a drag. */
@@ -72,12 +74,6 @@ const UNDERLYING_INTERACTIVE_SELECTOR = [
 ].join(', ')
 
 type TeleportPhase = 'idle' | 'departing' | 'arriving'
-
-interface DissolveFrameState {
-  previous: number | null
-  current: number
-  revision: number
-}
 
 function readViewport(): Viewport {
   return {
@@ -191,13 +187,9 @@ export function companionDissolveMaskUrl(
   return `${ASSET_ROOT}/v13/${kind}-mask-${String(bounded + 1).padStart(2, '0')}.png`
 }
 
-function maskStyle(kind: 'body' | 'fragment', frame: number): CSSProperties {
-  const progress = frame / Math.max(1, COMPANION_DISSOLVE_FRAME_COUNT - 1)
+function maskStripStyle(kind: 'body' | 'fragment'): CSSProperties {
   return {
-    '--companion-material-mask': `url("${companionDissolveMaskUrl(kind, frame)}")`,
-    '--companion-fragment-x': `${(progress * 3.5).toFixed(2)}px`,
-    '--companion-fragment-y': `${(-1.5 - progress * 7).toFixed(2)}px`,
-    '--companion-fragment-opacity': String(Math.max(0.34, 0.84 - progress * 0.28)),
+    '--companion-material-mask': `url("${ASSET_ROOT}/v13/${kind}-mask-strip.png")`,
   } as CSSProperties
 }
 
@@ -222,16 +214,26 @@ function taskStatusKey(status: CompanionTask['status']): CompanionLocaleKey {
     case 'question': return 'task.question'
     case 'working': return 'task.working'
   }
+  return 'task.working'
 }
+
+const EMPTY_INTERACTIONS: SessionPendingInteractionSnapshot = new Map()
+const useNoPendingInteractions: UseSessionPendingInteraction = selector => selector(EMPTY_INTERACTIONS)
 
 /** Global product companion, mounted once above all app columns. */
 export function ProductCompanion({
-  useSessions, useStore, actions, startSession = () => undefined,
+  useSessions, useSessionPendingInteraction = useNoPendingInteractions,
+  useStore, actions, startSession = () => undefined,
   openSession = () => undefined, t,
 }: ProductCompanionProps) {
   const sessions = useSessions(snapshot => snapshot)
-  const activity = useMemo(() => deriveCompanionActivity(sessions), [sessions])
-  const activeTasks = useMemo(() => deriveCompanionTasks(sessions), [sessions])
+  const interactions = useSessionPendingInteraction(snapshot => snapshot)
+  const activity = useMemo(
+    () => deriveCompanionActivity(sessions, interactions), [interactions, sessions],
+  )
+  const activeTasks = useMemo(
+    () => deriveCompanionTasks(sessions, interactions), [interactions, sessions],
+  )
   const currentSession = sessions.current === undefined ? undefined : sessions.byId[sessions.current]
   const skin = useStore(state => state.skin)
   const displayName = useStore(state => state.displayName?.trim() || DEFAULT_COMPANION_NAME)
@@ -264,11 +266,6 @@ export function ProductCompanion({
   const [progressReady, setProgressReady] = useState(false)
   const [animatedFrame, setAnimatedFrame] = useState(0)
   const [workPulse, setWorkPulse] = useState({ revision: 0, active: false })
-  const [dissolveFrame, setDissolveFrame] = useState<DissolveFrameState>({
-    previous: null,
-    current: 0,
-    revision: 0,
-  })
   const rootRef = useRef<HTMLDivElement>(null)
   const previousRunning = useRef(0)
   const runStartedAt = useRef<number | null>(null)
@@ -279,7 +276,6 @@ export function ProductCompanion({
   const teleportPhaseRef = useRef<TeleportPhase>('idle')
   const currentCharacterSrc = useRef<string | null>(null)
   const frozenTeleportCharacterSrc = useRef<string | null>(null)
-  const currentDissolveFrame = useRef(0)
   const sleepTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const successTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const teleportTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -295,6 +291,7 @@ export function ProductCompanion({
   const previousWorkPulseSignature = useRef<string | null>(null)
   const lastWorkPulseAt = useRef<number | null>(null)
   const preloadedAssetUrls = useRef(new Set<string>())
+  const retainedPreloadedAssets = useRef(new Map<string, HTMLImageElement>())
   const dragState = useRef<{
     pointerId: number
     pressX: number
@@ -520,23 +517,43 @@ export function ProductCompanion({
       setRenderedPosition(composerAnchor)
       return
     }
+
+    // A cross-page dissolve owns its coordinates until the character has
+    // reformed. Layout changes during that transition only update its final
+    // destination; they must not interrupt the material animation.
+    if (teleportPhaseRef.current !== 'idle') {
+      teleportTarget.current = composerAnchor
+      return
+    }
+
+    // Inside one conversation the companion is part of the composer chrome,
+    // not a separate object travelling to a newly measured point. Adopt every
+    // top-edge change directly so textarea growth, attachments and pane reflow
+    // keep the character and its controls attached in the same rendered frame.
+    if (!sessionAnchorSettling.current) {
+      teleportTarget.current = composerAnchor
+      setRenderedPosition(composerAnchor)
+      return
+    }
+
     const origin = renderedPosition ?? from
     const anchorChanged = positionDistance(composerAnchor, from) >= 0.5
     if (!anchorChanged && !sessionChanged) return
-    const settleDelay = sessionAnchorSettling.current
-      ? SESSION_ANCHOR_SETTLE_MS
-      : ANCHOR_SETTLE_MS
-    // Every measured anchor change restarts this trailing-edge timer. During a
-    // conversation switch this deliberately outlives the temporary bottom
-    // composer, so only the final visible position can begin dissolving.
+    // Every anchor change during a conversation switch restarts this
+    // trailing-edge timer. It deliberately outlives the temporary bottom
+    // composer, so only the new page's final position can begin dissolving.
     anchorSettleTimer.current = setTimeout(() => {
       anchorSettleTimer.current = null
       sessionAnchorSettling.current = false
       const stableAnchor = previousAnchor.current
       if (stableAnchor === null) return
-      if (positionDistance(stableAnchor, origin) < MIN_TELEPORT_DISTANCE) return
+      if (positionDistance(stableAnchor, origin) < MIN_TELEPORT_DISTANCE) {
+        teleportTarget.current = stableAnchor
+        setRenderedPosition(stableAnchor)
+        return
+      }
       beginTeleport(stableAnchor)
-    }, settleDelay)
+    }, SESSION_ANCHOR_SETTLE_MS)
   }, [
     beginTeleport,
     cancelTeleport,
@@ -654,7 +671,8 @@ export function ProductCompanion({
           ? 'sleep'
           : 'idle'
 
-  const characterState: 'idle' | 'working' | 'waiting' = currentSession?.pendingInteraction !== undefined
+  const characterState: 'idle' | 'working' | 'waiting' = currentSession !== undefined
+    && interactions.get(currentSession.id) !== undefined
     ? 'waiting'
     : currentSession?.running === true
       ? 'working'
@@ -692,14 +710,21 @@ export function ProductCompanion({
     ? frameSrc
     : frozenTeleportCharacterSrc.current ?? currentCharacterSrc.current ?? frameSrc
 
-  const preloadAsset = useCallback((url: string) => {
+  const preloadAsset = useCallback((url: string, retain = false) => {
     if (preloadedAssetUrls.current.has(url)) return
     preloadedAssetUrls.current.add(url)
     const image = new Image()
+    if (retain) retainedPreloadedAssets.current.set(url, image)
     image.src = url
     const decode = Reflect.get(image, 'decode')
     if (typeof decode === 'function') void Promise.resolve(decode.call(image)).catch(() => undefined)
   }, [])
+
+  useEffect(() => {
+    if (!visible || composerAnchor === null) return
+    preloadAsset(`${ASSET_ROOT}/v13/body-mask-strip.png`, true)
+    preloadAsset(`${ASSET_ROOT}/v13/fragment-mask-strip.png`, true)
+  }, [composerAnchor, preloadAsset, visible])
 
   useEffect(() => {
     const count = COMPANION_ASSET_FRAME_COUNTS[track.asset]
@@ -707,41 +732,6 @@ export function ProductCompanion({
       preloadAsset(companionFrameUrl(skin, track.asset, (frame + offset) % count))
     }
   }, [frame, preloadAsset, skin, track.asset])
-
-  useEffect(() => {
-    if (teleportPhase === 'idle') return
-    const reverse = teleportPhase === 'arriving'
-    const initial = reverse ? COMPANION_DISSOLVE_FRAME_COUNT - 1 : 0
-    currentDissolveFrame.current = initial
-    setDissolveFrame(state => ({ previous: null, current: initial, revision: state.revision + 1 }))
-    const startedAt = performance.now()
-    let animationFrame = 0
-    const tick = (now: number): void => {
-      const next = companionDissolveFrame(now - startedAt, reverse)
-      if (next !== currentDissolveFrame.current) {
-        const previous = currentDissolveFrame.current
-        currentDissolveFrame.current = next
-        setDissolveFrame(state => ({ previous, current: next, revision: state.revision + 1 }))
-      }
-      if (now - startedAt < COMPANION_DISSOLVE_PHASE_MS) {
-        animationFrame = window.requestAnimationFrame(tick)
-      }
-    }
-    animationFrame = window.requestAnimationFrame(tick)
-    return () => { window.cancelAnimationFrame(animationFrame) }
-  }, [teleportPhase])
-
-  useEffect(() => {
-    if (teleportPhase === 'idle') return
-    const direction = teleportPhase === 'arriving' ? -1 : 1
-    const next = Math.max(0, Math.min(
-      COMPANION_DISSOLVE_FRAME_COUNT - 1,
-      dissolveFrame.current + direction,
-    ))
-    for (const kind of ['body', 'fragment'] as const) {
-      preloadAsset(companionDissolveMaskUrl(kind, next))
-    }
-  }, [dissolveFrame.current, preloadAsset, teleportPhase])
 
   useEffect(() => {
     const stableFrame = track.frames[0] ?? 0
@@ -970,7 +960,6 @@ export function ProductCompanion({
     '--companion-width': `${renderedSize.width}px`,
     '--companion-height': `${renderedSize.height}px`,
     '--dissolve-phase-ms': `${COMPANION_DISSOLVE_PHASE_MS}ms`,
-    '--dissolve-frame-crossfade-ms': `${COMPANION_DISSOLVE_FRAME_CROSSFADE_MS}ms`,
   } as CSSProperties
   const activeDuration = elapsedSeconds > 0 ? formatDuration(elapsedSeconds, t) : null
   const completedDuration = lastDurationSeconds === null ? null : formatDuration(lastDurationSeconds, t)
@@ -1107,27 +1096,16 @@ export function ProductCompanion({
                   ) : (
                     <span className={css.materialDissolveLayer} aria-hidden="true">
                       <img
-                        className={`${css.characterImage} ${css.materialCurrent}`}
+                        className={`${css.characterImage} ${css.materialBody}`}
                         src={characterSrc}
-                        style={maskStyle('body', dissolveFrame.current)}
+                        style={maskStripStyle('body')}
                         alt=""
                         draggable={false}
                       />
-                      {dissolveFrame.previous === null ? null : (
-                        <img
-                          key={`body-${dissolveFrame.revision}`}
-                          className={`${css.characterImage} ${css.materialPrevious}`}
-                          src={characterSrc}
-                          style={maskStyle('body', dissolveFrame.previous)}
-                          alt=""
-                          draggable={false}
-                        />
-                      )}
                       <img
-                        key={`fragment-${dissolveFrame.revision}`}
                         className={`${css.characterImage} ${css.materialFragments}`}
                         src={characterSrc}
-                        style={maskStyle('fragment', dissolveFrame.current)}
+                        style={maskStripStyle('fragment')}
                         alt=""
                         draggable={false}
                       />
