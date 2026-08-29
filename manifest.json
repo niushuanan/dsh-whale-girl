@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "kind": "xiaozhuang-dsh-plugin-export",
-  "createdAt": "2026-08-29T20:02:21.895Z",
-  "sourceCommit": "35de1753ca8a5e0cda2d9884e594887fbcdab5e5",
+  "createdAt": "2026-08-29T21:24:54.576Z",
+  "sourceCommit": "9745107b0f4ec4c92feab012844ac2cee2d242c3",
   "plugins": [
     {
       "id": "product-companion",
@@ -24,13 +24,13 @@
   "files": [
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/README.md",
-      "size": 10788,
-      "sha256": "0b45b56f53e8ea43a4f5c8fccaf86018acbbe00dfab02fc41a64eb2875b04225"
+      "size": 11041,
+      "sha256": "9d121bc72adc83acc7f93dd8046669abd33be129d524a7bee9129f1e1557ab2e"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/README.zh.md",
-      "size": 9556,
-      "sha256": "50283b5c9d198247c12170aa2765e2c6673a6e90f6cc405b1ab216beca00b65a"
+      "size": 9796,
+      "sha256": "b336e683691f19ba349f6458c65d9bcb00bd07a86492a8d9b66f6b1bc2384e77"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/assets/v13/body-mask-01.png",
@@ -1399,8 +1399,8 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/client.js",
-      "size": 123306,
-      "sha256": "818e57c1442c009b07188d9838a1cbc86b86b4e1ece44c338167fddd3c60fad4"
+      "size": 122007,
+      "sha256": "f77d53668695244a47b2b3b836ed1771c3ffac1ef6abdcf204f6305519760f4e"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/lib/index.js",
@@ -1489,8 +1489,8 @@
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanion.tsx",
-      "size": 48503,
-      "sha256": "b3f61e55779c15f4c17c3aa8ca812f6207ec94a96259e69eb84d9c53bd234aa6"
+      "size": 49123,
+      "sha256": "1c74a722424549dec3eee3f318ba8a84ecb6396fa4ec16af66c8aa8686cc549a"
     },
     {
       "path": "payload/product-companion/repository/packages/client/ui-product-companion/src/client/ProductCompanionSettings.module.css",

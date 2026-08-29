@@ -4,7 +4,7 @@
 
 [![DSH Plugin](https://img.shields.io/badge/DSH-Plugin-111111)](https://github.com/niushuanan/xiaozhuang-dsh) [![Release](https://img.shields.io/badge/release-xiaozhuang--v0.4.2-2563eb)](https://github.com/niushuanan/dsh-whale-girl/releases/tag/xiaozhuang-v0.4.2) [![MIT](https://img.shields.io/badge/license-MIT-16a34a)](LICENSE)
 
-在 DSH 各页面提供会随会话状态变化的原生陪伴角色、快捷操作和轻量反馈。左侧圆键现会按精灵所在半区显示左右箭头，一键用气泡消散／出现效果切换到输入框约 10% 或 90% 处。
+在 DSH 各页面提供会随会话状态变化的原生陪伴角色、快捷操作和轻量反馈。左侧圆键会按精灵所在半区显示左右箭头，一键用气泡消散／出现效果切换到输入框约 10% 或 90% 处；从居中的新对话首次切换到已有对话时，精灵现在也会立即跟随输入框移动。
 
 <p align="center"><img src="docs/05-whale-girl.webp" alt="鲸少女外观与快捷操作设置" width="800"></p>
 
@@ -24,4 +24,4 @@
 
 ## 来源与许可
 
-本仓库是 [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh) 的单向发布副本，不是独立开发源。当前内容同步自主仓库 commit [`35de1753ca`](https://github.com/niushuanan/xiaozhuang-dsh/commit/35de1753ca8a5e0cda2d9884e594887fbcdab5e5)；最新已发布安装包仍为 [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-whale-girl/releases/tag/xiaozhuang-v0.4.2)。代码采用 [MIT License](LICENSE)。
+本仓库是 [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh) 的单向发布副本，不是独立开发源。当前内容同步自主仓库 commit [`9745107b0f`](https://github.com/niushuanan/xiaozhuang-dsh/commit/9745107b0f4ec4c92feab012844ac2cee2d242c3)；最新已发布安装包仍为 [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-whale-girl/releases/tag/xiaozhuang-v0.4.2)。代码采用 [MIT License](LICENSE)。
