@@ -4,7 +4,7 @@ English | [中文](README.md)
 
 [![DSH Plugin](https://img.shields.io/badge/DSH-Plugin-111111)](https://github.com/niushuanan/xiaozhuang-dsh) [![Release](https://img.shields.io/badge/release-xiaozhuang--v0.4.2-2563eb)](https://github.com/niushuanan/dsh-whale-girl/releases/tag/xiaozhuang-v0.4.2) [![MIT](https://img.shields.io/badge/license-MIT-16a34a)](LICENSE)
 
-Add a native cross-page companion whose presence, shortcuts, and feedback follow the current DSH session state.
+Add a native cross-page companion whose presence, shortcuts, and feedback follow the current DSH session state. Its left circular control now points toward the opposite side and switches the companion to roughly 10% or 90% of the composer width with the existing bubble dissolve-and-appear transition.
 
 <p align="center"><img src="docs/05-whale-girl.webp" alt="Whale Girl appearance and shortcut settings" width="800"></p>
 
@@ -24,4 +24,4 @@ Add a native cross-page companion whose presence, shortcuts, and feedback follow
 
 ## Source and license
 
-This repository is a one-way distribution mirror of [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh), not an independent development source. It is synchronized from main-repository commit [`49b1c5207b`](https://github.com/niushuanan/xiaozhuang-dsh/commit/49b1c5207b1556515752c6bf9e7902c1a5964ad9) and released as [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-whale-girl/releases/tag/xiaozhuang-v0.4.2). Licensed under the [MIT License](LICENSE).
+This repository is a one-way distribution mirror of [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh), not an independent development source. Its contents are synchronized from main-repository commit [`35de1753ca`](https://github.com/niushuanan/xiaozhuang-dsh/commit/35de1753ca8a5e0cda2d9884e594887fbcdab5e5); the latest released installation bundle remains [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-whale-girl/releases/tag/xiaozhuang-v0.4.2). Licensed under the [MIT License](LICENSE).

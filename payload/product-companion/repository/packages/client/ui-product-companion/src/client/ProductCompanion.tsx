@@ -13,11 +13,12 @@ import { deriveCompanionActivity, deriveCompanionTasks, type CompanionTask } fro
 import type { CompanionLocaleKey } from './locales.ts'
 import {
   COMPANION_ASSET_FRAME_COUNTS,
-  COMPANION_DISSOLVE_FRAME_COUNT, COMPANION_DISSOLVE_PHASE_MS,
+  COMPANION_DISSOLVE_FRAME_COUNT, COMPANION_DISSOLVE_FRAME_CROSSFADE_MS,
+  COMPANION_DISSOLVE_PHASE_MS,
   COMPANION_FOCUS_SEQUENCE,
   COMPANION_LOUNGE_SEQUENCE, COMPANION_SUCCESS_SEQUENCE,
   COMPANION_TRACKS, COMPANION_WAITING_SEQUENCE,
-  companionSequenceFrame,
+  companionDissolveFrame, companionSequenceFrame,
   type CompanionAssetClip, type CompanionTrackName,
 } from './animation.ts'
 import {
@@ -61,6 +62,8 @@ const SESSION_ANCHOR_SETTLE_MS = 360
 const MIN_TELEPORT_DISTANCE = 6
 /** Horizontal pointer travel (px) that turns a press into a drag. */
 const DRAG_START_PX = 5
+const LEFT_BERTH_RATIO = 0.1
+const RIGHT_BERTH_RATIO = 0.9
 const WORK_PULSE_COOLDOWN_MS = 5_200
 const ASSET_ROOT = '/plugins/ui-product-companion/assets'
 const UNDERLYING_INTERACTIVE_SELECTOR = [
@@ -74,6 +77,12 @@ const UNDERLYING_INTERACTIVE_SELECTOR = [
 ].join(', ')
 
 type TeleportPhase = 'idle' | 'departing' | 'arriving'
+
+interface DissolveFrameState {
+  previous: number | null
+  current: number
+  revision: number
+}
 
 function readViewport(): Viewport {
   return {
@@ -187,9 +196,13 @@ export function companionDissolveMaskUrl(
   return `${ASSET_ROOT}/v13/${kind}-mask-${String(bounded + 1).padStart(2, '0')}.png`
 }
 
-function maskStripStyle(kind: 'body' | 'fragment'): CSSProperties {
+function maskStyle(kind: 'body' | 'fragment', frame: number): CSSProperties {
+  const progress = frame / Math.max(1, COMPANION_DISSOLVE_FRAME_COUNT - 1)
   return {
-    '--companion-material-mask': `url("${ASSET_ROOT}/v13/${kind}-mask-strip.png")`,
+    '--companion-material-mask': `url("${companionDissolveMaskUrl(kind, frame)}")`,
+    '--companion-fragment-x': `${(progress * 3.5).toFixed(2)}px`,
+    '--companion-fragment-y': `${(-1.5 - progress * 7).toFixed(2)}px`,
+    '--companion-fragment-opacity': String(Math.max(0.34, 0.84 - progress * 0.28)),
   } as CSSProperties
 }
 
@@ -266,6 +279,11 @@ export function ProductCompanion({
   const [progressReady, setProgressReady] = useState(false)
   const [animatedFrame, setAnimatedFrame] = useState(0)
   const [workPulse, setWorkPulse] = useState({ revision: 0, active: false })
+  const [dissolveFrame, setDissolveFrame] = useState<DissolveFrameState>({
+    previous: null,
+    current: 0,
+    revision: 0,
+  })
   const rootRef = useRef<HTMLDivElement>(null)
   const previousRunning = useRef(0)
   const runStartedAt = useRef<number | null>(null)
@@ -276,6 +294,7 @@ export function ProductCompanion({
   const teleportPhaseRef = useRef<TeleportPhase>('idle')
   const currentCharacterSrc = useRef<string | null>(null)
   const frozenTeleportCharacterSrc = useRef<string | null>(null)
+  const currentDissolveFrame = useRef(0)
   const sleepTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const successTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const teleportTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -291,7 +310,6 @@ export function ProductCompanion({
   const previousWorkPulseSignature = useRef<string | null>(null)
   const lastWorkPulseAt = useRef<number | null>(null)
   const preloadedAssetUrls = useRef(new Set<string>())
-  const retainedPreloadedAssets = useRef(new Map<string, HTMLImageElement>())
   const dragState = useRef<{
     pointerId: number
     pressX: number
@@ -388,6 +406,17 @@ export function ProductCompanion({
 
     run()
   }, [])
+
+  const moveToOppositeBerth = useCallback(() => {
+    const targetRatio = composerOffsetRatio > 0.5 ? LEFT_BERTH_RATIO : RIGHT_BERTH_RATIO
+    const target = measureComposerAnchor(viewport, sizePreference, targetRatio)
+    if (target === null) return
+    closeTasks()
+    beginTeleport(target)
+    actions.setComposerOffsetRatio(targetRatio)
+  }, [
+    actions, beginTeleport, closeTasks, composerOffsetRatio, sizePreference, viewport,
+  ])
 
   useEffect(() => {
     const resize = (): void => {
@@ -710,21 +739,14 @@ export function ProductCompanion({
     ? frameSrc
     : frozenTeleportCharacterSrc.current ?? currentCharacterSrc.current ?? frameSrc
 
-  const preloadAsset = useCallback((url: string, retain = false) => {
+  const preloadAsset = useCallback((url: string) => {
     if (preloadedAssetUrls.current.has(url)) return
     preloadedAssetUrls.current.add(url)
     const image = new Image()
-    if (retain) retainedPreloadedAssets.current.set(url, image)
     image.src = url
     const decode = Reflect.get(image, 'decode')
     if (typeof decode === 'function') void Promise.resolve(decode.call(image)).catch(() => undefined)
   }, [])
-
-  useEffect(() => {
-    if (!visible || composerAnchor === null) return
-    preloadAsset(`${ASSET_ROOT}/v13/body-mask-strip.png`, true)
-    preloadAsset(`${ASSET_ROOT}/v13/fragment-mask-strip.png`, true)
-  }, [composerAnchor, preloadAsset, visible])
 
   useEffect(() => {
     const count = COMPANION_ASSET_FRAME_COUNTS[track.asset]
@@ -732,6 +754,41 @@ export function ProductCompanion({
       preloadAsset(companionFrameUrl(skin, track.asset, (frame + offset) % count))
     }
   }, [frame, preloadAsset, skin, track.asset])
+
+  useEffect(() => {
+    if (teleportPhase === 'idle') return
+    const reverse = teleportPhase === 'arriving'
+    const initial = reverse ? COMPANION_DISSOLVE_FRAME_COUNT - 1 : 0
+    currentDissolveFrame.current = initial
+    setDissolveFrame(state => ({ previous: null, current: initial, revision: state.revision + 1 }))
+    const startedAt = performance.now()
+    let animationFrame = 0
+    const tick = (now: number): void => {
+      const next = companionDissolveFrame(now - startedAt, reverse)
+      if (next !== currentDissolveFrame.current) {
+        const previous = currentDissolveFrame.current
+        currentDissolveFrame.current = next
+        setDissolveFrame(state => ({ previous, current: next, revision: state.revision + 1 }))
+      }
+      if (now - startedAt < COMPANION_DISSOLVE_PHASE_MS) {
+        animationFrame = window.requestAnimationFrame(tick)
+      }
+    }
+    animationFrame = window.requestAnimationFrame(tick)
+    return () => { window.cancelAnimationFrame(animationFrame) }
+  }, [teleportPhase])
+
+  useEffect(() => {
+    if (teleportPhase === 'idle') return
+    const direction = teleportPhase === 'arriving' ? -1 : 1
+    const next = Math.max(0, Math.min(
+      COMPANION_DISSOLVE_FRAME_COUNT - 1,
+      dissolveFrame.current + direction,
+    ))
+    for (const kind of ['body', 'fragment'] as const) {
+      preloadAsset(companionDissolveMaskUrl(kind, next))
+    }
+  }, [dissolveFrame.current, preloadAsset, teleportPhase])
 
   useEffect(() => {
     const stableFrame = track.frames[0] ?? 0
@@ -784,15 +841,14 @@ export function ProductCompanion({
       case 'none': return
       case 'focusComposer': focusComposer(); return
       case 'voiceInput': voice.toggle(); return
-      // Persisted V7 bindings resolve to the closest current action.
-      case 'switchSide': focusComposer(); return
+      case 'switchSide': moveToOppositeBerth(); return
       case 'newSession':
         startSession()
         return
       case 'menu': setMenuOpen(true); return
       case 'close': actions.setVisible(false)
     }
-  }, [actions, closeTasks, focusComposer, startSession, voice.toggle])
+  }, [actions, closeTasks, focusComposer, moveToOppositeBerth, startSession, voice.toggle])
 
   const openTask = useCallback((id: SessionId) => {
     openSession(id)
@@ -960,6 +1016,7 @@ export function ProductCompanion({
     '--companion-width': `${renderedSize.width}px`,
     '--companion-height': `${renderedSize.height}px`,
     '--dissolve-phase-ms': `${COMPANION_DISSOLVE_PHASE_MS}ms`,
+    '--dissolve-frame-crossfade-ms': `${COMPANION_DISSOLVE_FRAME_CROSSFADE_MS}ms`,
   } as CSSProperties
   const activeDuration = elapsedSeconds > 0 ? formatDuration(elapsedSeconds, t) : null
   const completedDuration = lastDurationSeconds === null ? null : formatDuration(lastDurationSeconds, t)
@@ -982,6 +1039,7 @@ export function ProductCompanion({
     : voice.feedback
   const accessoriesMoving = teleportPhase !== 'idle'
   const liveRatio = dragState.current?.moved === true ? dragState.current.ratio : composerOffsetRatio
+  const sideDirection = liveRatio > 0.5 ? 'left' : 'right'
   const bubbleAlign = position.x < 58
     ? 'left'
     : position.x > viewport.width - renderedSize.width - 58
@@ -1096,16 +1154,27 @@ export function ProductCompanion({
                   ) : (
                     <span className={css.materialDissolveLayer} aria-hidden="true">
                       <img
-                        className={`${css.characterImage} ${css.materialBody}`}
+                        className={`${css.characterImage} ${css.materialCurrent}`}
                         src={characterSrc}
-                        style={maskStripStyle('body')}
+                        style={maskStyle('body', dissolveFrame.current)}
                         alt=""
                         draggable={false}
                       />
+                      {dissolveFrame.previous === null ? null : (
+                        <img
+                          key={`body-${dissolveFrame.revision}`}
+                          className={`${css.characterImage} ${css.materialPrevious}`}
+                          src={characterSrc}
+                          style={maskStyle('body', dissolveFrame.previous)}
+                          alt=""
+                          draggable={false}
+                        />
+                      )}
                       <img
+                        key={`fragment-${dissolveFrame.revision}`}
                         className={`${css.characterImage} ${css.materialFragments}`}
                         src={characterSrc}
-                        style={maskStripStyle('fragment')}
+                        style={maskStyle('fragment', dissolveFrame.current)}
                         alt=""
                         draggable={false}
                       />
@@ -1124,22 +1193,17 @@ export function ProductCompanion({
         aria-hidden={accessoriesMoving || undefined}
         onPointerDown={(event) => { event.stopPropagation() }}
       >
-        {voiceEnabled ? (
-          <button
-            type="button"
-            className={css.quickControl}
-            data-control="voice"
-            data-active={voice.stage === 'listening' ? 'true' : 'false'}
-            disabled={accessoriesMoving || !voice.supported}
-            aria-pressed={voice.stage === 'listening'}
-            aria-label={voice.stage === 'listening'
-              ? t('voice.stop')
-              : voice.supported ? t('voice.start') : t('voice.unsupported')}
-            onClick={voice.toggle}
-          >
-            <span className={css.voiceIcon} aria-hidden="true" />
-          </button>
-        ) : null}
+        <button
+          type="button"
+          className={css.quickControl}
+          data-control="side"
+          data-direction={sideDirection}
+          disabled={accessoriesMoving}
+          aria-label={sideDirection === 'left' ? t('side.moveLeft') : t('side.moveRight')}
+          onClick={moveToOppositeBerth}
+        >
+          <span className={css.sideIcon} aria-hidden="true" />
+        </button>
         <button
           type="button"
           className={css.quickControl}

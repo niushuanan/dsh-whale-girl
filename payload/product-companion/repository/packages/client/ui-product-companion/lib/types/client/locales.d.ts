@@ -20,6 +20,8 @@ export declare const zh: {
     'task.collapse': string;
     'task.count': string;
     'task.none': string;
+    'side.moveLeft': string;
+    'side.moveRight': string;
     'voice.title': string;
     'voice.enabledLabel': string;
     'voice.enabledHint': string;
@@ -119,6 +121,8 @@ export declare const en: {
     'task.collapse': string;
     'task.count': string;
     'task.none': string;
+    'side.moveLeft': string;
+    'side.moveRight': string;
     'voice.title': string;
     'voice.enabledLabel': string;
     'voice.enabledHint': string;
