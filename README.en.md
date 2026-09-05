@@ -8,9 +8,11 @@ Add a native cross-page companion whose presence, shortcuts, and feedback follow
 
 <p align="center"><img src="docs/05-whale-girl.webp" alt="Whale Girl appearance and shortcut settings" width="800"></p>
 
+Current master ships complete native plugin folders and preserves each Settings entry's original plugin-owned icon. Remove its folder to uninstall the capability. See [INSTALL.md](INSTALL.md) for shared compatibility patches and installation checks.
+
 ## Install
 
-1. Open [Releases](https://github.com/niushuanan/dsh-whale-girl/releases/latest) and download the attached ZIP.
+1. Choose **Code → Download ZIP** for current master; older Releases do not include this repair.
 2. Give the ZIP to an AI that can read and modify the target DSH project.
 3. Tell the AI: **Read AGENTS.md, INSTALL.md, and manifest.json first. Install only this plugin and preserve existing plugins, data, conversations, attachments, and settings.**
 4. The installing AI merges the code and Cordis rows into the target version and validates only the entry points directly owned by this plugin.
@@ -24,4 +26,4 @@ Add a native cross-page companion whose presence, shortcuts, and feedback follow
 
 ## Source and license
 
-This repository is a one-way distribution mirror of [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh), not an independent development source. Its contents are synchronized from main-repository commit [`9745107b0f`](https://github.com/niushuanan/xiaozhuang-dsh/commit/9745107b0f4ec4c92feab012844ac2cee2d242c3); the latest released installation bundle remains [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-whale-girl/releases/tag/xiaozhuang-v0.4.2). Licensed under the [MIT License](LICENSE).
+This repository is a one-way distribution mirror of [Xiaozhuang DSH](https://github.com/niushuanan/xiaozhuang-dsh), not an independent development source. Its contents are synchronized from main-repository commit [`e745482d8f`](https://github.com/niushuanan/xiaozhuang-dsh/commit/e745482d8f5e33497d9ed46a2a88681456024334); the latest released installation bundle remains [`xiaozhuang-v0.4.2`](https://github.com/niushuanan/dsh-whale-girl/releases/tag/xiaozhuang-v0.4.2). Licensed under the [MIT License](LICENSE).

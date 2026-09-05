@@ -2,7 +2,7 @@ import { mkdir, readFile, rename, stat, unlink, writeFile } from "node:fs/promis
 import { createHash, randomUUID } from "node:crypto";
 import { join } from "node:path";
 import { dshHomeDisplay, resolveDshHome } from "@deepseek-ai/dsh-home-paths";
-//#region lib/types/global-rules-host.js
+//#region src/global-rules-host.ts
 /** Host-only editor for the user-global AGENTS.md used by every DSH session. */
 /** Same-origin API removed together with the native companion plugin. */
 const GLOBAL_RULES_API_ROUTE = "/plugins/ui-product-companion/api/global-rules";
@@ -134,7 +134,7 @@ async function globalRulesApiHandler(req, res, dshHome) {
 	}
 }
 //#endregion
-//#region lib/types/index.js
+//#region src/index.ts
 /**
 * Product companion, Host half: serves the generated sprite frames from the
 * same origin as the Web client. The browser half contributes the actual

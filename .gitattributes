@@ -1,0 +1,2 @@
+# Preserve whitespace that belongs to patch context and vendored source copies.
+payload/shared/*.patch -whitespace

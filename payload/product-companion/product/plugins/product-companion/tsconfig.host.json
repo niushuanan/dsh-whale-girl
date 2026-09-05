@@ -1,5 +1,5 @@
 {
-  "extends": "../../../tsconfig.base.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib/types",
@@ -12,16 +12,16 @@
   ],
   "references": [
     {
-      "path": "../../../vendor/cordis"
+      "path": "../../vendor/cordis"
     },
     {
-      "path": "../../host/webserver"
+      "path": "../../packages/host/webserver"
     },
     {
-      "path": "../../util/home-paths"
+      "path": "../../packages/util/home-paths"
     },
     {
-      "path": "../../runtime-diagnostics/invariants"
+      "path": "../../packages/runtime-diagnostics/invariants"
     }
   ]
 }

@@ -4,11 +4,11 @@ window.__ModuleLoader__.load({
 		var module = { exports: {} };
 		var exports = module.exports;
 		Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-		let react_jsx_runtime = require("react/jsx-runtime");
 		let react = require("react");
 		let _deepseek_ai_dsh_client_ui_primitives = require("@deepseek-ai/dsh-client-ui-primitives");
 		let _deepseek_ai_dsh_client_store = require("@deepseek-ai/dsh-client-store");
-		//#region lib/types/client/activity.js
+		let react_jsx_runtime = require("react/jsx-runtime");
+		//#region src/client/activity.ts
 		/**
 		* Project every live or attention-blocked conversation into one compact switcher row.
 		* Attention comes first, followed by the open conversation and then the freshest work.
@@ -120,7 +120,7 @@ window.__ModuleLoader__.load({
 			success: 12
 		};
 		//#endregion
-		//#region lib/types/client/store.js
+		//#region src/client/store.ts
 		/** Persisted user choices for the global product companion. */
 		/** Default product-facing name. Technical plugin ids remain stable. */
 		const DEFAULT_COMPANION_NAME = "鲸少女";
@@ -259,7 +259,7 @@ window.__ModuleLoader__.load({
 			return top - petHeight + bottomInset;
 		}
 		//#endregion
-		//#region lib/types/client/voice-input.js
+		//#region src/client/voice-input.ts
 		/** Browser-native microphone dictation. No model or AI processing is involved. */
 		function recognitionConstructor() {
 			if (typeof window === "undefined") return void 0;
@@ -507,8 +507,8 @@ window.__ModuleLoader__.load({
 			};
 		}
 		//#endregion
-		//#region \0dsh-css:/private/tmp/dsh-companion-check.GtPND2/packages/client/ui-product-companion/src/client/ProductCompanion.module.css.mjs
-		const css$1 = ".O59ykq_root{--habitat-rotate:0deg;--habitat-scale:1;--habitat-x:0px;--companion-x:0px;--companion-y:0px;--pose-x:0px;--pose-y:10px;--pose-rotate:0deg;--pose-scale:1;--companion-width:132px;--companion-height:118px;--dissolve-phase-ms:.92s;--dissolve-frame-crossfade-ms:36ms;z-index:28;width:var(--companion-width);height:var(--companion-height);pointer-events:auto;user-select:none;transform:translate3d(var(--companion-x), var(--companion-y), 0);will-change:transform;contain:layout style;position:fixed;top:0;left:0}.O59ykq_root[data-habitat=composer]{--habitat-rotate:0deg;--habitat-scale:1}.O59ykq_character{width:var(--companion-width);height:var(--companion-height);touch-action:none;cursor:grab;background:0 0;border:0;outline:none;padding:0;display:block;position:relative}.O59ykq_root[data-dragging=true] .O59ykq_character{cursor:grabbing}.O59ykq_contextMenu{width:var(--companion-width);height:var(--companion-height)}.O59ykq_contextMenu>[role=menu]{min-width:116px}.O59ykq_poseLayer,.O59ykq_motionLayer,.O59ykq_spriteLayer{pointer-events:none;transform-origin:bottom;display:block;position:absolute;inset:0}.O59ykq_poseLayer{transform:translate3d(var(--pose-x), var(--pose-y), 0) rotate(var(--pose-rotate)) scale(var(--pose-scale));will-change:transform;transition:transform .38s cubic-bezier(.2,.82,.24,1)}.O59ykq_motionLayer{will-change:translate, rotate, scale}.O59ykq_spriteLayer{transform:translate(var(--habitat-x), 0) rotate(var(--habitat-rotate)) scale(var(--habitat-scale));transition:transform .16s var(--ds-ease-out);backface-visibility:hidden}.O59ykq_characterImage{width:var(--companion-width);height:var(--companion-height);object-fit:contain;object-position:center bottom;pointer-events:none;backface-visibility:hidden;image-rendering:auto;will-change:contents;display:block;position:absolute;inset:0;transform:translateZ(0)}.O59ykq_materialDissolveLayer{pointer-events:none;backface-visibility:hidden;display:block;position:absolute;inset:0;transform:translateZ(0)}.O59ykq_materialCurrent,.O59ykq_materialPrevious,.O59ykq_materialFragments{-webkit-mask-image:var(--companion-material-mask);mask-image:var(--companion-material-mask);-webkit-mask-position:bottom;mask-position:bottom;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}.O59ykq_materialCurrent{z-index:0}.O59ykq_materialPrevious{z-index:1;animation:O59ykq_material-mask-out var(--dissolve-frame-crossfade-ms) linear both}.O59ykq_materialFragments{z-index:2;opacity:var(--companion-fragment-opacity,.78);filter:saturate(1.12)brightness(1.06);transform:translate3d(var(--companion-fragment-x,1px), var(--companion-fragment-y,-2px), 0)}.O59ykq_root[data-track=lounge][data-motion=rest]{--pose-x:-2px;--pose-rotate:0deg;--pose-scale:1}.O59ykq_root[data-track=lounge][data-motion=rest] .O59ykq_motionLayer{animation:1.833s ease-in-out 80ms infinite O59ykq_lounge-breathe}.O59ykq_root[data-pose=sleep][data-motion=rest] .O59ykq_motionLayer{animation:4.2s ease-in-out .2s infinite O59ykq_sleep}.O59ykq_root[data-track=waiting][data-motion=rest] .O59ykq_motionLayer{animation:2.35s ease-in-out .1s infinite O59ykq_waiting}.O59ykq_root[data-track=success][data-motion=rest] .O59ykq_motionLayer{animation:1.05s cubic-bezier(.18,.82,.2,1) both O59ykq_respond}@keyframes O59ykq_material-mask-out{0%{opacity:1}to{opacity:0}}.O59ykq_bubble,.O59ykq_taskPanel{left:50%;bottom:calc(var(--companion-height) - 8px);width:min(248px,100vw - 24px);position:absolute;transform:translate(-50%)}.O59ykq_bubble{border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);box-shadow:var(--dsw-shadow-lv1);animation:O59ykq_bubble-in .18s var(--ds-ease-out) both;color:inherit;text-align:left;cursor:pointer;border-radius:13px;padding:8px 11px;display:block}div.O59ykq_bubble{cursor:default;width:auto;max-width:180px}.O59ykq_voiceBubble{cursor:default;width:auto;min-width:92px;max-width:min(240px,100vw - 24px)}.O59ykq_voiceBubble .O59ykq_taskMeta{white-space:normal}.O59ykq_bubble:focus-visible,.O59ykq_taskRow:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:2px}.O59ykq_bubble:hover{background:var(--dsw-alias-bg-layer-2)}.O59ykq_taskTitle,.O59ykq_taskMeta{text-overflow:ellipsis;white-space:nowrap;display:block;overflow:hidden}.O59ykq_taskTitle{color:var(--dsw-alias-label-primary);font-size:12px;font-weight:600;line-height:17px}.O59ykq_taskMeta{color:var(--dsw-alias-label-secondary);font-size:11px;font-weight:400;line-height:16px}.O59ykq_taskPanel{--dsh-scrollbar-thumb:var(--dsw-alias-scrollbar-bg-l2);--dsh-scrollbar-thumb-hover:var(--dsw-alias-scrollbar-hover-l2);overscroll-behavior:contain;scrollbar-width:thin;gap:6px;max-height:216px;padding:4px;display:grid;overflow:hidden auto}.O59ykq_taskPanel[data-state=closing]{pointer-events:none}.O59ykq_taskRow{border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);width:100%;min-width:0;box-shadow:var(--dsw-shadow-lv1);text-align:left;cursor:pointer;transform-origin:bottom;transition:background-color .14s var(--ds-ease-out), border-color .14s var(--ds-ease-out);will-change:opacity, transform;border-radius:11px;padding:8px 10px;position:relative}.O59ykq_taskPanel[data-state=open] .O59ykq_taskRow{animation:O59ykq_task-bubble-in .28s cubic-bezier(.2, .9, .24, 1.08) var(--task-enter-delay) both}.O59ykq_taskPanel[data-state=closing] .O59ykq_taskRow{animation:O59ykq_task-bubble-out .17s cubic-bezier(.55, 0, .72, .35) var(--task-exit-delay) both}.O59ykq_taskRow:hover,.O59ykq_taskRow[data-current=true]{background:var(--dsw-alias-bg-module-platform)}.O59ykq_taskRow[data-current=true] .O59ykq_taskTitle{color:var(--dsw-alias-label-primary)}.O59ykq_bubble:after{border-right:1px solid var(--dsw-alias-border-l1);border-bottom:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);content:\"\";width:7px;height:7px;position:absolute;bottom:-4px;left:50%;transform:translate(-50%)rotate(45deg)}.O59ykq_root[data-bubble-align=left] .O59ykq_bubble,.O59ykq_root[data-bubble-align=left] .O59ykq_taskPanel{left:4px;transform:none}.O59ykq_root[data-bubble-align=left] .O59ykq_bubble:after{left:30px}.O59ykq_root[data-bubble-align=right] .O59ykq_bubble,.O59ykq_root[data-bubble-align=right] .O59ykq_taskPanel{left:auto;right:4px;transform:none}.O59ykq_root[data-bubble-align=right] .O59ykq_bubble:after{left:auto;right:30px;transform:rotate(45deg)}.O59ykq_quickControls{z-index:4;transform-origin:top;will-change:opacity, transform;gap:5px;display:flex;position:absolute;bottom:-14px;left:50%;transform:translate(-50%)}.O59ykq_root[data-teleport=departing] .O59ykq_quickControls{pointer-events:none;animation:O59ykq_companion-accessories-depart var(--dissolve-phase-ms) cubic-bezier(.42, 0, .58, 1) both}.O59ykq_root[data-teleport=arriving] .O59ykq_quickControls{pointer-events:none;animation:O59ykq_companion-accessories-arrive var(--dissolve-phase-ms) cubic-bezier(.42, 0, .58, 1) both}.O59ykq_quickControl{border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);width:30px;height:30px;box-shadow:var(--dsw-shadow-lv1);color:var(--dsw-alias-label-primary);font:inherit;cursor:pointer;border-radius:50%;place-items:center;padding:0;transition:border-color .12s,background-color .12s,box-shadow .12s;display:grid}.O59ykq_quickControl:not(:disabled):hover{background:var(--dsw-alias-bg-module-platform);box-shadow:0 1px 4px #00000014}.O59ykq_quickControl[data-control=side],.O59ykq_quickControl[data-control=side]:not(:disabled):hover{border-color:var(--dsw-alias-label-primary);background:var(--dsw-alias-label-primary);box-shadow:var(--dsw-shadow-lv1);color:var(--dsw-alias-bg-base)}.O59ykq_quickControl:focus-visible{border-color:var(--dsw-alias-brand-primary);box-shadow:0 0 0 3px color-mix(in srgb, var(--dsw-alias-brand-primary) 16%, transparent);outline:0}.O59ykq_quickControl:disabled{color:var(--dsw-alias-label-tertiary);cursor:default}.O59ykq_taskCount{text-align:center;min-width:1ch;font-size:12px;font-weight:600;line-height:1}.O59ykq_sideIcon{width:16px;height:12px;transition:transform .16s var(--ds-ease-out);display:block;position:relative}.O59ykq_sideIcon:before{content:\"\";background:currentColor;border-radius:999px;width:14px;height:2px;position:absolute;top:5px;left:1px}.O59ykq_sideIcon:after{content:\"\";border-bottom:2px solid;border-left:2px solid;width:6px;height:6px;position:absolute;top:2px;left:1px;transform:rotate(45deg)}.O59ykq_quickControl[data-direction=right] .O59ykq_sideIcon{transform:rotate(180deg)}.O59ykq_srOnly{clip:rect(0, 0, 0, 0);white-space:nowrap;clip-path:inset(50%);width:1px;height:1px;position:absolute;overflow:hidden}@keyframes O59ykq_bubble-in{0%{opacity:0;translate:0 3px}to{opacity:1;translate:0}}@keyframes O59ykq_task-bubble-in{0%{opacity:0;transform:translateY(12px)scale(.94)}72%{opacity:1;transform:translateY(-1px)scale(1.008)}to{opacity:1;transform:translateY(0)scale(1)}}@keyframes O59ykq_task-bubble-out{0%{opacity:1;transform:translateY(0)scale(1)}to{opacity:0;transform:translateY(10px)scale(.95)}}@keyframes O59ykq_companion-accessories-depart{0%,8%{opacity:1;transform:translate(-50%)translateY(0)scale(1)}40%,to{opacity:0;transform:translate(-50%)translateY(-5px)scale(.88)}}@keyframes O59ykq_companion-accessories-arrive{0%,38%{opacity:0;transform:translate(-50%)translateY(-5px)scale(.88)}88%,to{opacity:1;transform:translate(-50%)translateY(0)scale(1)}}@keyframes O59ykq_sleep{0%,to{translate:0;rotate:0deg}50%{translate:-1px 1.5px;rotate:-.45deg}}@keyframes O59ykq_waiting{0%,to{translate:0;rotate:0deg}38%{translate:0 -1px;rotate:-.25deg}66%{translate:1px -2px;rotate:.35deg}84%{translate:0 -1px;rotate:.1deg}}@keyframes O59ykq_lounge-breathe{0%,to{translate:0;rotate:0deg}32%{translate:-1px -1px;rotate:-.25deg}58%{translate:1px -2px;rotate:.2deg}78%{translate:0 -1px;rotate:0deg}}@keyframes O59ykq_respond{0%,to{translate:0;rotate:0deg}34%{translate:1px -2px;rotate:-.45deg}68%{translate:2px -3px;rotate:.7deg}88%{translate:1px -1px;rotate:.2deg}}@media (prefers-reduced-motion:reduce){.O59ykq_characterImage,.O59ykq_poseLayer,.O59ykq_motionLayer,.O59ykq_materialPrevious,.O59ykq_bubble,.O59ykq_taskRow{animation:none}.O59ykq_taskPanel[data-state=closing]{visibility:hidden}.O59ykq_poseLayer,.O59ykq_spriteLayer{transition-duration:1ms}}";
+		//#region \0dsh-css:/private/tmp/dsh-publish-20260905.X1Ok1K/source/plugins/product-companion/src/client/ProductCompanion.module.css.mjs
+		const css$1 = "._2h5RQa_root{--habitat-rotate:0deg;--habitat-scale:1;--habitat-x:0px;--companion-x:0px;--companion-y:0px;--pose-x:0px;--pose-y:10px;--pose-rotate:0deg;--pose-scale:1;--companion-width:132px;--companion-height:118px;--dissolve-phase-ms:.92s;--dissolve-frame-crossfade-ms:36ms;z-index:28;width:var(--companion-width);height:var(--companion-height);pointer-events:auto;user-select:none;transform:translate3d(var(--companion-x), var(--companion-y), 0);will-change:transform;contain:layout style;position:fixed;top:0;left:0}._2h5RQa_root[data-habitat=composer]{--habitat-rotate:0deg;--habitat-scale:1}._2h5RQa_character{width:var(--companion-width);height:var(--companion-height);touch-action:none;cursor:grab;background:0 0;border:0;outline:none;padding:0;display:block;position:relative}._2h5RQa_root[data-dragging=true] ._2h5RQa_character{cursor:grabbing}._2h5RQa_contextMenu{width:var(--companion-width);height:var(--companion-height)}._2h5RQa_contextMenu>[role=menu]{min-width:116px}._2h5RQa_poseLayer,._2h5RQa_motionLayer,._2h5RQa_spriteLayer{pointer-events:none;transform-origin:bottom;display:block;position:absolute;inset:0}._2h5RQa_poseLayer{transform:translate3d(var(--pose-x), var(--pose-y), 0) rotate(var(--pose-rotate)) scale(var(--pose-scale));will-change:transform;transition:transform .38s cubic-bezier(.2,.82,.24,1)}._2h5RQa_motionLayer{will-change:translate, rotate, scale}._2h5RQa_spriteLayer{transform:translate(var(--habitat-x), 0) rotate(var(--habitat-rotate)) scale(var(--habitat-scale));transition:transform .16s var(--ds-ease-out);backface-visibility:hidden}._2h5RQa_characterImage{width:var(--companion-width);height:var(--companion-height);object-fit:contain;object-position:center bottom;pointer-events:none;backface-visibility:hidden;image-rendering:auto;will-change:contents;display:block;position:absolute;inset:0;transform:translateZ(0)}._2h5RQa_materialDissolveLayer{pointer-events:none;backface-visibility:hidden;display:block;position:absolute;inset:0;transform:translateZ(0)}._2h5RQa_materialCurrent,._2h5RQa_materialPrevious,._2h5RQa_materialFragments{-webkit-mask-image:var(--companion-material-mask);mask-image:var(--companion-material-mask);-webkit-mask-position:bottom;mask-position:bottom;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}._2h5RQa_materialCurrent{z-index:0}._2h5RQa_materialPrevious{z-index:1;animation:_2h5RQa_material-mask-out var(--dissolve-frame-crossfade-ms) linear both}._2h5RQa_materialFragments{z-index:2;opacity:var(--companion-fragment-opacity,.78);filter:saturate(1.12)brightness(1.06);transform:translate3d(var(--companion-fragment-x,1px), var(--companion-fragment-y,-2px), 0)}._2h5RQa_root[data-track=lounge][data-motion=rest]{--pose-x:-2px;--pose-rotate:0deg;--pose-scale:1}._2h5RQa_root[data-track=lounge][data-motion=rest] ._2h5RQa_motionLayer{animation:1.833s ease-in-out 80ms infinite _2h5RQa_lounge-breathe}._2h5RQa_root[data-pose=sleep][data-motion=rest] ._2h5RQa_motionLayer{animation:4.2s ease-in-out .2s infinite _2h5RQa_sleep}._2h5RQa_root[data-track=waiting][data-motion=rest] ._2h5RQa_motionLayer{animation:2.35s ease-in-out .1s infinite _2h5RQa_waiting}._2h5RQa_root[data-track=success][data-motion=rest] ._2h5RQa_motionLayer{animation:1.05s cubic-bezier(.18,.82,.2,1) both _2h5RQa_respond}@keyframes _2h5RQa_material-mask-out{0%{opacity:1}to{opacity:0}}._2h5RQa_bubble,._2h5RQa_taskPanel{left:50%;bottom:calc(var(--companion-height) - 8px);width:min(248px,100vw - 24px);position:absolute;transform:translate(-50%)}._2h5RQa_bubble{border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);box-shadow:var(--dsw-shadow-lv1);animation:_2h5RQa_bubble-in .18s var(--ds-ease-out) both;color:inherit;text-align:left;cursor:pointer;border-radius:13px;padding:8px 11px;display:block}div._2h5RQa_bubble{cursor:default;width:auto;max-width:180px}._2h5RQa_voiceBubble{cursor:default;width:auto;min-width:92px;max-width:min(240px,100vw - 24px)}._2h5RQa_voiceBubble ._2h5RQa_taskMeta{white-space:normal}._2h5RQa_bubble:focus-visible,._2h5RQa_taskRow:focus-visible{outline:2px solid var(--dsw-alias-brand-primary);outline-offset:2px}._2h5RQa_bubble:hover{background:var(--dsw-alias-bg-layer-2)}._2h5RQa_taskTitle,._2h5RQa_taskMeta{text-overflow:ellipsis;white-space:nowrap;display:block;overflow:hidden}._2h5RQa_taskTitle{color:var(--dsw-alias-label-primary);font-size:12px;font-weight:600;line-height:17px}._2h5RQa_taskMeta{color:var(--dsw-alias-label-secondary);font-size:11px;font-weight:400;line-height:16px}._2h5RQa_taskPanel{--dsh-scrollbar-thumb:var(--dsw-alias-scrollbar-bg-l2);--dsh-scrollbar-thumb-hover:var(--dsw-alias-scrollbar-hover-l2);overscroll-behavior:contain;scrollbar-width:thin;gap:6px;max-height:216px;padding:4px;display:grid;overflow:hidden auto}._2h5RQa_taskPanel[data-state=closing]{pointer-events:none}._2h5RQa_taskRow{border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);width:100%;min-width:0;box-shadow:var(--dsw-shadow-lv1);text-align:left;cursor:pointer;transform-origin:bottom;transition:background-color .14s var(--ds-ease-out), border-color .14s var(--ds-ease-out);will-change:opacity, transform;border-radius:11px;padding:8px 10px;position:relative}._2h5RQa_taskPanel[data-state=open] ._2h5RQa_taskRow{animation:_2h5RQa_task-bubble-in .28s cubic-bezier(.2, .9, .24, 1.08) var(--task-enter-delay) both}._2h5RQa_taskPanel[data-state=closing] ._2h5RQa_taskRow{animation:_2h5RQa_task-bubble-out .17s cubic-bezier(.55, 0, .72, .35) var(--task-exit-delay) both}._2h5RQa_taskRow:hover,._2h5RQa_taskRow[data-current=true]{background:var(--dsw-alias-bg-module-platform)}._2h5RQa_taskRow[data-current=true] ._2h5RQa_taskTitle{color:var(--dsw-alias-label-primary)}._2h5RQa_bubble:after{border-right:1px solid var(--dsw-alias-border-l1);border-bottom:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);content:\"\";width:7px;height:7px;position:absolute;bottom:-4px;left:50%;transform:translate(-50%)rotate(45deg)}._2h5RQa_root[data-bubble-align=left] ._2h5RQa_bubble,._2h5RQa_root[data-bubble-align=left] ._2h5RQa_taskPanel{left:4px;transform:none}._2h5RQa_root[data-bubble-align=left] ._2h5RQa_bubble:after{left:30px}._2h5RQa_root[data-bubble-align=right] ._2h5RQa_bubble,._2h5RQa_root[data-bubble-align=right] ._2h5RQa_taskPanel{left:auto;right:4px;transform:none}._2h5RQa_root[data-bubble-align=right] ._2h5RQa_bubble:after{left:auto;right:30px;transform:rotate(45deg)}._2h5RQa_quickControls{z-index:4;transform-origin:top;will-change:opacity, transform;gap:5px;display:flex;position:absolute;bottom:-14px;left:50%;transform:translate(-50%)}._2h5RQa_root[data-teleport=departing] ._2h5RQa_quickControls{pointer-events:none;animation:_2h5RQa_companion-accessories-depart var(--dissolve-phase-ms) cubic-bezier(.42, 0, .58, 1) both}._2h5RQa_root[data-teleport=arriving] ._2h5RQa_quickControls{pointer-events:none;animation:_2h5RQa_companion-accessories-arrive var(--dissolve-phase-ms) cubic-bezier(.42, 0, .58, 1) both}._2h5RQa_quickControl{border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-layer-3);width:30px;height:30px;box-shadow:var(--dsw-shadow-lv1);color:var(--dsw-alias-label-primary);font:inherit;cursor:pointer;border-radius:50%;place-items:center;padding:0;transition:border-color .12s,background-color .12s,box-shadow .12s;display:grid}._2h5RQa_quickControl:not(:disabled):hover{background:var(--dsw-alias-bg-module-platform);box-shadow:0 1px 4px #00000014}._2h5RQa_quickControl[data-control=side],._2h5RQa_quickControl[data-control=side]:not(:disabled):hover{border-color:var(--dsw-alias-label-primary);background:var(--dsw-alias-label-primary);box-shadow:var(--dsw-shadow-lv1);color:var(--dsw-alias-bg-base)}._2h5RQa_quickControl:focus-visible{border-color:var(--dsw-alias-brand-primary);box-shadow:0 0 0 3px color-mix(in srgb, var(--dsw-alias-brand-primary) 16%, transparent);outline:0}._2h5RQa_quickControl:disabled{color:var(--dsw-alias-label-tertiary);cursor:default}._2h5RQa_taskCount{text-align:center;min-width:1ch;font-size:12px;font-weight:600;line-height:1}._2h5RQa_sideIcon{width:16px;height:12px;transition:transform .16s var(--ds-ease-out);display:block;position:relative}._2h5RQa_sideIcon:before{content:\"\";background:currentColor;border-radius:999px;width:14px;height:2px;position:absolute;top:5px;left:1px}._2h5RQa_sideIcon:after{content:\"\";border-bottom:2px solid;border-left:2px solid;width:6px;height:6px;position:absolute;top:2px;left:1px;transform:rotate(45deg)}._2h5RQa_quickControl[data-direction=right] ._2h5RQa_sideIcon{transform:rotate(180deg)}._2h5RQa_srOnly{clip:rect(0, 0, 0, 0);white-space:nowrap;clip-path:inset(50%);width:1px;height:1px;position:absolute;overflow:hidden}@keyframes _2h5RQa_bubble-in{0%{opacity:0;translate:0 3px}to{opacity:1;translate:0}}@keyframes _2h5RQa_task-bubble-in{0%{opacity:0;transform:translateY(12px)scale(.94)}72%{opacity:1;transform:translateY(-1px)scale(1.008)}to{opacity:1;transform:translateY(0)scale(1)}}@keyframes _2h5RQa_task-bubble-out{0%{opacity:1;transform:translateY(0)scale(1)}to{opacity:0;transform:translateY(10px)scale(.95)}}@keyframes _2h5RQa_companion-accessories-depart{0%,8%{opacity:1;transform:translate(-50%)translateY(0)scale(1)}40%,to{opacity:0;transform:translate(-50%)translateY(-5px)scale(.88)}}@keyframes _2h5RQa_companion-accessories-arrive{0%,38%{opacity:0;transform:translate(-50%)translateY(-5px)scale(.88)}88%,to{opacity:1;transform:translate(-50%)translateY(0)scale(1)}}@keyframes _2h5RQa_sleep{0%,to{translate:0;rotate:0deg}50%{translate:-1px 1.5px;rotate:-.45deg}}@keyframes _2h5RQa_waiting{0%,to{translate:0;rotate:0deg}38%{translate:0 -1px;rotate:-.25deg}66%{translate:1px -2px;rotate:.35deg}84%{translate:0 -1px;rotate:.1deg}}@keyframes _2h5RQa_lounge-breathe{0%,to{translate:0;rotate:0deg}32%{translate:-1px -1px;rotate:-.25deg}58%{translate:1px -2px;rotate:.2deg}78%{translate:0 -1px;rotate:0deg}}@keyframes _2h5RQa_respond{0%,to{translate:0;rotate:0deg}34%{translate:1px -2px;rotate:-.45deg}68%{translate:2px -3px;rotate:.7deg}88%{translate:1px -1px;rotate:.2deg}}@media (prefers-reduced-motion:reduce){._2h5RQa_characterImage,._2h5RQa_poseLayer,._2h5RQa_motionLayer,._2h5RQa_materialPrevious,._2h5RQa_bubble,._2h5RQa_taskRow{animation:none}._2h5RQa_taskPanel[data-state=closing]{visibility:hidden}._2h5RQa_poseLayer,._2h5RQa_spriteLayer{transition-duration:1ms}}";
 		const tagId$1 = "@deepseek-ai/dsh-client-ui-product-companion/ProductCompanion.module.css";
 		if (typeof document !== "undefined" && document.querySelector("style[data-plugin-css=" + JSON.stringify(tagId$1) + "]") === null) {
 			const tag = document.createElement("style");
@@ -518,41 +518,41 @@ window.__ModuleLoader__.load({
 			document.head.appendChild(tag);
 		}
 		var ProductCompanion_module_css_default = {
-			"bubble": "O59ykq_bubble",
-			"bubble-in": "O59ykq_bubble-in",
-			"character": "O59ykq_character",
-			"characterImage": "O59ykq_characterImage",
-			"companion-accessories-arrive": "O59ykq_companion-accessories-arrive",
-			"companion-accessories-depart": "O59ykq_companion-accessories-depart",
-			"contextMenu": "O59ykq_contextMenu",
-			"lounge-breathe": "O59ykq_lounge-breathe",
-			"material-mask-out": "O59ykq_material-mask-out",
-			"materialCurrent": "O59ykq_materialCurrent",
-			"materialDissolveLayer": "O59ykq_materialDissolveLayer",
-			"materialFragments": "O59ykq_materialFragments",
-			"materialPrevious": "O59ykq_materialPrevious",
-			"motionLayer": "O59ykq_motionLayer",
-			"poseLayer": "O59ykq_poseLayer",
-			"quickControl": "O59ykq_quickControl",
-			"quickControls": "O59ykq_quickControls",
-			"respond": "O59ykq_respond",
-			"root": "O59ykq_root",
-			"sideIcon": "O59ykq_sideIcon",
-			"sleep": "O59ykq_sleep",
-			"spriteLayer": "O59ykq_spriteLayer",
-			"srOnly": "O59ykq_srOnly",
-			"task-bubble-in": "O59ykq_task-bubble-in",
-			"task-bubble-out": "O59ykq_task-bubble-out",
-			"taskCount": "O59ykq_taskCount",
-			"taskMeta": "O59ykq_taskMeta",
-			"taskPanel": "O59ykq_taskPanel",
-			"taskRow": "O59ykq_taskRow",
-			"taskTitle": "O59ykq_taskTitle",
-			"voiceBubble": "O59ykq_voiceBubble",
-			"waiting": "O59ykq_waiting"
+			"bubble": "_2h5RQa_bubble",
+			"bubble-in": "_2h5RQa_bubble-in",
+			"character": "_2h5RQa_character",
+			"characterImage": "_2h5RQa_characterImage",
+			"companion-accessories-arrive": "_2h5RQa_companion-accessories-arrive",
+			"companion-accessories-depart": "_2h5RQa_companion-accessories-depart",
+			"contextMenu": "_2h5RQa_contextMenu",
+			"lounge-breathe": "_2h5RQa_lounge-breathe",
+			"material-mask-out": "_2h5RQa_material-mask-out",
+			"materialCurrent": "_2h5RQa_materialCurrent",
+			"materialDissolveLayer": "_2h5RQa_materialDissolveLayer",
+			"materialFragments": "_2h5RQa_materialFragments",
+			"materialPrevious": "_2h5RQa_materialPrevious",
+			"motionLayer": "_2h5RQa_motionLayer",
+			"poseLayer": "_2h5RQa_poseLayer",
+			"quickControl": "_2h5RQa_quickControl",
+			"quickControls": "_2h5RQa_quickControls",
+			"respond": "_2h5RQa_respond",
+			"root": "_2h5RQa_root",
+			"sideIcon": "_2h5RQa_sideIcon",
+			"sleep": "_2h5RQa_sleep",
+			"spriteLayer": "_2h5RQa_spriteLayer",
+			"srOnly": "_2h5RQa_srOnly",
+			"task-bubble-in": "_2h5RQa_task-bubble-in",
+			"task-bubble-out": "_2h5RQa_task-bubble-out",
+			"taskCount": "_2h5RQa_taskCount",
+			"taskMeta": "_2h5RQa_taskMeta",
+			"taskPanel": "_2h5RQa_taskPanel",
+			"taskRow": "_2h5RQa_taskRow",
+			"taskTitle": "_2h5RQa_taskTitle",
+			"voiceBubble": "_2h5RQa_voiceBubble",
+			"waiting": "_2h5RQa_waiting"
 		};
 		//#endregion
-		//#region lib/types/client/ProductCompanion.js
+		//#region src/client/ProductCompanion.tsx
 		const PET_WIDTH = 132;
 		const PET_HEIGHT = 118;
 		const EDGE = 8;
@@ -1413,7 +1413,7 @@ window.__ModuleLoader__.load({
 			const sideDirection = liveRatio > .5 ? "left" : "right";
 			const bubbleAlign = position.x < 58 ? "left" : position.x > viewport.width - renderedSize.width - 58 ? "right" : "center";
 			if (!visible || composerAnchor === null) return null;
-			return (0, react_jsx_runtime.jsxs)("div", {
+			return /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 				ref: rootRef,
 				className: ProductCompanion_module_css_default.root,
 				style,
@@ -1434,19 +1434,19 @@ window.__ModuleLoader__.load({
 				"data-teleport": teleportPhase,
 				"data-bubble-align": bubbleAlign,
 				children: [
-					voiceBubble !== null ? (0, react_jsx_runtime.jsx)("div", {
+					voiceBubble !== null ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 						className: `${ProductCompanion_module_css_default.bubble} ${ProductCompanion_module_css_default.voiceBubble}`,
 						"aria-live": "polite",
-						children: (0, react_jsx_runtime.jsx)("span", {
+						children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 							className: ProductCompanion_module_css_default.taskMeta,
 							children: voiceBubble
 						})
-					}) : tasksMounted ? (0, react_jsx_runtime.jsx)("div", {
+					}) : tasksMounted ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 						className: ProductCompanion_module_css_default.taskPanel,
 						"data-state": tasksOpen ? "open" : "closing",
 						"aria-label": t("task.listLabel"),
 						"aria-hidden": !tasksOpen,
-						children: activeTasks.map((task, index) => (0, react_jsx_runtime.jsxs)("button", {
+						children: activeTasks.map((task, index) => /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("button", {
 							type: "button",
 							className: ProductCompanion_module_css_default.taskRow,
 							"data-current": task.current ? "true" : "false",
@@ -1461,15 +1461,15 @@ window.__ModuleLoader__.load({
 							onClick: () => {
 								openTask(task.id);
 							},
-							children: [(0, react_jsx_runtime.jsx)("span", {
+							children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 								className: ProductCompanion_module_css_default.taskTitle,
 								children: task.title
-							}), (0, react_jsx_runtime.jsxs)("span", {
+							}), /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 								className: ProductCompanion_module_css_default.taskMeta,
 								children: [t(taskStatusKey(task.status)), task.current ? ` · ${t("task.current")}` : ""]
 							})]
 						}, task.id))
-					}) : focusTaskBubble !== null ? (0, react_jsx_runtime.jsxs)("button", {
+					}) : focusTaskBubble !== null ? /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("button", {
 						type: "button",
 						className: ProductCompanion_module_css_default.bubble,
 						onPointerDown: (event) => {
@@ -1479,22 +1479,22 @@ window.__ModuleLoader__.load({
 							openTask(focusTaskBubble.task.id);
 						},
 						"aria-label": t("task.open", { title: focusTaskBubble.task.title }),
-						children: [(0, react_jsx_runtime.jsx)("span", {
+						children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 							className: ProductCompanion_module_css_default.taskTitle,
 							children: focusTaskBubble.task.title
-						}), (0, react_jsx_runtime.jsx)("span", {
+						}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 							className: ProductCompanion_module_css_default.taskMeta,
 							children: focusTaskBubble.meta
 						})]
-					}) : completionBubble !== null ? (0, react_jsx_runtime.jsx)("div", {
+					}) : completionBubble !== null ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 						className: ProductCompanion_module_css_default.bubble,
 						"aria-hidden": "true",
-						children: (0, react_jsx_runtime.jsx)("span", {
+						children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 							className: ProductCompanion_module_css_default.taskMeta,
 							children: completionBubble
 						})
 					}) : null,
-					(0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.Menu, {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.Menu, {
 						open: menuOpen,
 						onClose: () => {
 							setMenuOpen(false);
@@ -1507,7 +1507,7 @@ window.__ModuleLoader__.load({
 						side: "bottom",
 						compact: true,
 						className: ProductCompanion_module_css_default.contextMenu ?? "",
-						anchor: (0, react_jsx_runtime.jsx)("div", {
+						anchor: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 							className: ProductCompanion_module_css_default.character,
 							"data-companion-surface": "",
 							role: "img",
@@ -1519,37 +1519,37 @@ window.__ModuleLoader__.load({
 							onClick: onCharacterClick,
 							onContextMenu: openContextMenu,
 							onKeyDown: onCharacterKeyDown,
-							children: (0, react_jsx_runtime.jsx)("span", {
+							children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 								className: ProductCompanion_module_css_default.poseLayer,
 								"aria-hidden": "true",
-								children: (0, react_jsx_runtime.jsx)("span", {
+								children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 									className: ProductCompanion_module_css_default.motionLayer,
-									children: (0, react_jsx_runtime.jsx)("span", {
+									children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 										className: ProductCompanion_module_css_default.spriteLayer,
-										children: teleportPhase === "idle" ? (0, react_jsx_runtime.jsx)("img", {
+										children: teleportPhase === "idle" ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("img", {
 											className: ProductCompanion_module_css_default.characterImage,
 											src: characterSrc,
 											alt: "",
 											draggable: false
-										}) : (0, react_jsx_runtime.jsxs)("span", {
+										}) : /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 											className: ProductCompanion_module_css_default.materialDissolveLayer,
 											"aria-hidden": "true",
 											children: [
-												(0, react_jsx_runtime.jsx)("img", {
+												/* @__PURE__ */ (0, react_jsx_runtime.jsx)("img", {
 													className: `${ProductCompanion_module_css_default.characterImage} ${ProductCompanion_module_css_default.materialCurrent}`,
 													src: characterSrc,
 													style: maskStyle("body", dissolveFrame.current),
 													alt: "",
 													draggable: false
 												}),
-												dissolveFrame.previous === null ? null : (0, react_jsx_runtime.jsx)("img", {
+												dissolveFrame.previous === null ? null : /* @__PURE__ */ (0, react_jsx_runtime.jsx)("img", {
 													className: `${ProductCompanion_module_css_default.characterImage} ${ProductCompanion_module_css_default.materialPrevious}`,
 													src: characterSrc,
 													style: maskStyle("body", dissolveFrame.previous),
 													alt: "",
 													draggable: false
 												}, `body-${dissolveFrame.revision}`),
-												(0, react_jsx_runtime.jsx)("img", {
+												/* @__PURE__ */ (0, react_jsx_runtime.jsx)("img", {
 													className: `${ProductCompanion_module_css_default.characterImage} ${ProductCompanion_module_css_default.materialFragments}`,
 													src: characterSrc,
 													style: maskStyle("fragment", dissolveFrame.current),
@@ -1563,7 +1563,7 @@ window.__ModuleLoader__.load({
 							})
 						})
 					}),
-					(0, react_jsx_runtime.jsxs)("div", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 						className: ProductCompanion_module_css_default.quickControls,
 						"data-companion-accessories": "",
 						"data-phase": teleportPhase,
@@ -1571,7 +1571,7 @@ window.__ModuleLoader__.load({
 						onPointerDown: (event) => {
 							event.stopPropagation();
 						},
-						children: [(0, react_jsx_runtime.jsx)("button", {
+						children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 							type: "button",
 							className: ProductCompanion_module_css_default.quickControl,
 							"data-control": "side",
@@ -1579,11 +1579,11 @@ window.__ModuleLoader__.load({
 							disabled: accessoriesMoving,
 							"aria-label": sideDirection === "left" ? t("side.moveLeft") : t("side.moveRight"),
 							onClick: moveToOppositeBerth,
-							children: (0, react_jsx_runtime.jsx)("span", {
+							children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 								className: ProductCompanion_module_css_default.sideIcon,
 								"aria-hidden": "true"
 							})
-						}), (0, react_jsx_runtime.jsx)("button", {
+						}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 							type: "button",
 							className: ProductCompanion_module_css_default.quickControl,
 							disabled: accessoriesMoving || !showStatus || activeTasks.length === 0,
@@ -1591,13 +1591,13 @@ window.__ModuleLoader__.load({
 							"aria-label": tasksOpen ? t("task.collapse", { count: activeTasks.length }) : t("task.expand", { count: activeTasks.length }),
 							title: activeTasks.length === 0 ? t("task.none") : t("task.count", { count: activeTasks.length }),
 							onClick: toggleTasks,
-							children: (0, react_jsx_runtime.jsx)("span", {
+							children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 								className: ProductCompanion_module_css_default.taskCount,
 								children: activeTasks.length
 							})
 						})]
 					}),
-					(0, react_jsx_runtime.jsx)("span", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 						className: ProductCompanion_module_css_default.srOnly,
 						"aria-live": "polite",
 						children: t(stateKey(displayState))
@@ -1606,7 +1606,7 @@ window.__ModuleLoader__.load({
 			});
 		}
 		//#endregion
-		//#region lib/types/client/global-rules.js
+		//#region src/client/global-rules.ts
 		/** Browser transport for the companion-owned user-global AGENTS.md editor. */
 		const GLOBAL_RULES_API_ROUTE = "/plugins/ui-product-companion/api/global-rules";
 		var GlobalRulesRequestError = class extends Error {
@@ -1635,8 +1635,8 @@ window.__ModuleLoader__.load({
 			}));
 		}
 		//#endregion
-		//#region \0dsh-css:/private/tmp/dsh-companion-check.GtPND2/packages/client/ui-product-companion/src/client/ProductCompanionSettings.module.css.mjs
-		const css = "._7HX8da_section{box-sizing:border-box;width:100%;max-width:720px;color:var(--dsw-alias-label-primary);flex-direction:column;display:flex}._7HX8da_pageHeader{margin-bottom:20px}._7HX8da_nameEditor{align-items:center;gap:6px;width:100%;min-width:0;max-width:348px;display:flex}._7HX8da_editNameButton,._7HX8da_nameEditor button{width:28px;height:28px;color:var(--dsw-alias-label-tertiary);cursor:pointer;background:0 0;border:0;border-radius:8px;flex:none;place-items:center;padding:0;display:grid}._7HX8da_editNameButton:hover,._7HX8da_nameEditor button:hover{background:var(--dsw-alias-interactive-bg-hover);color:var(--dsw-alias-label-primary)}._7HX8da_editNameButton:focus-visible,._7HX8da_nameEditor button:focus-visible,._7HX8da_nameEditor input:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}._7HX8da_nameEditor input{box-sizing:border-box;border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-base);width:auto;min-width:0;height:32px;color:var(--dsw-alias-label-primary);font:inherit;border-radius:9px;flex:1;padding:0 10px;font-size:15px;font-weight:560}._7HX8da_group{padding:0 0 24px}._7HX8da_group+._7HX8da_group{padding-top:4px}._7HX8da_group h3{color:var(--dsw-alias-label-tertiary);margin:0;padding:0 0 8px;font-size:12px;font-weight:500;line-height:18px}._7HX8da_skinGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 10px;display:grid}._7HX8da_rows{margin-top:10px}._7HX8da_skinOption{border:1px solid var(--dsw-alias-border-l2);min-width:0;min-height:88px;color:inherit;font:inherit;text-align:left;cursor:pointer;background:0 0;border-radius:14px;align-items:center;gap:10px;padding:9px 30px 9px 9px;display:flex;position:relative}._7HX8da_skinOption:hover{background:var(--dsw-alias-bg-module-platform)}._7HX8da_skinOption[data-selected=true]{border-color:var(--dsw-alias-label-primary);background:var(--dsw-alias-bg-layer-2)}._7HX8da_skinOption:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}._7HX8da_skinPreview{background:var(--dsw-alias-bg-module-platform);border-radius:12px;flex:none;place-items:center;width:66px;height:66px;display:grid;overflow:hidden}._7HX8da_skinPreview img{object-fit:contain;pointer-events:none;width:66px;height:66px}._7HX8da_skinCopy,._7HX8da_rowCopy{flex-direction:column;flex:1;gap:2px;min-width:0;display:flex}._7HX8da_skinCopy strong,._7HX8da_rowCopy strong{font-size:13px;font-weight:500;line-height:20px}._7HX8da_skinCopy span,._7HX8da_rowCopy span{color:var(--dsw-alias-label-caption);font-size:11px;line-height:18px}._7HX8da_selectionMark{box-sizing:border-box;border:1px solid var(--dsw-alias-border-l1);border-radius:50%;width:12px;height:12px;position:absolute;top:14px;right:14px}._7HX8da_skinOption[data-selected=true] ._7HX8da_selectionMark{border:4px solid var(--dsw-alias-label-primary)}._7HX8da_row{box-sizing:border-box;border:0;border-bottom:1px solid var(--dsw-alias-border-l2);align-items:center;gap:14px;min-height:62px;margin:0 10px;padding:10px 0;display:flex}._7HX8da_row:last-child{border-bottom:0}._7HX8da_selector{background:var(--dsw-alias-bg-module-platform);min-width:112px;height:32px;color:var(--dsw-alias-label-primary);font:inherit;cursor:pointer;border:0;border-radius:999px;flex:none;justify-content:space-between;align-items:center;gap:10px;padding:0 11px 0 13px;font-size:12px;line-height:18px;display:inline-flex}._7HX8da_selector:hover{background:var(--dsw-alias-interactive-bg-hover)}._7HX8da_selector:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}._7HX8da_chevron{color:var(--dsw-alias-label-tertiary);flex:none}._7HX8da_switch{box-sizing:border-box;appearance:none;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-module-platform);cursor:pointer;border-radius:999px;flex:none;width:36px;height:21px;padding:2px}._7HX8da_switch:before{background:var(--dsw-alias-bg-base);content:\"\";border-radius:50%;width:15px;height:15px;transition:transform .14s;display:block;box-shadow:0 1px 2px #0000002e}._7HX8da_switch:checked{border-color:var(--dsw-alias-label-primary);background:var(--dsw-alias-label-primary)}._7HX8da_switch:checked:before{transform:translate(15px)}._7HX8da_textButton{color:var(--dsw-alias-label-secondary);font:inherit;cursor:pointer;background:0 0;border:0;flex:none;padding:0;font-size:11px;line-height:18px}._7HX8da_textButton:hover{color:var(--dsw-alias-label-primary)}._7HX8da_textButton:disabled{cursor:default;opacity:.45}._7HX8da_rulesSurface{background:var(--dsw-alias-bg-layer-2);border-radius:14px;margin:0 10px;overflow:hidden}._7HX8da_rulesHeader{align-items:center;gap:14px;min-height:58px;padding:10px 14px;display:flex}._7HX8da_rulesHeader ._7HX8da_rowCopy strong{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px}._7HX8da_rulesNotice,._7HX8da_rulesError{border-top:1px solid var(--dsw-alias-border-l2);color:var(--dsw-alias-label-caption);margin:0;padding:16px 14px;font-size:11px;line-height:18px}._7HX8da_rulesError{color:var(--dsw-alias-label-primary)}._7HX8da_rulesError ._7HX8da_textButton{font-size:inherit;margin-left:8px}._7HX8da_rulesEditor{box-sizing:border-box;resize:vertical;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-base);width:calc(100% - 28px);min-height:210px;color:var(--dsw-alias-label-primary);tab-size:2;border-radius:10px;margin:0 14px;padding:11px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;line-height:19px;display:block}._7HX8da_rulesEditor:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:1px}._7HX8da_rulesFooter{min-height:52px;color:var(--dsw-alias-label-caption);justify-content:space-between;align-items:center;gap:12px;padding:0 14px;font-size:10px;line-height:16px;display:flex}._7HX8da_primaryButton{background:var(--dsw-alias-label-primary);height:30px;color:var(--dsw-alias-bg-base);font:inherit;cursor:pointer;border:0;border-radius:9px;flex:none;padding:0 13px;font-size:12px;font-weight:550}._7HX8da_primaryButton:disabled{cursor:default;opacity:.35}._7HX8da_voiceSurface{background:var(--dsw-alias-bg-layer-2);border-radius:14px;margin:0 10px}._7HX8da_voiceSurface ._7HX8da_row{margin:0 14px}._7HX8da_voiceSurface[data-enabled=false]{background:0 0}._7HX8da_voiceSurface[data-enabled=false] ._7HX8da_row{margin:0}._7HX8da_voiceDetails{animation:_7HX8da_voice-details-in .18s var(--ds-ease-out) both}._7HX8da_shortcutRecorder:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}._7HX8da_shortcutRecorder{background:var(--dsw-alias-bg-base);min-width:74px;height:30px;color:var(--dsw-alias-label-primary);font:inherit;cursor:pointer;border:0;border-radius:8px;flex:none;padding:0 10px;font-size:12px;font-weight:550}._7HX8da_shortcutRecorder[data-voice-shortcut-recording=true]{background:var(--dsw-alias-label-primary);color:var(--dsw-alias-bg-base)}._7HX8da_voicePrivacy{color:var(--dsw-alias-label-caption);margin:0;padding:0 14px 14px;font-size:10px;line-height:16px}._7HX8da_privacy{color:var(--dsw-alias-label-caption);margin:0 10px;font-size:11px;line-height:18px}@media (width<=680px){._7HX8da_skinGrid{grid-template-columns:1fr;margin-left:0;margin-right:0}._7HX8da_row,._7HX8da_privacy{margin-left:0;margin-right:0}._7HX8da_selector{min-width:104px}._7HX8da_voiceSurface,._7HX8da_rulesSurface{margin-left:0;margin-right:0}}@keyframes _7HX8da_voice-details-in{0%{opacity:0;translate:0 -4px}to{opacity:1;translate:0}}@media (prefers-reduced-motion:reduce){._7HX8da_switch:before{transition:none}._7HX8da_voiceDetails{animation:none}}";
+		//#region \0dsh-css:/private/tmp/dsh-publish-20260905.X1Ok1K/source/plugins/product-companion/src/client/ProductCompanionSettings.module.css.mjs
+		const css = ".-\\31 lmyG_section{box-sizing:border-box;width:100%;max-width:720px;color:var(--dsw-alias-label-primary);flex-direction:column;display:flex}.-\\31 lmyG_pageHeader{margin-bottom:20px}.-\\31 lmyG_nameEditor{align-items:center;gap:6px;width:100%;min-width:0;max-width:348px;display:flex}.-\\31 lmyG_editNameButton,.-\\31 lmyG_nameEditor button{width:28px;height:28px;color:var(--dsw-alias-label-tertiary);cursor:pointer;background:0 0;border:0;border-radius:8px;flex:none;place-items:center;padding:0;display:grid}.-\\31 lmyG_editNameButton:hover,.-\\31 lmyG_nameEditor button:hover{background:var(--dsw-alias-interactive-bg-hover);color:var(--dsw-alias-label-primary)}.-\\31 lmyG_editNameButton:focus-visible,.-\\31 lmyG_nameEditor button:focus-visible,.-\\31 lmyG_nameEditor input:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}.-\\31 lmyG_nameEditor input{box-sizing:border-box;border:1px solid var(--dsw-alias-border-l1);background:var(--dsw-alias-bg-base);width:auto;min-width:0;height:32px;color:var(--dsw-alias-label-primary);font:inherit;border-radius:9px;flex:1;padding:0 10px;font-size:15px;font-weight:560}.-\\31 lmyG_group{padding:0 0 24px}.-\\31 lmyG_group+.-\\31 lmyG_group{padding-top:4px}.-\\31 lmyG_group h3{color:var(--dsw-alias-label-tertiary);margin:0;padding:0 0 8px;font-size:12px;font-weight:500;line-height:18px}.-\\31 lmyG_skinGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 10px;display:grid}.-\\31 lmyG_rows{margin-top:10px}.-\\31 lmyG_skinOption{border:1px solid var(--dsw-alias-border-l2);min-width:0;min-height:88px;color:inherit;font:inherit;text-align:left;cursor:pointer;background:0 0;border-radius:14px;align-items:center;gap:10px;padding:9px 30px 9px 9px;display:flex;position:relative}.-\\31 lmyG_skinOption:hover{background:var(--dsw-alias-bg-module-platform)}.-\\31 lmyG_skinOption[data-selected=true]{border-color:var(--dsw-alias-label-primary);background:var(--dsw-alias-bg-layer-2)}.-\\31 lmyG_skinOption:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}.-\\31 lmyG_skinPreview{background:var(--dsw-alias-bg-module-platform);border-radius:12px;flex:none;place-items:center;width:66px;height:66px;display:grid;overflow:hidden}.-\\31 lmyG_skinPreview img{object-fit:contain;pointer-events:none;width:66px;height:66px}.-\\31 lmyG_skinCopy,.-\\31 lmyG_rowCopy{flex-direction:column;flex:1;gap:2px;min-width:0;display:flex}.-\\31 lmyG_skinCopy strong,.-\\31 lmyG_rowCopy strong{font-size:13px;font-weight:500;line-height:20px}.-\\31 lmyG_skinCopy span,.-\\31 lmyG_rowCopy span{color:var(--dsw-alias-label-caption);font-size:11px;line-height:18px}.-\\31 lmyG_selectionMark{box-sizing:border-box;border:1px solid var(--dsw-alias-border-l1);border-radius:50%;width:12px;height:12px;position:absolute;top:14px;right:14px}.-\\31 lmyG_skinOption[data-selected=true] .-\\31 lmyG_selectionMark{border:4px solid var(--dsw-alias-label-primary)}.-\\31 lmyG_row{box-sizing:border-box;border:0;border-bottom:1px solid var(--dsw-alias-border-l2);align-items:center;gap:14px;min-height:62px;margin:0 10px;padding:10px 0;display:flex}.-\\31 lmyG_row:last-child{border-bottom:0}.-\\31 lmyG_selector{background:var(--dsw-alias-bg-module-platform);min-width:112px;height:32px;color:var(--dsw-alias-label-primary);font:inherit;cursor:pointer;border:0;border-radius:999px;flex:none;justify-content:space-between;align-items:center;gap:10px;padding:0 11px 0 13px;font-size:12px;line-height:18px;display:inline-flex}.-\\31 lmyG_selector:hover{background:var(--dsw-alias-interactive-bg-hover)}.-\\31 lmyG_selector:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}.-\\31 lmyG_chevron{color:var(--dsw-alias-label-tertiary);flex:none}.-\\31 lmyG_switch{box-sizing:border-box;appearance:none;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-module-platform);cursor:pointer;border-radius:999px;flex:none;width:36px;height:21px;padding:2px}.-\\31 lmyG_switch:before{background:var(--dsw-alias-bg-base);content:\"\";border-radius:50%;width:15px;height:15px;transition:transform .14s;display:block;box-shadow:0 1px 2px #0000002e}.-\\31 lmyG_switch:checked{border-color:var(--dsw-alias-label-primary);background:var(--dsw-alias-label-primary)}.-\\31 lmyG_switch:checked:before{transform:translate(15px)}.-\\31 lmyG_textButton{color:var(--dsw-alias-label-secondary);font:inherit;cursor:pointer;background:0 0;border:0;flex:none;padding:0;font-size:11px;line-height:18px}.-\\31 lmyG_textButton:hover{color:var(--dsw-alias-label-primary)}.-\\31 lmyG_textButton:disabled{cursor:default;opacity:.45}.-\\31 lmyG_rulesSurface{background:var(--dsw-alias-bg-layer-2);border-radius:14px;margin:0 10px;overflow:hidden}.-\\31 lmyG_rulesHeader{align-items:center;gap:14px;min-height:58px;padding:10px 14px;display:flex}.-\\31 lmyG_rulesHeader .-\\31 lmyG_rowCopy strong{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px}.-\\31 lmyG_rulesNotice,.-\\31 lmyG_rulesError{border-top:1px solid var(--dsw-alias-border-l2);color:var(--dsw-alias-label-caption);margin:0;padding:16px 14px;font-size:11px;line-height:18px}.-\\31 lmyG_rulesError{color:var(--dsw-alias-label-primary)}.-\\31 lmyG_rulesError .-\\31 lmyG_textButton{font-size:inherit;margin-left:8px}.-\\31 lmyG_rulesEditor{box-sizing:border-box;resize:vertical;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-base);width:calc(100% - 28px);min-height:210px;color:var(--dsw-alias-label-primary);tab-size:2;border-radius:10px;margin:0 14px;padding:11px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;line-height:19px;display:block}.-\\31 lmyG_rulesEditor:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:1px}.-\\31 lmyG_rulesFooter{min-height:52px;color:var(--dsw-alias-label-caption);justify-content:space-between;align-items:center;gap:12px;padding:0 14px;font-size:10px;line-height:16px;display:flex}.-\\31 lmyG_primaryButton{background:var(--dsw-alias-label-primary);height:30px;color:var(--dsw-alias-bg-base);font:inherit;cursor:pointer;border:0;border-radius:9px;flex:none;padding:0 13px;font-size:12px;font-weight:550}.-\\31 lmyG_primaryButton:disabled{cursor:default;opacity:.35}.-\\31 lmyG_voiceSurface{background:var(--dsw-alias-bg-layer-2);border-radius:14px;margin:0 10px}.-\\31 lmyG_voiceSurface .-\\31 lmyG_row{margin:0 14px}.-\\31 lmyG_voiceSurface[data-enabled=false]{background:0 0}.-\\31 lmyG_voiceSurface[data-enabled=false] .-\\31 lmyG_row{margin:0}.-\\31 lmyG_voiceDetails{animation:-\\31 lmyG_voice-details-in .18s var(--ds-ease-out) both}.-\\31 lmyG_shortcutRecorder:focus-visible{outline:2px solid var(--dsw-alias-label-primary);outline-offset:2px}.-\\31 lmyG_shortcutRecorder{background:var(--dsw-alias-bg-base);min-width:74px;height:30px;color:var(--dsw-alias-label-primary);font:inherit;cursor:pointer;border:0;border-radius:8px;flex:none;padding:0 10px;font-size:12px;font-weight:550}.-\\31 lmyG_shortcutRecorder[data-voice-shortcut-recording=true]{background:var(--dsw-alias-label-primary);color:var(--dsw-alias-bg-base)}.-\\31 lmyG_voicePrivacy{color:var(--dsw-alias-label-caption);margin:0;padding:0 14px 14px;font-size:10px;line-height:16px}.-\\31 lmyG_privacy{color:var(--dsw-alias-label-caption);margin:0 10px;font-size:11px;line-height:18px}@media (width<=680px){.-\\31 lmyG_skinGrid{grid-template-columns:1fr;margin-left:0;margin-right:0}.-\\31 lmyG_row,.-\\31 lmyG_privacy{margin-left:0;margin-right:0}.-\\31 lmyG_selector{min-width:104px}.-\\31 lmyG_voiceSurface,.-\\31 lmyG_rulesSurface{margin-left:0;margin-right:0}}@keyframes -\\31 lmyG_voice-details-in{0%{opacity:0;translate:0 -4px}to{opacity:1;translate:0}}@media (prefers-reduced-motion:reduce){.-\\31 lmyG_switch:before{transition:none}.-\\31 lmyG_voiceDetails{animation:none}}";
 		const tagId = "@deepseek-ai/dsh-client-ui-product-companion/ProductCompanionSettings.module.css";
 		if (typeof document !== "undefined" && document.querySelector("style[data-plugin-css=" + JSON.stringify(tagId) + "]") === null) {
 			const tag = document.createElement("style");
@@ -1646,39 +1646,39 @@ window.__ModuleLoader__.load({
 			document.head.appendChild(tag);
 		}
 		var ProductCompanionSettings_module_css_default = {
-			"chevron": "_7HX8da_chevron",
-			"editNameButton": "_7HX8da_editNameButton",
-			"group": "_7HX8da_group",
-			"nameEditor": "_7HX8da_nameEditor",
-			"pageHeader": "_7HX8da_pageHeader",
-			"primaryButton": "_7HX8da_primaryButton",
-			"privacy": "_7HX8da_privacy",
-			"row": "_7HX8da_row",
-			"rowCopy": "_7HX8da_rowCopy",
-			"rows": "_7HX8da_rows",
-			"rulesEditor": "_7HX8da_rulesEditor",
-			"rulesError": "_7HX8da_rulesError",
-			"rulesFooter": "_7HX8da_rulesFooter",
-			"rulesHeader": "_7HX8da_rulesHeader",
-			"rulesNotice": "_7HX8da_rulesNotice",
-			"rulesSurface": "_7HX8da_rulesSurface",
-			"section": "_7HX8da_section",
-			"selectionMark": "_7HX8da_selectionMark",
-			"selector": "_7HX8da_selector",
-			"shortcutRecorder": "_7HX8da_shortcutRecorder",
-			"skinCopy": "_7HX8da_skinCopy",
-			"skinGrid": "_7HX8da_skinGrid",
-			"skinOption": "_7HX8da_skinOption",
-			"skinPreview": "_7HX8da_skinPreview",
-			"switch": "_7HX8da_switch",
-			"textButton": "_7HX8da_textButton",
-			"voice-details-in": "_7HX8da_voice-details-in",
-			"voiceDetails": "_7HX8da_voiceDetails",
-			"voicePrivacy": "_7HX8da_voicePrivacy",
-			"voiceSurface": "_7HX8da_voiceSurface"
+			"chevron": "-1lmyG_chevron",
+			"editNameButton": "-1lmyG_editNameButton",
+			"group": "-1lmyG_group",
+			"nameEditor": "-1lmyG_nameEditor",
+			"pageHeader": "-1lmyG_pageHeader",
+			"primaryButton": "-1lmyG_primaryButton",
+			"privacy": "-1lmyG_privacy",
+			"row": "-1lmyG_row",
+			"rowCopy": "-1lmyG_rowCopy",
+			"rows": "-1lmyG_rows",
+			"rulesEditor": "-1lmyG_rulesEditor",
+			"rulesError": "-1lmyG_rulesError",
+			"rulesFooter": "-1lmyG_rulesFooter",
+			"rulesHeader": "-1lmyG_rulesHeader",
+			"rulesNotice": "-1lmyG_rulesNotice",
+			"rulesSurface": "-1lmyG_rulesSurface",
+			"section": "-1lmyG_section",
+			"selectionMark": "-1lmyG_selectionMark",
+			"selector": "-1lmyG_selector",
+			"shortcutRecorder": "-1lmyG_shortcutRecorder",
+			"skinCopy": "-1lmyG_skinCopy",
+			"skinGrid": "-1lmyG_skinGrid",
+			"skinOption": "-1lmyG_skinOption",
+			"skinPreview": "-1lmyG_skinPreview",
+			"switch": "-1lmyG_switch",
+			"textButton": "-1lmyG_textButton",
+			"voice-details-in": "-1lmyG_voice-details-in",
+			"voiceDetails": "-1lmyG_voiceDetails",
+			"voicePrivacy": "-1lmyG_voicePrivacy",
+			"voiceSurface": "-1lmyG_voiceSurface"
 		};
 		//#endregion
-		//#region lib/types/client/ProductCompanionSettings.js
+		//#region src/client/ProductCompanionSettings.tsx
 		const SKINS = ["blue", "black"];
 		const SIZE_OPTIONS = [{
 			id: "standard",
@@ -1765,12 +1765,12 @@ window.__ModuleLoader__.load({
 		function SelectorRow({ label, hint, value, options, onChange, t, params }) {
 			const [open, setOpen] = (0, react.useState)(false);
 			const selected = options.find((option) => option.id === value) ?? options[0];
-			return (0, react_jsx_runtime.jsxs)("div", {
+			return /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 				className: ProductCompanionSettings_module_css_default.row,
-				children: [(0, react_jsx_runtime.jsxs)("span", {
+				children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 					className: ProductCompanionSettings_module_css_default.rowCopy,
-					children: [(0, react_jsx_runtime.jsx)("strong", { children: t(label, params) }), (0, react_jsx_runtime.jsx)("span", { children: t(hint, params) })]
-				}), (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.Menu, {
+					children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: t(label, params) }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: t(hint, params) })]
+				}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.Menu, {
 					open,
 					onClose: () => {
 						setOpen(false);
@@ -1787,7 +1787,7 @@ window.__ModuleLoader__.load({
 					align: "end",
 					portal: true,
 					compact: true,
-					anchor: (0, react_jsx_runtime.jsxs)("button", {
+					anchor: /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("button", {
 						type: "button",
 						className: ProductCompanionSettings_module_css_default.selector,
 						"aria-haspopup": "menu",
@@ -1795,7 +1795,7 @@ window.__ModuleLoader__.load({
 						onClick: () => {
 							setOpen((current) => !current);
 						},
-						children: [selected === void 0 ? "" : t(selected.label, params), (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconChevronDownOutline14, { className: ProductCompanionSettings_module_css_default.chevron })]
+						children: [selected === void 0 ? "" : t(selected.label, params), /* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconChevronDownOutline14, { className: ProductCompanionSettings_module_css_default.chevron })]
 					})
 				})]
 			});
@@ -1895,21 +1895,21 @@ window.__ModuleLoader__.load({
 				setRulesStatus("loading");
 				setRulesReload((value) => value + 1);
 			};
-			return (0, react_jsx_runtime.jsxs)("div", {
+			return /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 				className: ProductCompanionSettings_module_css_default.section,
 				children: [
-					(0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.SettingsSectionHeader, {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.SettingsSectionHeader, {
 						className: ProductCompanionSettings_module_css_default.pageHeader,
 						title: displayName,
 						description: t("intro", { name: displayName }),
-						titleAdornment: editingName ? (0, react_jsx_runtime.jsxs)("form", {
+						titleAdornment: editingName ? /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("form", {
 							className: ProductCompanionSettings_module_css_default.nameEditor,
 							onSubmit: (event) => {
 								event.preventDefault();
 								saveName();
 							},
 							children: [
-								(0, react_jsx_runtime.jsx)("input", {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)("input", {
 									autoFocus: true,
 									value: nameDraft,
 									"aria-label": t("nameInput"),
@@ -1923,13 +1923,13 @@ window.__ModuleLoader__.load({
 										}
 									}
 								}),
-								(0, react_jsx_runtime.jsx)("button", {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 									type: "submit",
 									"aria-label": t("saveName"),
 									title: t("saveName"),
-									children: (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconCheckOutline16, { size: 15 })
+									children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconCheckOutline16, { size: 15 })
 								}),
-								(0, react_jsx_runtime.jsx)("button", {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 									type: "button",
 									"aria-label": t("cancelName"),
 									title: t("cancelName"),
@@ -1937,10 +1937,10 @@ window.__ModuleLoader__.load({
 										setNameDraft(displayName);
 										setEditingName(false);
 									},
-									children: (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconCloseOutline16, { size: 15 })
+									children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconCloseOutline16, { size: 15 })
 								})
 							]
-						}) : (0, react_jsx_runtime.jsx)("button", {
+						}) : /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 							type: "button",
 							className: ProductCompanionSettings_module_css_default.editNameButton,
 							"aria-label": t("editName"),
@@ -1948,22 +1948,22 @@ window.__ModuleLoader__.load({
 							onClick: () => {
 								setEditingName(true);
 							},
-							children: (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconEditOutline16, { size: 15 })
+							children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconEditOutline16, { size: 15 })
 						})
 					}),
-					(0, react_jsx_runtime.jsxs)("section", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("section", {
 						className: ProductCompanionSettings_module_css_default.group,
 						"aria-labelledby": "product-companion-appearance",
 						children: [
-							(0, react_jsx_runtime.jsx)("h3", {
+							/* @__PURE__ */ (0, react_jsx_runtime.jsx)("h3", {
 								id: "product-companion-appearance",
 								children: t("appearance")
 							}),
-							(0, react_jsx_runtime.jsx)("div", {
+							/* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 								className: ProductCompanionSettings_module_css_default.skinGrid,
 								role: "radiogroup",
 								"aria-label": t("appearance"),
-								children: SKINS.map((candidate) => (0, react_jsx_runtime.jsxs)("button", {
+								children: SKINS.map((candidate) => /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("button", {
 									type: "button",
 									className: ProductCompanionSettings_module_css_default.skinOption,
 									role: "radio",
@@ -1973,28 +1973,28 @@ window.__ModuleLoader__.load({
 										actions.setSkin(candidate);
 									},
 									children: [
-										(0, react_jsx_runtime.jsx)("span", {
+										/* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 											className: ProductCompanionSettings_module_css_default.skinPreview,
-											children: (0, react_jsx_runtime.jsx)("img", {
+											children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)("img", {
 												src: companionFrameUrl(candidate, "lounge"),
 												alt: "",
 												draggable: false
 											})
 										}),
-										(0, react_jsx_runtime.jsxs)("span", {
+										/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 											className: ProductCompanionSettings_module_css_default.skinCopy,
-											children: [(0, react_jsx_runtime.jsx)("strong", { children: t(`skin.${candidate}`) }), (0, react_jsx_runtime.jsx)("span", { children: t(`skin.${candidate}Hint`) })]
+											children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: t(`skin.${candidate}`) }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: t(`skin.${candidate}Hint`) })]
 										}),
-										(0, react_jsx_runtime.jsx)("span", {
+										/* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 											className: ProductCompanionSettings_module_css_default.selectionMark,
 											"aria-hidden": "true"
 										})
 									]
 								}, candidate))
 							}),
-							(0, react_jsx_runtime.jsx)("div", {
+							/* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 								className: ProductCompanionSettings_module_css_default.rows,
-								children: (0, react_jsx_runtime.jsx)(SelectorRow, {
+								children: /* @__PURE__ */ (0, react_jsx_runtime.jsx)(SelectorRow, {
 									label: "sizeLabel",
 									hint: "sizeHint",
 									value: size,
@@ -2007,16 +2007,16 @@ window.__ModuleLoader__.load({
 							})
 						]
 					}),
-					(0, react_jsx_runtime.jsxs)("section", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("section", {
 						className: ProductCompanionSettings_module_css_default.group,
 						"aria-labelledby": "product-companion-shortcuts",
-						children: [(0, react_jsx_runtime.jsx)("h3", {
+						children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("h3", {
 							id: "product-companion-shortcuts",
 							children: t("shortcuts")
-						}), (0, react_jsx_runtime.jsxs)("div", {
+						}), /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 							className: ProductCompanionSettings_module_css_default.rows,
 							children: [
-								(0, react_jsx_runtime.jsx)(SelectorRow, {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)(SelectorRow, {
 									label: "clickLabel",
 									hint: "clickHint",
 									value: clickAction,
@@ -2026,7 +2026,7 @@ window.__ModuleLoader__.load({
 									},
 									t
 								}),
-								(0, react_jsx_runtime.jsx)(SelectorRow, {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)(SelectorRow, {
 									label: "doubleClickLabel",
 									hint: "doubleClickHint",
 									value: doubleClickAction,
@@ -2036,7 +2036,7 @@ window.__ModuleLoader__.load({
 									},
 									t
 								}),
-								(0, react_jsx_runtime.jsx)(SelectorRow, {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)(SelectorRow, {
 									label: "contextLabel",
 									hint: "contextHint",
 									value: contextAction,
@@ -2050,47 +2050,47 @@ window.__ModuleLoader__.load({
 							]
 						})]
 					}),
-					(0, react_jsx_runtime.jsxs)("section", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("section", {
 						className: ProductCompanionSettings_module_css_default.group,
 						"aria-labelledby": "product-companion-global-rules",
-						children: [(0, react_jsx_runtime.jsx)("h3", {
+						children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("h3", {
 							id: "product-companion-global-rules",
 							children: t("rules.title")
-						}), (0, react_jsx_runtime.jsxs)("div", {
+						}), /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 							className: ProductCompanionSettings_module_css_default.rulesSurface,
 							children: [
-								(0, react_jsx_runtime.jsx)("div", {
+								/* @__PURE__ */ (0, react_jsx_runtime.jsx)("div", {
 									className: ProductCompanionSettings_module_css_default.rulesHeader,
-									children: (0, react_jsx_runtime.jsxs)("span", {
+									children: /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 										className: ProductCompanionSettings_module_css_default.rowCopy,
-										children: [(0, react_jsx_runtime.jsx)("strong", { children: "AGENTS.md" }), (0, react_jsx_runtime.jsx)("span", { children: t("rules.hint", { path: rulesDocument?.displayPath ?? "~/.dsh/AGENTS.md" }) })]
+										children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: "AGENTS.md" }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: t("rules.hint", { path: rulesDocument?.displayPath ?? "~/.dsh/AGENTS.md" }) })]
 									})
 								}),
-								rulesStatus === "loading" ? (0, react_jsx_runtime.jsx)("p", {
+								rulesStatus === "loading" ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("p", {
 									className: ProductCompanionSettings_module_css_default.rulesNotice,
 									children: t("rules.loading")
 								}) : null,
-								rulesStatus === "error" ? (0, react_jsx_runtime.jsxs)("p", {
+								rulesStatus === "error" ? /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("p", {
 									className: ProductCompanionSettings_module_css_default.rulesError,
 									role: "alert",
-									children: [t("rules.error"), (0, react_jsx_runtime.jsx)("button", {
+									children: [t("rules.error"), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 										type: "button",
 										className: ProductCompanionSettings_module_css_default.textButton,
 										onClick: loadLatestGlobalRules,
 										children: t("rules.retry")
 									})]
 								}) : null,
-								rulesStatus === "conflict" ? (0, react_jsx_runtime.jsxs)("p", {
+								rulesStatus === "conflict" ? /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("p", {
 									className: ProductCompanionSettings_module_css_default.rulesError,
 									role: "alert",
-									children: [t("rules.conflict"), (0, react_jsx_runtime.jsx)("button", {
+									children: [t("rules.conflict"), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 										type: "button",
 										className: ProductCompanionSettings_module_css_default.textButton,
 										onClick: loadLatestGlobalRules,
 										children: t("rules.loadLatest")
 									})]
 								}) : null,
-								rulesDocument !== null ? (0, react_jsx_runtime.jsxs)(react_jsx_runtime.Fragment, { children: [(0, react_jsx_runtime.jsx)("textarea", {
+								rulesDocument !== null ? /* @__PURE__ */ (0, react_jsx_runtime.jsxs)(react_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("textarea", {
 									className: ProductCompanionSettings_module_css_default.rulesEditor,
 									"aria-label": t("rules.editorLabel"),
 									value: rulesDraft,
@@ -2106,12 +2106,12 @@ window.__ModuleLoader__.load({
 											persistGlobalRules();
 										}
 									}
-								}), (0, react_jsx_runtime.jsxs)("div", {
+								}), /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 									className: ProductCompanionSettings_module_css_default.rulesFooter,
-									children: [(0, react_jsx_runtime.jsx)("span", {
+									children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", {
 										"aria-live": "polite",
 										children: rulesStatus === "saving" ? t("rules.saving") : rulesDirty ? t("rules.unsaved") : t("rules.saved")
-									}), (0, react_jsx_runtime.jsx)("button", {
+									}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 										type: "button",
 										className: ProductCompanionSettings_module_css_default.primaryButton,
 										disabled: !rulesDirty || rulesStatus === "saving" || rulesStatus === "conflict",
@@ -2124,21 +2124,21 @@ window.__ModuleLoader__.load({
 							]
 						})]
 					}),
-					(0, react_jsx_runtime.jsxs)("section", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("section", {
 						className: ProductCompanionSettings_module_css_default.group,
 						"aria-labelledby": "product-companion-voice",
-						children: [(0, react_jsx_runtime.jsx)("h3", {
+						children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("h3", {
 							id: "product-companion-voice",
 							children: t("voice.title")
-						}), (0, react_jsx_runtime.jsxs)("div", {
+						}), /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 							className: ProductCompanionSettings_module_css_default.voiceSurface,
 							"data-enabled": voiceEnabled ? "true" : "false",
-							children: [(0, react_jsx_runtime.jsxs)("label", {
+							children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("label", {
 								className: ProductCompanionSettings_module_css_default.row,
-								children: [(0, react_jsx_runtime.jsxs)("span", {
+								children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 									className: ProductCompanionSettings_module_css_default.rowCopy,
-									children: [(0, react_jsx_runtime.jsx)("strong", { children: t("voice.enabledLabel") }), (0, react_jsx_runtime.jsx)("span", { children: t("voice.enabledHint", { name: displayName }) })]
-								}), (0, react_jsx_runtime.jsx)("input", {
+									children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: t("voice.enabledLabel") }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: t("voice.enabledHint", { name: displayName }) })]
+								}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("input", {
 									className: ProductCompanionSettings_module_css_default.switch,
 									type: "checkbox",
 									"aria-label": t("voice.enabledLabel"),
@@ -2147,14 +2147,14 @@ window.__ModuleLoader__.load({
 										actions.setVoiceEnabled(event.currentTarget.checked);
 									}
 								})]
-							}), voiceEnabled ? (0, react_jsx_runtime.jsxs)("div", {
+							}), voiceEnabled ? /* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 								className: ProductCompanionSettings_module_css_default.voiceDetails,
-								children: [(0, react_jsx_runtime.jsxs)("div", {
+								children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("div", {
 									className: ProductCompanionSettings_module_css_default.row,
-									children: [(0, react_jsx_runtime.jsxs)("span", {
+									children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 										className: ProductCompanionSettings_module_css_default.rowCopy,
-										children: [(0, react_jsx_runtime.jsx)("strong", { children: t("voice.shortcutLabel") }), (0, react_jsx_runtime.jsx)("span", { children: recordingShortcut ? t("voice.shortcutRecording") : t("voice.shortcutHintSetting") })]
-									}), (0, react_jsx_runtime.jsx)("button", {
+										children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: t("voice.shortcutLabel") }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: recordingShortcut ? t("voice.shortcutRecording") : t("voice.shortcutHintSetting") })]
+									}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("button", {
 										ref: shortcutRef,
 										type: "button",
 										className: ProductCompanionSettings_module_css_default.shortcutRecorder,
@@ -2176,27 +2176,27 @@ window.__ModuleLoader__.load({
 										},
 										children: recordingShortcut ? t("voice.shortcutWaiting") : displayShortcut(voiceShortcut)
 									})]
-								}), (0, react_jsx_runtime.jsx)("p", {
+								}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("p", {
 									className: ProductCompanionSettings_module_css_default.voicePrivacy,
 									children: t("voice.privacy")
 								})]
 							}) : null]
 						})]
 					}),
-					(0, react_jsx_runtime.jsxs)("section", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("section", {
 						className: ProductCompanionSettings_module_css_default.group,
 						"aria-labelledby": "product-companion-behavior",
 						children: [
-							(0, react_jsx_runtime.jsx)("h3", {
+							/* @__PURE__ */ (0, react_jsx_runtime.jsx)("h3", {
 								id: "product-companion-behavior",
 								children: t("behavior")
 							}),
-							(0, react_jsx_runtime.jsxs)("label", {
+							/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("label", {
 								className: ProductCompanionSettings_module_css_default.row,
-								children: [(0, react_jsx_runtime.jsxs)("span", {
+								children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 									className: ProductCompanionSettings_module_css_default.rowCopy,
-									children: [(0, react_jsx_runtime.jsx)("strong", { children: t("visibleLabel", { name: displayName }) }), (0, react_jsx_runtime.jsx)("span", { children: t("visibleHint") })]
-								}), (0, react_jsx_runtime.jsx)("input", {
+									children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: t("visibleLabel", { name: displayName }) }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: t("visibleHint") })]
+								}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("input", {
 									className: ProductCompanionSettings_module_css_default.switch,
 									type: "checkbox",
 									"aria-label": t("visibleLabel", { name: displayName }),
@@ -2206,12 +2206,12 @@ window.__ModuleLoader__.load({
 									}
 								})]
 							}),
-							(0, react_jsx_runtime.jsxs)("label", {
+							/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("label", {
 								className: ProductCompanionSettings_module_css_default.row,
-								children: [(0, react_jsx_runtime.jsxs)("span", {
+								children: [/* @__PURE__ */ (0, react_jsx_runtime.jsxs)("span", {
 									className: ProductCompanionSettings_module_css_default.rowCopy,
-									children: [(0, react_jsx_runtime.jsx)("strong", { children: t("statusLabel") }), (0, react_jsx_runtime.jsx)("span", { children: t("statusHint") })]
-								}), (0, react_jsx_runtime.jsx)("input", {
+									children: [/* @__PURE__ */ (0, react_jsx_runtime.jsx)("strong", { children: t("statusLabel") }), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("span", { children: t("statusHint") })]
+								}), /* @__PURE__ */ (0, react_jsx_runtime.jsx)("input", {
 									className: ProductCompanionSettings_module_css_default.switch,
 									type: "checkbox",
 									"aria-label": t("statusLabel"),
@@ -2223,7 +2223,7 @@ window.__ModuleLoader__.load({
 							})
 						]
 					}),
-					(0, react_jsx_runtime.jsx)("p", {
+					/* @__PURE__ */ (0, react_jsx_runtime.jsx)("p", {
 						className: ProductCompanionSettings_module_css_default.privacy,
 						children: t("privacy")
 					})
@@ -2231,7 +2231,7 @@ window.__ModuleLoader__.load({
 			});
 		}
 		//#endregion
-		//#region lib/types/client/locales.js
+		//#region src/client/locales.ts
 		/** Simplified-Chinese companion dictionary and key source of truth. */
 		const zh = {
 			name: "鲸少女",
@@ -2433,8 +2433,7 @@ window.__ModuleLoader__.load({
 			privacy: "The companion never stores message contents. Microphone dictation uses browser speech recognition and never calls a model."
 		};
 		//#endregion
-		//#region lib/types/client/index.js
-		/** Browser half of the native cross-page product companion plugin. */
+		//#region src/client/index.ts
 		const NS = "productCompanion";
 		function isAuxiliaryWindow() {
 			if (typeof location === "undefined") return false;
@@ -2478,6 +2477,13 @@ window.__ModuleLoader__.load({
 				locale: NS,
 				store
 			}, ProductCompanionSettings));
+			ctx.slots.inject("settings.section.icon", () => ctx.slots.register({
+				name: "settings.section.icon",
+				id: "product-companion"
+			}, (props) => (0, react.createElement)(_deepseek_ai_dsh_client_ui_primitives.FishLogo, {
+				className: props.className,
+				size: 19
+			})));
 		}
 		//#endregion
 		exports.DEFAULT_COMPANION_NAME = DEFAULT_COMPANION_NAME;
